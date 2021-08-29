@@ -5,8 +5,7 @@
     <title>Whats Cookin</title>
   </head>
   <body>
-    <section class="home-view">
-      <h1>punny name here</h1>
+    <h1>punny name here
       <nav class="nav-bar">
         <div class="nav-bar__nav-tabs">
           <button type="button" class="nav-tabs__all-recipes"></button> all recipes
@@ -20,153 +19,287 @@
           <button type="button" class="search-bar__home-button"></button> home
         </div>
       </nav>
-      <main class="featured">
+    </h1>
+    <main class="featured">
+      <section class="home-view">
         <img class="featured__featured-recipe-image" src="" alt="image of featured recipe"> featured recipe
         <button type="button" class="featured__save-recipe-button"></button> save recipe
-      </main>
-      <!-- glide -->
-    </section>
-    <section class="recipes-view">
-      <nav class="nav-bar">
-        <div class="nav-tabs">
-          <button type="button" class="nav-tabs__all-recipes"></button> all recipes
-          <button type="button" class="nav-tabs__favorites"></button> favourites
-          <button type="button" class="nav-tabs__this-week"></button> this week
-        </div>
-        <div class="search-bar">
-          <label for="searchInput"></label> search bar
-          <input type="search" name="searchInput" class="search-bar__search-input" value=""> search bar
-          <button type="button" class="search-bar__initiate-search"></button> search button
-          <button type="button" class="search-bar__home-button"></button> home
-        </div>
-      </nav>
-      <h1>all recipes</h1> <!-- recipes view -->
-      <div class="recipes-view__breakfast-glide">
-        <h2>bfast</h2>
-        <!-- glide -->
-      </div>
-      <div class="recipes-view__lunch-glide">
-        <h2>lunch</h2>
-        <!-- glide -->
-      </div>
-      <div class="recipes-view__dinner-glide">
-        <h2>dinner</h2>
-        <!-- glide -->
-      </div>
-      <div class="recipes-view__appetizers-glide">
-        <h2>appetizers</h2>
-        <!-- glide -->
-      </div>
-      <div class="recipes-view__desserts-glide">
-        <h2>desserts</h2>
-        <!-- glide -->
-      </div>
-      <button type="button" class="recipes-view__add-recipe-button"></button> add recipe
-    </section>
-    <section class="favorites-view">
-      <nav class="nav-bar">
-        <div class="nav-tabs">
-          <button type="button" class="nav-tabs__all-recipes"></button> all recipes
-          <button type="button" class="nav-tabs__favorites"></button> favourites
-          <button type="button" class="nav-tabs__this-week"></button> this week
-        </div>
-        <div class="search-bar">
-          <label for="searchInput"></label> search bar
-          <input type="search" name="searchInput" class="search-bar__search-input" value=""> search bar
-          <button type="button" class="search-bar__initiate-search"></button> search button
-          <button type="button" class="search-bar__home-button"></button> home
-        </div>
-      </nav>
-      <h1></h1> <!-- favourite recipes -->
-      <div class="favorites-view__favorites">
-        <!-- dynamically populated html -->
-      </div>
+      </section>
+      <section class="recipes-view">
+        <h1>all recipes</h1>
+        <section class="recipes-view__glide">
 
-      <!-- <div class="favorites-view__saved-week-one-recipes">
-        <h2></h2> -->
-        <!-- glide -->
-      <!-- </div>
-      <div class="favorites-view__saved-week-two-recipes">
-        <h2></h2> -->
-        <!-- glide -->
-      <!-- </div>
-      <div class="favorites-view__saved-week-three-recipes">
-        <h2></h2> -->
-        <!-- glide -->
-      <!-- </div>
-      <div class="favorites-view__saved-week-four-recipes">
-        <h2></h2> -->
-        <!-- glide -->
-      <!-- </div> -->
+          <h2>bfast</h2>
+          <div class="glide__gliders">
+            <!-- <article class="gliders__breakfast-glide">
+              <img src="" class="breakfast-glide__image-one" alt="">
+            </article> -->
+          </div>
+        </section>
+        <section class="recipes-view__glide">
+          <h2>lunch</h2>
+          <div class="glide__gliders">
+            <!-- <article class="gliders__lunch-glide">
+              <img src="" class="lunch-glide__image-one" alt="">
+            </article> -->
+          </div>
+        </section>
+        <section class="recipes-view__glide">
+          <h2>dinner</h2>
+          <div class="glide__gliders">
+            <!-- <article class="gliders__dinner-glide">
+              <img src="" class="dinner-glide__image-one" alt="">
+            </article> -->
+          </div>
+        </section>
+        <section class="recipes-view__glide">
+          <h2>appetizers</h2>
+          <div class="glide__gliders">
+            <!-- <article class="gliders__appetizers-glide">
+              <img src="" class="appetizers-glide__image-one" alt="">
+            </article> -->
+          </div>
+        </section>
+        <section class="recipes-view__glide">
+          <h2>desserts</h2>
+          <div class="glide__gliders">
+            <!-- <article class="gliders__dessert-glide">
+              <img src="" class="dessert-glide__image-one" alt="">
+            </article> -->
+          </div>
+        </section>
+        <button type="button" class="recipes-view__add-recipe-button"></button> add recipe
+      </section>
+      <section class="favorites-view">
+        <h1></h1>
+        <div class="favorites-view__favorites">
+          <!-- dynamically populated html -->
+        </div>
 
-    </section>
-    <section class="weekly-recipes-view">
-      <nav class="nav-bar">
-        <div class="nav-tabs">
-          <button type="button" class="nav-tabs__all-recipes"></button> all recipes
-          <button type="button" class="nav-tabs__favorites"></button> favourites
-          <button type="button" class="nav-tabs__this-week"></button> this week
-        </div>
-        <div class="search-bar">
-          <label for="searchInput"></label> search bar
-          <input type="search" name="searchInput" class="search-bar__search-input" value=""> search bar
-          <button type="button" class="search-bar__initiate-search"></button> search button
-          <button type="button" class="search-bar__home-button"></button> home
-        </div>
-      </nav>
-      <h1></h1> <!-- weekly recipes -->
-      <div class="weekly-recipes-view__week-one">
-        <h2>week of ...</h2>
-        <!-- glide -->
-      </div>
-      <div class="weekly-recipes-view__week-two">
-        <h2>week of ...</h2>
-        <!-- glide -->
-      </div>
-      <div class="weekly-recipes-view__week-three">
-        <h2>week of ...</h2>
-        <!-- glide -->
-      </div>
-      <div class="weekly-recipes-view__week-four">
-        <h2>week of ...</h2>
-        <!-- glide -->
-      </div>
-    </section>
-    <section class="single-recipe-view">
-      <nav class="nav-bar">
-        <div class="nav-tabs">
-          <button type="button" class="nav-tabs__all-recipes"></button> all recipes
-          <button type="button" class="nav-tabs__favorites"></button> favourites
-          <button type="button" class="nav-tabs__this-week"></button> this week
-        </div>
-        <div class="search-bar">
-          <label for="searchInput"></label> search bar
-          <input type="search" name="searchInput" class="search-bar__search-input" value=""> search bar
-          <button type="button" class="search-bar__initiate-search"></button> search button
-          <button type="button" class="search-bar__home-button"></button> home
-        </div>
-      </nav>
-      <!-- recipes view -->
-      <h1>recipe name</h1>
-      <button type="button" class="single-recipe-view__add-to-favorites-button"></button> add to favourites
-      <button type="button" class="single-recipe-view__add-to-week-button"></button> cook this week
-      <div class="single-recipe-view__ingredients">
-        <h2>ingredients title</h2>
-        <text class="ingredients__ingredient-list">ingredients</text>
-      </div>
-      <!-- <img src="" class="single-recipe-view__recipe-image" alt=""> recipe img -->
-      <!-- dynamically added ^^^^^ -->
-      <text class="single-recipe-view__total-cost">total cost</text>
-      <div class="single-recipe-view__instructions">
-        <h2>instructions</h2>
 
-        <!-- <div class="instructions__steps">
-          <h3></h3>
-          <p></p>
-        </div> -->
-        <!-- dynamic HTML -->
+        <div class="favorites-view__saved-week-one-recipes">
+          <!-- <article class="saved-week-one-recipes__saved=glide-one">
+            <img src="" class="saved-glide-one__image-one" alt="">
+          </article> -->
+          <!-- <article class="saved-week-one-recipes__saved=glide-one">
+            <img src="" class="saved-glide-one__image-two" alt="">
+          </article> -->
+          <!-- <article class="saved-week-one-recipes__saved=glide-one">
+            <img src="" class="saved-glide-one__image-three" alt="">
+          </article> -->
+          <!-- <article class="saved-week-one-recipes__saved=glide-one">
+            <img src="" class="saved-glide-one__image-four" alt="">
+          </article> -->
+          <!-- <article class="saved-week-one-recipes__saved=glide-one">
+            <img src="" class="saved-glide-one__image-five" alt="">
+          </article> -->
+          <!-- <article class="saved-week-one-recipes__saved=glide-one">
+            <img src="" class="saved-glide-one__image-six" alt="">
+          </article> -->
+          <!-- <article class="saved-week-one-recipes__saved=glide-one">
+            <img src="" class="saved-glide-one__image-seven" alt="">
+          </article> -->
+        </div>
+        <div class="favorites-view__saved-week-two-recipes">
+          <!-- <article class="saved-week-two-recipes__saved-glide-two">
+            <img src="" class="saved-glide-two__image-one" alt="">
+          </article> -->
+          <!-- <article class="saved-week-two-recipes__saved-glide-two">
+            <img src="" class="saved-glide-two__image-two" alt="">
+          </article> -->
+          <!-- <article class="saved-week-two-recipes__saved-glide-two">
+            <img src="" class="saved-glide-two__image-three" alt="">
+          </article> -->
+          <!-- <article class="saved-week-two-recipes__saved-glide-two">
+            <img src="" class="saved-glide-two__image-four" alt="">
+          </article> -->
+          <!-- <article class="saved-week-two-recipes__saved-glide-two">
+            <img src="" class="saved-glide-two__image-five" alt="">
+          </article> -->
+          <!-- <article class="saved-week-two-recipes__saved-glide-two">
+            <img src="" class="saved-glide-two__image-six" alt="">
+          </article> -->
+          <!-- <article class="saved-week-two-recipes__saved-glide-two">
+            <img src="" class="saved-glide-two__image-seven" alt="">
+          </article> -->
+        </div>
+        <div class="favorites-view__saved-week-three-recipes">
+          <!-- <article class="saved-week-three-recipes__saved-glide-three">
+            <img src="" class="saved-glide-three__image-one" alt="">
+          </article> -->
+          <!-- <article class="saved-week-three-recipes__saved-glide-three">
+            <img src="" class="saved-glide-three__image-two" alt="">
+          </article> -->
+          <!-- <article class="saved-week-three-recipes__saved-glide-three">
+            <img src="" class="saved-glide-three__image-three" alt="">
+          </article> -->
+          <!-- <article class="saved-week-three-recipes__saved-glide-three">
+            <img src="" class="saved-glide-three__image-four" alt="">
+          </article> -->
+          <!-- <article class="saved-week-three-recipes__saved-glide-three">
+            <img src="" class="saved-glide-three__image-five" alt="">
+          </article> -->
+          <!-- <article class="saved-week-three-recipes__saved-glide-three">
+            <img src="" class="saved-glide-three__image-six" alt="">
+          </article> -->
+          <!-- <article class="saved-week-three-recipes__saved-glide-three">
+            <img src="" class="saved-glide-three__image-seven" alt="">
+          </article> -->
+        </div>
+        <div class="favorites-view__saved-week-four-recipes">
+          <!-- <article class="saved-week-four-recipes__saved-glide-four">
+            <img src="" class="saved-glide-four__image-one" alt="">
+          </article> -->
+          <!-- <article class="saved-week-four-recipes__saved-glide-four">
+            <img src="" class="saved-glide-four__image-two" alt="">
+          </article> -->
+          <!-- <article class="saved-week-four-recipes__saved-glide-four">
+            <img src="" class="saved-glide-four__image-three" alt="">
+          </article> -->
+          <!-- <article class="saved-week-four-recipes__saved-glide-four">
+            <img src="" class="saved-glide-four__image-four" alt="">
+          </article> -->
+          <!-- <article class="saved-week-four-recipes__saved-glide-four">
+            <img src="" class="saved-glide-four__image-five" alt="">
+          </article> -->
+          <!-- <article class="saved-week-four-recipes__saved-glide-four">
+            <img src="" class="saved-glide-four__image-six" alt="">
+          </article> -->
+          <!-- <article class="saved-week-four-recipes__saved-glide-four">
+            <img src="" class="saved-glide-four__image-seven" alt="">
+          </article> -->
+        </div>
 
-      </div>
-    </section>
+
+      </section>
+      <section class="weekly-recipes-view">
+        <h1></h1>
+        <section class="weekly-recipes-view__week-one">
+          <h2>week of ...</h2>
+          <div class="week-one__gliders-one">
+            <!-- <article class="gliders-one__day-one">
+              <img src="" class="day-one__one-glider" alt="">
+            </article> -->
+            <!-- <article class="gliders-one__day-two">
+              <img src="" class="day-two__one-glider" alt="">
+            </article> -->
+            <!-- <article class="gliders-one__day-three">
+              <img src="" class="day-three__one-glider" alt="">
+            </article> -->
+            <!-- <article class="gliders-one__day-four">
+              <img src="" class="day-four__one-glider" alt="">
+            </article> -->
+            <!-- <article class="gliders-one__day-five">
+              <img src="" class="day-five__one-glider" alt="">
+            </article> -->
+            <!-- <article class="gliders-one__day-six">
+              <img src="" class="day-six__one-glider" alt="">
+            </article> -->
+            <!-- <article class="gliders-one__day-seven">
+              <img src="" class="day-seven__one-glider" alt="">
+            </article> -->
+          </div>
+        </section>
+        <section class="weekly-recipes-view__week-two">
+          <h2>week of ...</h2>
+          <div class="glide__gliders">
+            <!-- <article class="gliders-two__day-one">
+              <img src="" class="day-one__two-glider" alt="">
+            </article> -->
+            <!-- <article class="gliders-two__day-two">
+              <img src="" class="day-one__two-glider" alt="">
+            </article> -->
+            <!-- <article class="gliders-two__day-three">
+              <img src="" class="day-one__two-glider" alt="">
+            </article> -->
+            <!-- <article class="gliders-two__day-four">
+              <img src="" class="day-one__two-glider" alt="">
+            </article> -->
+            <!-- <article class="gliders-two__day-five">
+              <img src="" class="day-one__two-glider" alt="">
+            </article> -->
+            <!-- <article class="gliders-two__day-six">
+              <img src="" class="day-one__two-glider" alt="">
+            </article> -->
+            <!-- <article class="gliders-two__day-seven">
+              <img src="" class="day-one__two-glider" alt="">
+            </article> -->
+          </div>
+        </section>
+        <section class="weekly-recipes-view__week-three">
+          <h2>week of ...</h2>
+          <div class="glide__gliders">
+            <!-- <article class="gliders-three__day-one">
+              <img src="" class="day-one__three-glider" alt="">
+            </article> -->
+            <!-- <article class="gliders-three__day-two">
+              <img src="" class="day-one__three-glider" alt="">
+            </article> -->
+            <!-- <article class="gliders-one__day-one">
+              <img src="" class="day-one__glider" alt="">
+            </article> -->
+            <!-- <article class="gliders-one__day-one">
+              <img src="" class="day-one__glider" alt="">
+            </article> -->
+            <!-- <article class="gliders-one__day-one">
+              <img src="" class="day-one__glider" alt="">
+            </article> -->
+            <!-- <article class="gliders-one__day-one">
+              <img src="" class="day-one__glider" alt="">
+            </article> -->
+            <!-- <article class="gliders-one__day-one">
+              <img src="" class="day-one__glider" alt="">
+            </article> -->
+          </div>
+        </section>
+        <section class="weekly-recipes-view__week-four">
+          <h2>week of ...</h2>
+          <div class="glide__gliders">
+            <!-- <article class="gliders-one__day-one">
+              <img src="" class="day-one__glider" alt="">
+            </article> -->
+            <!-- <article class="gliders-one__day-one">
+              <img src="" class="day-one__glider" alt="">
+            </article> -->
+            <!-- <article class="gliders-one__day-one">
+              <img src="" class="day-one__glider" alt="">
+            </article> -->
+            <!-- <article class="gliders-one__day-one">
+              <img src="" class="day-one__glider" alt="">
+            </article> -->
+            <!-- <article class="gliders-one__day-one">
+              <img src="" class="day-one__glider" alt="">
+            </article> -->
+            <!-- <article class="gliders-one__day-one">
+              <img src="" class="day-one__glider" alt="">
+            </article> -->
+            <!-- <article class="gliders-one__day-one">
+              <img src="" class="day-one__glider" alt="">
+            </article> -->
+          </div>
+        </section>
+      </section>
+      <section class="single-recipe-view">
+        <h1>recipe name</h1>
+        <button type="button" class="single-recipe-view__add-to-favorites-button"></button> add to favourites
+        <button type="button" class="single-recipe-view__add-to-week-button"></button> cook this week
+        <div class="single-recipe-view__ingredients">
+          <h2>ingredients title</h2>
+          <p class="ingredients__ingredient-list">ingredients</p>
+        </div>
+        <img src="" class="single-recipe-view__recipe-image" alt=""> recipe img
+        <p class="single-recipe-view__total-cost">total cost</p>
+        <div class="single-recipe-view__instructions">
+          <h2>instructions</h2>
+
+          <!-- <div class="instructions__steps">
+            <h3></h3>
+            <p></p>
+          </div> -->
+          <!-- dynamic HTML -->
+
+        </div>
+      </section>
+    </main>
   </body>
 </html>
