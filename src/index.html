@@ -5,117 +5,168 @@
     <title>Whats Cookin</title>
   </head>
   <body>
-    <section>
-      <!-- home view -->
+    <section class="home-view">
       <h1>punny name here</h1>
-      <nav class="nav=bar">
-        <div class="nav-tabs">
-          <button type="nav-tabs__all-recipes" name="button"></button> all recipes
-          <button type="nav-tabs__favorites" name="button"></button> favourites
-          <button type="nav-tabs__this-week" name="button"></button> this week
+      <nav class="nav-bar">
+        <div class="nav-bar__nav-tabs">
+          <button type="button" class="nav-tabs__all-recipes"></button> all recipes
+          <button type="button" class="nav-tabs__favorites"></button> favourites
+          <button type="button" class="nav-tabs__this-week"></button> this week
         </div>
-        <div class="">
-          <label for=""></label> search bar
-          <input type="text" name="" value=""> search bar
-          <button type="button" name="button"></button> search button
-          <button type="button" name="button"></button> home
+        <div class="search-bar">
+          <label for="SearchInput" class="search-bar__search-label"></label> search bar
+          <input type="search" class="search-bar__search-input" name="SearchInput" value=""> search bar
+          <button type="button" class="search-bar__initiate-search-button"></button> search button
+          <button type="button" class="search-bar__home-button"></button> home
         </div>
       </nav>
-      <main>
-        <img src="" alt=""> featured recipe
-        <button type="button" name="button"></button> save recipe
+      <main class="featured">
+        <img class="featured__featured-recipe-image" src="" alt="image of featured recipe"> featured recipe
+        <button type="button" class="featured__save-recipe-button"></button> save recipe
       </main>
       <!-- glide -->
     </section>
-    <section>
+    <section class="recipes-view">
+      <nav class="nav-bar">
+        <div class="nav-tabs">
+          <button type="button" class="nav-tabs__all-recipes"></button> all recipes
+          <button type="button" class="nav-tabs__favorites"></button> favourites
+          <button type="button" class="nav-tabs__this-week"></button> this week
+        </div>
+        <div class="search-bar">
+          <label for="searchInput"></label> search bar
+          <input type="search" name="searchInput" class="search-bar__search-input" value=""> search bar
+          <button type="button" class="search-bar__initiate-search"></button> search button
+          <button type="button" class="search-bar__home-button"></button> home
+        </div>
+      </nav>
       <h1>all recipes</h1> <!-- recipes view -->
-      <div class="">
+      <div class="recipes-view__breakfast-glide">
         <h2>bfast</h2>
         <!-- glide -->
       </div>
-      <div class="">
+      <div class="recipes-view__lunch-glide">
         <h2>lunch</h2>
         <!-- glide -->
       </div>
-      <div class="">
+      <div class="recipes-view__dinner-glide">
         <h2>dinner</h2>
         <!-- glide -->
       </div>
-      <div class="">
+      <div class="recipes-view__appetizers-glide">
         <h2>appetizers</h2>
         <!-- glide -->
       </div>
-      <div class="">
+      <div class="recipes-view__desserts-glide">
         <h2>desserts</h2>
         <!-- glide -->
       </div>
-      <button type="button" name="button"></button> add recipe
+      <button type="button" class="recipes-view__add-recipe-button"></button> add recipe
     </section>
-    <section>
+    <section class="favorites-view">
+      <nav class="nav-bar">
+        <div class="nav-tabs">
+          <button type="button" class="nav-tabs__all-recipes"></button> all recipes
+          <button type="button" class="nav-tabs__favorites"></button> favourites
+          <button type="button" class="nav-tabs__this-week"></button> this week
+        </div>
+        <div class="search-bar">
+          <label for="searchInput"></label> search bar
+          <input type="search" name="searchInput" class="search-bar__search-input" value=""> search bar
+          <button type="button" class="search-bar__initiate-search"></button> search button
+          <button type="button" class="search-bar__home-button"></button> home
+        </div>
+      </nav>
       <h1></h1> <!-- favourite recipes -->
-      <div class="">
+      <div class="favorites-view__favorites">
         <!-- dynamically populated html -->
       </div>
 
-      <!-- <div class="">
+      <!-- <div class="favorites-view__saved-week-one-recipes">
         <h2></h2> -->
         <!-- glide -->
       <!-- </div>
-      <div class="">
+      <div class="favorites-view__saved-week-two-recipes">
         <h2></h2> -->
         <!-- glide -->
       <!-- </div>
-      <div class="">
+      <div class="favorites-view__saved-week-three-recipes">
         <h2></h2> -->
         <!-- glide -->
       <!-- </div>
-      <div class="">
+      <div class="favorites-view__saved-week-four-recipes">
         <h2></h2> -->
         <!-- glide -->
       <!-- </div> -->
 
     </section>
-    <section>
+    <section class="weekly-recipes-view">
+      <nav class="nav-bar">
+        <div class="nav-tabs">
+          <button type="button" class="nav-tabs__all-recipes"></button> all recipes
+          <button type="button" class="nav-tabs__favorites"></button> favourites
+          <button type="button" class="nav-tabs__this-week"></button> this week
+        </div>
+        <div class="search-bar">
+          <label for="searchInput"></label> search bar
+          <input type="search" name="searchInput" class="search-bar__search-input" value=""> search bar
+          <button type="button" class="search-bar__initiate-search"></button> search button
+          <button type="button" class="search-bar__home-button"></button> home
+        </div>
+      </nav>
       <h1></h1> <!-- weekly recipes -->
-      <div class="">
+      <div class="weekly-recipes-view__week-one">
         <h2>week of ...</h2>
         <!-- glide -->
       </div>
-      <div class="">
+      <div class="weekly-recipes-view__week-two">
         <h2>week of ...</h2>
         <!-- glide -->
       </div>
-      <div class="">
+      <div class="weekly-recipes-view__week-three">
         <h2>week of ...</h2>
         <!-- glide -->
       </div>
-      <div class="">
+      <div class="weekly-recipes-view__week-four">
         <h2>week of ...</h2>
         <!-- glide -->
       </div>
     </section>
-    <section>
+    <section class="single-recipe-view">
+      <nav class="nav-bar">
+        <div class="nav-tabs">
+          <button type="button" class="nav-tabs__all-recipes"></button> all recipes
+          <button type="button" class="nav-tabs__favorites"></button> favourites
+          <button type="button" class="nav-tabs__this-week"></button> this week
+        </div>
+        <div class="search-bar">
+          <label for="searchInput"></label> search bar
+          <input type="search" name="searchInput" class="search-bar__search-input" value=""> search bar
+          <button type="button" class="search-bar__initiate-search"></button> search button
+          <button type="button" class="search-bar__home-button"></button> home
+        </div>
+      </nav>
       <!-- recipes view -->
       <h1>recipe name</h1>
-      <button type="button" name="button"></button> add to favourites
-      <button type="button" name="button"></button> cook this week
-      <div class="">
+      <button type="button" class="single-recipe-view__add-to-favorites-button"></button> add to favourites
+      <button type="button" class="single-recipe-view__add-to-week-button"></button> cook this week
+      <div class="single-recipe-view__ingredients">
         <h2>ingredients title</h2>
-        <p>ingredients</p>
+        <text class="ingredients__ingredient-list">ingredients</text>
       </div>
-      <img src="" alt=""> recipe img
-      <p>total cost</p>
-      <div class="">
+      <!-- <img src="" class="single-recipe-view__recipe-image" alt=""> recipe img -->
+      <!-- dynamically added ^^^^^ -->
+      <text class="single-recipe-view__total-cost">total cost</text>
+      <div class="single-recipe-view__instructions">
         <h2>instructions</h2>
 
-        <!-- <div class="">
+        <!-- <div class="instructions__steps">
           <h3></h3>
           <p></p>
         </div> -->
         <!-- dynamic HTML -->
 
       </div>
-
     </section>
   </body>
 </html>
