@@ -1,12 +1,12 @@
-const assert = require('chai').assert;
-const User = require('../src/classes/User.js');
-const Recipe = require('../src/classes/Recipe.js');
+import { expect } from 'chai';
+import User from '../src/classes/User.js';
+import Recipe from '../src/classes/Recipe.js';
 
 define('User', function() {
-  var user;
-  var recipeOne;
-  var recipeTwo;
-  var recipeThree;
+  let user;
+  let recipeOne;
+  let recipeTwo;
+  let recipeThree;
 
   beforeEach(() => {
     user = new User();
@@ -76,4 +76,4 @@ define('User', function() {
     user.removeWeeklyRecipe(recipeTwo);
     expect(user.favoriteRecipes).to.deep.equal([recipeOne, recipeThree]);
   });
-});
+})
