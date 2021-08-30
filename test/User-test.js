@@ -39,15 +39,15 @@ describe('User', function() {
   });
 
   it('should have a name', function() {
-    expect
+    expect(user.name).to.equal('Saige O\'Kon');
   });
 
   it('should have an ID', function() {
-
+    expect(user.id).to.equal(1);
   });
 
   it('should have a pantry of ingredients', function() {
-
+    expect(user.pantry).to.equal(users.pantry);
   });
 
   it('should be able to add a favorite recipe', function() {
