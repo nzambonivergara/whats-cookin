@@ -1,7 +1,8 @@
 import { expect } from 'chai';
 import User from '../src/classes/User.js';
 import Recipe from '../src/classes/Recipe.js';
-import recipeData from '../src/data/recipes.js'
+import recipeData from '../src/data/recipes.js';
+import users from '../src/data/users.js';
 
 describe('User', function() {
   let user;
@@ -10,7 +11,7 @@ describe('User', function() {
   let recipeThree;
 
   beforeEach(() => {
-    user = new User();
+    user = new User(users.name, users.id, users.pantry);
     recipeOne = new Recipe(
       recipeData[0].id,
       recipeData[0].image,
@@ -35,6 +36,18 @@ describe('User', function() {
       recipeData[2].name,
       recipeData[2].tags
     ); // recipeTwo and recipeThree need to have an igredient in common that recipeOne does *not* have
+  });
+
+  it('should have a name', function() {
+    expect
+  });
+
+  it('should have an ID', function() {
+
+  });
+
+  it('should have a pantry of ingredients', function() {
+
   });
 
   it('should be able to add a favorite recipe', function() {
