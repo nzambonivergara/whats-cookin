@@ -1,8 +1,9 @@
 import { expect } from 'chai';
 import User from '../src/classes/User.js';
 import Recipe from '../src/classes/Recipe.js';
+import recipeData from '../src/data/recipes.js'
 
-define('User', function() {
+describe('User', function() {
   let user;
   let recipeOne;
   let recipeTwo;
@@ -10,17 +11,38 @@ define('User', function() {
 
   beforeEach(() => {
     user = new User();
-    recipeOne = new Recipe(); // recipeOne and recipeTwo need to share a tag in commen
-    recipeTwo = new Recipe();
-    recipeThree = new Recipe(); // recipeTwo and recipeThree need to have an igredient in common that recipeOne does *not* have
+    recipeOne = new Recipe(
+      recipeData[0].id,
+      recipeData[0].image,
+      recipeData[0].ingredients,
+      recipeData[0].instructions,
+      recipeData[0].name,
+      recipeData[0].tags
+    ); // recipeOne and recipeTwo need to share a tag in commen
+    recipeTwo = new Recipe(
+      recipeData[1].id,
+      recipeData[1].image,
+      recipeData[1].ingredients,
+      recipeData[1].instructions,
+      recipeData[1].name,
+      recipeData[1].tags
+    );
+    recipeThree = new Recipe(
+      recipeData[2].id,
+      recipeData[2].image,
+      recipeData[2].ingredients,
+      recipeData[2].instructions,
+      recipeData[2].name,
+      recipeData[2].tags
+    ); // recipeTwo and recipeThree need to have an igredient in common that recipeOne does *not* have
   });
 
   it('should be able to add a favorite recipe', function() {
-    assert.deepEqual(user.favoriteRecipes, []);
+    expect(user.favoriteRecipes).to.deep.equal([]);
     user.addFavorite(recipeOne);
-    assert.deepEqual(user.favoriteRecipes, [recipeOne]);
+    expect(user.favoriteRecipes).to.deep.equal([recipeOne]);
     user.addFavorite(recipeTwo);
-    assert.deepEqual(user.favoriteRecipes, [recipeOne, recipeTwo]);
+    expect(user.favoriteRecipes).to.deep.equal([recipeOne, recipeTwo]);
   });
 
   it('should be able to remove favorite recipes', function() {
@@ -29,7 +51,7 @@ define('User', function() {
     user.addFavorite(recipeThree);
 
     user.removeFavorite(recipeTwo);
-    assert.deepEqual(user.favoriteRecipes, [recipeOne, recipeThree]);
+    expect(user.favoriteRecipes).to.deep.equal([recipeOne, recipeThree]);
   });
 
   it('should be able to filter favorites by recipe tag', function() {
@@ -37,8 +59,8 @@ define('User', function() {
     user.addFavorite(recipeTwo);
     user.addFavorite(recipeThree);
 
-    user.filterFavoriteRecipesByTags(tags);
-    assert.deepEqual(user.filteredFavoritesByTag, [recipeOne, recipeTwo]);
+    user.filterFavoriteRecipesByTags([recipeOne, recipeTwo, recipeThree]);
+    expect(user.filteredFavoritesByTag).to.deep.equal([recipeOne, recipeTwo]);
   });
 
   it('should be able to filter favorites by ingredient', function() {
@@ -46,8 +68,8 @@ define('User', function() {
     user.addFavorite(recipeTwo);
     user.addFavorite(recipeThree);
 
-    user.filterFavoriteRecipesByIngredient(ingredient);
-    assert.deepEqual(user.filteredByIngredient, [recipeTwo, recipeThree]);
+    user.filterFavoriteRecipesByIngredient([recipeOne, recipeTwo, recipeThree]);
+    expect(user.filteredByIngredient).to.deep.equal([recipeTwo, recipeThree]);
   });
 
   it('should be able to filter favorites by name', function() {
@@ -55,25 +77,27 @@ define('User', function() {
     user.addFavorite(recipeTwo);
     user.addFavorite(recipeThree);
 
-    user.filterFavoriteRecipesByName(name);
-    assert.deepEqual(user.filteredByName, [recipeThree]);
+    user.filterFavoriteRecipesByName([recipeOne, recipeTwo, recipeThree]);
+    expect(user.filteredByName).to.deep.equal([recipeThree]);
   });
 
-  it('should be able to add a recipe to the user\'s weekly meal plan', function() {
-    expect(user.weeklyFavorites).to.deep.equal([]);
+  it('should be able to add a recipe to the user\'s weekly meal plan',
+    function() {
+      expect(user.weeklyFavorites).to.deep.equal([]);
 
-    user.addWeeklyRecipe(recipeOne);
-    expect(user.weeklyFavorites).to.deep.equal([recipeOne]);
-    user.addWeeklyRecipe(recipeTwo);
-    expect(user.weeklyFavorites).to.deep.equal([recipeOne, recipeTwo]);
-  });
+      user.addWeeklyRecipe(recipeOne);
+      expect(user.weeklyFavorites).to.deep.equal([recipeOne]);
+      user.addWeeklyRecipe(recipeTwo);
+      expect(user.weeklyFavorites).to.deep.equal([recipeOne, recipeTwo]);
+    });
 
-  it('should be able to remove a recipe from the user\'s weekly meal plan', function() {
-    user.addWeeklyRecipe(recipeOne);
-    user.addWeeklyRecipe(recipeTwo);
-    user.addWeeklyRecipe(recipeThree);
+  it('should be able to remove a recipe from the user\'s weekly meal plan',
+    function() {
+      user.addWeeklyRecipe(recipeOne);
+      user.addWeeklyRecipe(recipeTwo);
+      user.addWeeklyRecipe(recipeThree);
 
-    user.removeWeeklyRecipe(recipeTwo);
-    expect(user.favoriteRecipes).to.deep.equal([recipeOne, recipeThree]);
-  });
+      user.removeWeeklyRecipe(recipeTwo);
+      expect(user.favoriteRecipes).to.deep.equal([recipeOne, recipeThree]);
+    });
 })
