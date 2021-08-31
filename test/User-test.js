@@ -14,9 +14,9 @@ describe('User', function() {
 
   beforeEach(() => {
     user = new User(users[0]);
-    recipeOne = new Recipe(recipeData[7]); // recipeOne and recipeTwo need to share a tag in commen
+    recipeOne = new Recipe(recipeData[7]);
     recipeTwo = new Recipe(recipeData[3]);
-    recipeThree = new Recipe(recipeData[0]); // recipeTwo and recipeThree need to have an igredient in common that recipeOne does *not* have
+    recipeThree = new Recipe(recipeData[0]);
     tagOne = 'appetizer'
     tagTwo = 'snack'
     user.addFavorite(recipeOne);
