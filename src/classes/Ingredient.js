@@ -1,5 +1,3 @@
-// import { ingredientsData } from '../data/ingredients'
-
 class Ingredient {
   constructor(ingredient) {
     this.id = ingredient.id;
@@ -7,7 +5,6 @@ class Ingredient {
     this.unit = ingredient.quantity.unit;
     this.name = '';
     this.estimatedCostInCents = 0;
-    this.totalCostInDollars = this.calculateCost();
   }
 
   retrieveData(ingredientsData) {
