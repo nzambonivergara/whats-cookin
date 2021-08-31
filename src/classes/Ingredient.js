@@ -1,18 +1,18 @@
-import { ingredientsData } from '../src/data/ingredients'
+import { ingredientsData } from '../data/ingredients'
 
 class Ingredient {
   constructor(ingredient) {
     this.id = ingredient.id;
     this.amount = ingredient.quantity.amount;
     this.unit = ingredient.quantity.unit;
-    this.name = retrieveData('name');
-    this.estimatedCostInCents = retrieveData('estimatedCostInCents');
-    this.totalCostInDollars = calculateCost();
+    this.name = this.retrieveData('name');
+    this.estimatedCostInCents = this.retrieveData('estimatedCostInCents');
+    this.totalCostInDollars = this.calculateCost();
   }
 
   retrieveData(property) {
     const ingredient = ingredientsData.find(ingredient => ingredient.id === this.id);
-    this[property] = ingredient[property];
+    return ingredient[property];
   }
 
   calculateCost() {
