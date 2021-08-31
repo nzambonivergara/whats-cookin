@@ -9,11 +9,14 @@ body {
   color: #011936;
   display: flex;
   flex-direction: column;
-  font-family: 'Quicksand', sans-serif;
   font-family: 'Raleway', sans-serif;
   margin: 0;
   padding: 0;
   width: 100%;
+}
+
+h1, h2, h3, h4 {
+  font-family: 'Quicksand', sans-serif;
 }
 
 nav {
@@ -35,6 +38,12 @@ h1 {
 main {
   display: flex;
   justify-content: center;
+  height: 100%;
+  width: 100%;
+}
+
+main > section {
+  width: 100%;
 }
 
 button {
@@ -77,4 +86,30 @@ button {
 
 .search-bar__search-label {
   margin-right: 8px;
+}
+
+.search-ingredient-glide__images-container {
+  display: flex;
+  overflow-x: scroll;
+  width: 100%;
+}
+
+.featured__featured-recipe-image {
+  width: 100%;
+}
+
+.images-container__image{
+  height: 200px;
+  width: 180px;
+  border:4px solid white; 
+}
+
+.featured__save-recipe-button {
+  background-color: #011936;
+  border-style: none;
+  color: #Ef5D60;
+}
+
+.hidden {
+  display: none;
 }
