@@ -3,10 +3,10 @@ import Ingredient from '../src/classes/Ingredient';
 import Recipe from '../src/classes/Ingredient';
 
 describe('Recipe Class', function() {
-  let recipeDatum, recipe;
+  let recipeDetails, recipe;
 
   beforeEach(function() {
-    recipeDatum = {
+    recipeDetails = {
       "id": 595736,
       "image": "https://spoonacular.com/recipeImages/595736-556x370.jpg",
       "ingredients": [
@@ -57,7 +57,7 @@ describe('Recipe Class', function() {
       ]
     };
 
-    recipe = new Recipe(recipeDatum);
+    recipe = new Recipe(recipeDetails);
   });
 
   it('should have be a function', function() {
@@ -65,7 +65,7 @@ describe('Recipe Class', function() {
   });
 
   it('should be an instance of Recipe', function() {
-    expect(recipe).to.be.an.instanceOf(Ingredient);
+    expect(recipe).to.be.an.instanceOf(Recipe);
   });
 
   desbribe('Recipe constructor properties', function() {
@@ -77,16 +77,20 @@ describe('Recipe Class', function() {
       expect(recipe.image).to.equal("https://spoonacular.com/recipeImages/595736-556x370.jpg");
     });
 
-    it('should store ingredients in an array', function() {
+    it('should be able to all ingredient\'s information', function() {
+      const ingredients = recipe.getIngredients(recipeDetails.ingredients);
+
       expect(recipe.ingredients).to.be.an('array');
-      expect(recipe.ingredients[0]).to.be.an('object');
-      expect(recipe.ingredients).to.deep.equal(recipeDatum.ingredients);
+      expect(recipe.ingredients.length).to.deep.equal(3);
+      expect(ingredients).to.deep.equal(recipe.ingredients);
+      expect(recipe.ingredients[0]).to.be.an.intanceOf(Ingredient);
+      expect(recipe.ingredients[0].name).to.equal('wheat flour');
     });
 
     it('should store a list of instructions', function() {
       expect(recipe.instructions).to.be.an('array');
       expect(recipe.instructions[0]).to.be.an('object');
-      expect(recipe.instructions).to.deep.equal(recipeDatum.instructions);
+      expect(recipe.instructions).to.deep.equal(recipeDetails.instructions);
     });
 
     it('should have a name', function() {
@@ -96,7 +100,7 @@ describe('Recipe Class', function() {
     it('should store a list of tags', function() {
       expect(recipe.tags).to.be.an('array');
       expect(recipe.tags[0]).to.be.a('string');
-      expect(recipe.tags).to.equal(recipeDatum.tags);
+      expect(recipe.tags).to.equal(recipeDetails.tags);
     });
   });
 
