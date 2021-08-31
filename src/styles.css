@@ -105,9 +105,11 @@ button {
 }
 
 .featured__save-recipe-button {
-  background-color: #011936;
+  background-color: white;
   border-style: none;
   color: #Ef5D60;
+  height: 40px;
+  font-size: larger;
 }
 
 .hidden {
