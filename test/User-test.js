@@ -1,8 +1,9 @@
 import { expect } from 'chai';
 import User from '../src/classes/User.js';
 import Recipe from '../src/classes/Recipe.js';
-import { recipeData } from '../src/data/recipes.js';
-import { users } from '../src/data/users.js';
+import { usersData } from '../src/data/users-sample.js';
+import { recipeData } from '../src/data/recipes-sample.js';
+import { ingredientsData } from '../src/data/ingredients-sample.js';
 
 describe('User', function() {
   let user;
@@ -13,9 +14,9 @@ describe('User', function() {
   let tagTwo;
 
   beforeEach(() => {
-    user = new User(users[0]);
-    recipeOne = new Recipe(recipeData[7]);
-    recipeTwo = new Recipe(recipeData[3]);
+    user = new User(usersData[0]);
+    recipeOne = new Recipe(recipeData[2]);
+    recipeTwo = new Recipe(recipeData[1]);
     recipeThree = new Recipe(recipeData[0]);
     tagOne = 'appetizer'
     tagTwo = 'snack'
@@ -37,7 +38,7 @@ describe('User', function() {
   });
 
   it('should have a pantry of ingredients', function() {
-    expect(user.pantry).to.equal(users[0].pantry);
+    expect(user.pantry).to.equal(usersData[0].pantry);
   });
 
   it('should be able to add a favorite recipe', function() {
