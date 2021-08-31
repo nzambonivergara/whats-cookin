@@ -13,31 +13,10 @@ describe('User', function() {
   let tagTwo;
 
   beforeEach(() => {
-    user = new User(users[0].name, users[0].id, users[0].pantry);
-    recipeOne = new Recipe(
-      recipeData[7].id,
-      recipeData[7].image,
-      recipeData[7].ingredients,
-      recipeData[7].instructions,
-      recipeData[7].name,
-      recipeData[7].tags
-    ); // recipeOne and recipeTwo need to share a tag in commen
-    recipeTwo = new Recipe(
-      recipeData[3].id,
-      recipeData[3].image,
-      recipeData[3].ingredients,
-      recipeData[3].instructions,
-      recipeData[3].name,
-      recipeData[3].tags
-    );
-    recipeThree = new Recipe(
-      recipeData[0].id,
-      recipeData[0].image,
-      recipeData[0].ingredients,
-      recipeData[0].instructions,
-      recipeData[0].name,
-      recipeData[0].tags
-    ); // recipeTwo and recipeThree need to have an igredient in common that recipeOne does *not* have
+    user = new User(users[0]);
+    recipeOne = new Recipe(recipeData[7]); // recipeOne and recipeTwo need to share a tag in commen
+    recipeTwo = new Recipe(recipeData[3]);
+    recipeThree = new Recipe(recipeData[0]); // recipeTwo and recipeThree need to have an igredient in common that recipeOne does *not* have
     tagOne = 'appetizer'
     tagTwo = 'snack'
     user.addFavorite(recipeOne);
@@ -62,7 +41,9 @@ describe('User', function() {
   });
 
   it('should be able to add a favorite recipe', function() {
-    expect(user.favoriteRecipes).to.deep.equal([recipeOne, recipeTwo, recipeThree]);
+    expect(user.favoriteRecipes).to.deep.equal(
+      [recipeOne, recipeTwo, recipeThree]
+    );
   });
 
   it('should be able to remove favorite recipes', function() {
@@ -72,13 +53,18 @@ describe('User', function() {
 
   it('should be able to filter favorites by recipe tag', function() {
     user.filterFavoriteRecipesByTags(tagOne);
-    expect(user.filteredFavoritesByTag).to.deep.equal([recipeOne, recipeThree]);
+    expect(user.filteredFavoritesByTag).to.deep.equal(
+      [recipeOne, recipeThree]
+    );
   });
 
-  it('should be able to filter favorites by more than one recipe tag', function() {
-    user.filterFavoriteRecipesByTags(tagOne, tagTwo);
-    expect(user.filteredFavoritesByTag).to.deep.equal([recipeOne, recipeThree]);
-  });
+  it('should be able to filter favorites by more than one recipe tag',
+    function() {
+      user.filterFavoriteRecipesByTags(tagOne, tagTwo);
+      expect(user.filteredFavoritesByTag).to.deep.equal(
+        [recipeOne, recipeThree]
+      );
+    });
 
   it('should be able to filter favorites by ingredient', function() {
     user.filterFavoriteRecipesByIngredient('wheat flour');
@@ -93,7 +79,9 @@ describe('User', function() {
 
   it('should be able to add a recipe to the user\'s weekly meal plan',
     function() {
-      expect(user.weeklyFavorites).to.deep.equal([recipeOne, recipeTwo, recipeThree]);
+      expect(user.weeklyFavorites).to.deep.equal(
+        [recipeOne, recipeTwo, recipeThree]
+      );
     });
 
   it('should be able to remove a recipe from the user\'s weekly meal plan',
