@@ -5,7 +5,7 @@ describe('Ingredient class', function() {
   let recipeIngredientsDetails, ingredientsData, ingredient1, ingredient2;
 
   beforeEach(function() {
-    recipeIngredientDetails = [{
+    recipeIngredientsDetails = [{
         "id": 20081,
         "quantity": {
           "amount": 1.5,
@@ -82,6 +82,7 @@ describe('Ingredient class', function() {
   });
 
   it('should be able to calculate its total cost in dollars by its amount', function() {
+    ingredient1.retrieveData(ingredientsData);
     const totalCostInDollars = ingredient1.calculateCost();
 
     expect(totalCostInDollars).to.equal(2.13);
