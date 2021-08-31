@@ -3,10 +3,10 @@ import Ingredient from '../src/classes/Ingredient';
 import Recipe from '../src/classes/Ingredient';
 
 describe('Recipe Class', function() {
-  let recipeData, recipe;
+  let recipeDetails, recipe;
 
   beforeEach(function() {
-    recipeDatum = {
+    recipeDetails = {
       "id": 595736,
       "image": "https://spoonacular.com/recipeImages/595736-556x370.jpg",
       "ingredients": [
@@ -30,62 +30,6 @@ describe('Recipe Class', function() {
             "amount": 1,
             "unit": "large"
           }
-        },
-        {
-          "id": 19335,
-          "quantity": {
-            "amount": 0.5,
-            "unit": "c"
-          }
-        },
-        {
-          "id": 19206,
-          "quantity": {
-            "amount": 3,
-            "unit": "Tbsp"
-          }
-        },
-        {
-          "id": 19334,
-          "quantity": {
-            "amount": 0.5,
-            "unit": "c"
-          }
-        },
-        {
-          "id": 2047,
-          "quantity": {
-            "amount": 0.5,
-            "unit": "tsp"
-          }
-        },
-        {
-          "id": 1012047,
-          "quantity": {
-            "amount": 24,
-            "unit": "servings"
-          }
-        },
-        {
-          "id": 10019903,
-          "quantity": {
-            "amount": 2,
-            "unit": "c"
-          }
-        },
-        {
-          "id": 1145,
-          "quantity": {
-            "amount": 0.5,
-            "unit": "c"
-          }
-        },
-        {
-          "id": 2050,
-          "quantity": {
-            "amount": 0.5,
-            "unit": "tsp"
-          }
         }
       ],
       "instructions": [
@@ -100,18 +44,6 @@ describe('Recipe Class', function() {
         {
           "instruction": "Add dry ingredients and mix on low just until incorporated. Stir in chocolate chips.Scoop the dough into 1,5 tablespoon size balls and place on a plate or sheet. Cover with saran wrap and chill at least 2 hours or overnight.When ready to bake, preheat oven to 350 degrees.",
           "number": 3
-        },
-        {
-          "instruction": "Place the cookie dough balls into ungreased muffin pan. Sprinkle with sea salt.",
-          "number": 4
-        },
-        {
-          "instruction": "Bake for 9 to 10 minutes, or until you see the edges start to brown.",
-          "number": 5
-        },
-        {
-          "instruction": "Remove the pan from the oven and let sit for 10 minutes before removing onto a cooling rack.Top with ice cream and a drizzle of chocolate sauce.",
-          "number": 6
         }
       ],
       "name": "Loaded Chocolate Chip Pudding Cookie Cups",
@@ -125,7 +57,71 @@ describe('Recipe Class', function() {
       ]
     };
 
-    recipe = new Recipe(recipeDatum);
+    recipe = new Recipe(recipeDetails);
   });
 
+  it('should have be a function', function() {
+    expect(Recipe).to.be.a('function');
+  });
+
+  it('should be an instance of Recipe', function() {
+    expect(recipe).to.be.an.instanceOf(Recipe);
+  });
+
+  desbribe('Recipe constructor properties', function() {
+    it('should have an id', function() {
+      expect(recipe.id).to.equal(595736);
+    });
+
+    it('should store an image url', function() {
+      expect(recipe.image).to.equal("https://spoonacular.com/recipeImages/595736-556x370.jpg");
+    });
+
+    it('should be able to all ingredient\'s information', function() {
+      const ingredients = recipe.getIngredients(recipeDetails.ingredients);
+
+      expect(recipe.ingredients).to.be.an('array');
+      expect(recipe.ingredients.length).to.deep.equal(3);
+      expect(ingredients).to.deep.equal(recipe.ingredients);
+      expect(recipe.ingredients[0]).to.be.an.intanceOf(Ingredient);
+      expect(recipe.ingredients[0].name).to.equal('wheat flour');
+    });
+
+    it('should store a list of instructions', function() {
+      expect(recipe.instructions).to.be.an('array');
+      expect(recipe.instructions[0]).to.be.an('object');
+      expect(recipe.instructions).to.deep.equal(recipeDetails.instructions);
+    });
+
+    it('should have a name', function() {
+      expect(recipe.name).to.equal("Loaded Chocolate Chip Pudding Cookie Cups");
+    });
+
+    it('should store a list of tags', function() {
+      expect(recipe.tags).to.be.an('array');
+      expect(recipe.tags[0]).to.be.a('string');
+      expect(recipe.tags).to.equal(recipeDetails.tags);
+    });
+  });
+
+  describe('Recipe functionality', function() {
+    it('should return a list of ingredients', function() {
+      const listOfIngredients = recipe.returnIngredients();
+
+      expect(listOfIngredients).to.be.an('array');
+      expect(listOfIngredients).to.deep.equal(['1.5 c wheat flour', '0.5 tsp bicarbonate of soda', '1 large egg']);
+    });
+
+    it('should return the total cost of all ingredients', function() {
+      const totalCost = recipe.returnCostInDollars();
+
+      expect(totalCost).to.equal(9.72);
+    });
+
+    it('should return the instructions', function() {
+      const instructions = recipe.returnInstructions();
+
+      expect(instructions[1]).to.equal('2. Add egg and vanilla and mix until combined.');
+    });
+  });
 })
