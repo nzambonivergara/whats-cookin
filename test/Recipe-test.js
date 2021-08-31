@@ -60,7 +60,7 @@ describe('Recipe Class', function() {
     recipe = new Recipe(recipeDetails);
   });
 
-  it('should have be a function', function() {
+  it('should be a function', function() {
     expect(Recipe).to.be.a('function');
   });
 
@@ -68,7 +68,7 @@ describe('Recipe Class', function() {
     expect(recipe).to.be.an.instanceOf(Recipe);
   });
 
-  desbribe('Recipe constructor properties', function() {
+  describe('Recipe constructor properties', function() {
     it('should have an id', function() {
       expect(recipe.id).to.equal(595736);
     });
@@ -77,7 +77,7 @@ describe('Recipe Class', function() {
       expect(recipe.image).to.equal("https://spoonacular.com/recipeImages/595736-556x370.jpg");
     });
 
-    it('should be able to all ingredient\'s information', function() {
+    it('should be able to create instances of Ingredients and store them', function() {
       const ingredients = recipe.getIngredients(recipeDetails.ingredients);
 
       expect(recipe.ingredients).to.be.an('array');
@@ -89,7 +89,7 @@ describe('Recipe Class', function() {
 
     it('should store a list of instructions', function() {
       expect(recipe.instructions).to.be.an('array');
-      expect(recipe.instructions[0]).to.be.an('object');
+      expect(recipe.instructions[0].number).to.equal(1);
       expect(recipe.instructions).to.deep.equal(recipeDetails.instructions);
     });
 
@@ -121,6 +121,7 @@ describe('Recipe Class', function() {
     it('should return the instructions', function() {
       const instructions = recipe.returnInstructions();
 
+      expect(instructions.length).to.equal(3);
       expect(instructions[1]).to.equal('2. Add egg and vanilla and mix until combined.');
     });
   });
