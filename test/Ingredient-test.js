@@ -2,24 +2,24 @@ import { expect } from 'chai';
 import Ingredient from '../src/classes/Ingredient';
 
 describe('Ingredient class', function() {
-  let ingredientDetails1, ingredientDetails2, ingredientsData, ingredient1, ingredient2;
+  let recipeIngredientsDetails, ingredientsData, ingredient1, ingredient2;
 
   beforeEach(function() {
-    ingredientDetails1 = {
-      "id": 20081,
-      "quantity": {
-        "amount": 1.5,
-        "unit": "c"
+    recipeIngredientDetails = [{
+        "id": 20081,
+        "quantity": {
+          "amount": 1.5,
+          "unit": "c"
+        }
+      },
+      {
+        "id": 18372,
+        "quantity": {
+          "amount": 0.5,
+          "unit": "tsp"
+        }
       }
-    }
-
-    ingredientDetails2 = {
-      "id": 18372,
-      "quantity": {
-        "amount": 0.5,
-        "unit": "tsp"
-      }
-    }
+    ]
 
     ingredientsData = [{
       "id": 20081,
@@ -32,8 +32,8 @@ describe('Ingredient class', function() {
       "estimatedCostInCents": 582
     }]
 
-    ingredient1 = new Ingredient(ingredientDetails1);
-    ingredient2 = new Ingredient(ingredientDetails2);
+    ingredient1 = new Ingredient(recipeIngredientsDetails[0]);
+    ingredient2 = new Ingredient(recipeIngredientsDetails[1]);
   });
 
   it('should be a function', function() {
@@ -59,24 +59,31 @@ describe('Ingredient class', function() {
     expect(ingredient2.unit).to.equal('tsp');
   });
 
-  it('should be able to get the ingredient name', function() {
-    const ingredient1Name = ingredient1.retrieveData('name');
+  it('should have a name assigned to an empty string as a default', function() {
+    expect(ingredient1.name).to.equal('');
+    expect(ingredient2.name).to.equal('');
+  });
 
-    expect(ingredient1Name).to.equal(ingredient1.name);
+  it('should have an estimatedCostInCents assigned to 0 as a default', function() {
+    expect(ingredient1.estimatedCostInCents).to.equal(0);
+    expect(ingredient2.estimatedCostInCents).to.equal(0);
+  });
+
+  it('should be able to get the ingredient name', function() {
+    ingredient1.retrieveData(ingredientsData);
+
     expect(ingredient1.name).to.equal('wheat flour');
   });
 
   it('should be able to get its estimated cost in cents per unit', function() {
-    const estimatedCostInCents = ingredient1.retrieveData('estimatedCostInCents');
+    ingredient1.retrieveData(ingredientsData);
 
-    expect(estimatedCostInCents).to.equal(ingredient1.estimatedCostInCents);
     expect(ingredient1.estimatedCostInCents).to.equal(142);
   });
 
   it('should be able to calculate its total cost in dollars by its amount', function() {
     const totalCostInDollars = ingredient1.calculateCost();
 
-    expect(totalCostInDollars).to.equal(ingredient1.totalCostInDollars);
-    expect(ingredient1.totalCostInDollars).to.equal(2.13);
+    expect(totalCostInDollars).to.equal(2.13);
   });
 })
