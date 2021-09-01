@@ -118,27 +118,29 @@ describe('Recipe Repository', () => {
   });
 
   it('Should have recipes', () => {
-    expect(repo.recipes).to.deep.equal(recipeData);
+    expect(repo.recipes[0].id).to.equal(595736);
   });
 
   it('Should filter recipes based on one tag', () => {
     const expected = repo.findRecipesByTag('snack');
+    expect(expected[0].name).to.equal('Loaded Chocolate Chip Pudding Cookie Cups');
     expect(expected.length).to.equal(1);
   });
 
   it('Should filter recipes based on more than one tag', () => {
     const expected = repo.findRecipesByTag('snack', 'antipastisi');
-    expect(expected.name).to.equal('Loaded Chocolate Chip Pudding Cookie Cups');
+    expect(expected[0].name).to.equal('Loaded Chocolate Chip Pudding Cookie Cups');
     expect(expected.length).to.equal(1);
   });
 
-  it('Should filer recipes based on name', () => {
+  it('Should filter recipes based on name', () => {
     const expected = repo.findRecipesByName('Maple Dijon Apple Cider Grilled Pork Chops');
-    expect(expected.id).to.equal(678353);
+    expect(expected[0].id).to.equal(678353);
   });
 
   it('Should filter recipes based on ingredients', () => {
     const expected = repo.findRecipesByIngredient('wheat flour');
+    expect(expected[0].name).to.equal('Loaded Chocolate Chip Pudding Cookie Cups');
     expect(expected.length).to.equal(1);
   });
 });
