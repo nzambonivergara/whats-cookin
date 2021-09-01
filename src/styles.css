@@ -36,22 +36,27 @@ h1 {
 }
 
 main {
+  box-sizing: border-box;
   display: flex;
   justify-content: center;
-  height: 100%;
+  flex: 1;
   width: 100%;
 }
 
 main > section {
+  display: flex;
+  flex-direction: column;
+  position: relative;
   width: 100%;
 }
 
 button {
+  background-color: transparent;
+  border-style: none;
+  cursor: pointer;
   display: flex;
   justify-content: space-around;
-  border-style: none;
   padding: 8px;
-  background-color: transparent;
 }
 
 .nav-bar__nav-tabs {
@@ -63,6 +68,7 @@ button {
 
 .nav-bar__nav-tabs > button {
   font-family: 'Raleway', sans-serif;
+  font-size: 16px;
   font-weight: 700;
   height: 50px;
   align-items: center;
@@ -70,7 +76,7 @@ button {
 }
 
 .nav-bar__nav-tabs > button:hover {
-  border-bottom: 2px solid #Ef5D60;
+  border-bottom: 4px solid #Ef5D60;
 }
 
 .nav-bar__home-search {
@@ -90,26 +96,70 @@ button {
 
 .search-ingredient-glide__images-container {
   display: flex;
+  gap: 10px;
   overflow-x: scroll;
   width: 100%;
 }
 
+.featured__featured-recipe-image-container {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+}
+
 .featured__featured-recipe-image {
+  position: absolute;
+  top: -50%;
   width: 100%;
 }
 
-.images-container__image{
+.images-container__button {
+  align-items: center;
+  display: flex;
   height: 200px;
-  width: 180px;
-  border:4px solid white; 
+  justify-content: center;
+  min-width: 200px;
+  overflow: hidden;
+  position: relative;
+}
+
+.images-container__ingredient-name {
+  border: 1px solid #011936;
+  background-color: white;
+  padding: 6px;
+  text-align: center;
+  width: 80px;
+  z-index: 1;
+}
+
+.images-container__image{
+  border: 4px solid #fff;
+  height: 400px;
+  position: absolute;
+}
+
+.featured__search-ingredient-glide {
+  padding: 0 10px 10px;
 }
 
 .featured__save-recipe-button {
-  background-color: white;
-  border-style: none;
+  background-color: #fff;
+  border: 1px solid #011936;
+  bottom: 20px;
   color: #Ef5D60;
-  height: 40px;
   font-size: larger;
+  height: 40px;
+  position: absolute;
+  right: 20px;
+  transition: all 0.2s ease-in-out;
+  z-index: 1;
+}
+
+.featured__save-recipe-button:hover {
+  background-color: #Ef5D60;
+  color: #fff;
 }
 
 .hidden {
