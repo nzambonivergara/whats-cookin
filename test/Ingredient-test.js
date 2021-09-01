@@ -6,20 +6,19 @@ describe('Ingredient class', function() {
 
   beforeEach(function() {
     recipeIngredientsDetails = [{
-        "id": 20081,
-        "quantity": {
-          "amount": 1.5,
-          "unit": "c"
-        }
-      },
-      {
-        "id": 18372,
-        "quantity": {
-          "amount": 0.5,
-          "unit": "tsp"
-        }
+      "id": 20081,
+      "quantity": {
+        "amount": 1.5,
+        "unit": "c"
       }
-    ]
+    },
+    {
+      "id": 18372,
+      "quantity": {
+        "amount": 0.5,
+        "unit": "tsp"
+      }
+    }];
 
     ingredientsData = [{
       "id": 20081,
@@ -30,7 +29,7 @@ describe('Ingredient class', function() {
       "id": 18372,
       "name": "bicarbonate of soda",
       "estimatedCostInCents": 582
-    }]
+    }];
 
     ingredient1 = new Ingredient(recipeIngredientsDetails[0]);
     ingredient2 = new Ingredient(recipeIngredientsDetails[1]);

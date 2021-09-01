@@ -1,6 +1,7 @@
 import { expect } from 'chai';
 import Ingredient from '../src/classes/Ingredient';
-import Recipe from '../src/classes/Ingredient';
+import Recipe from '../src/classes/Recipe';
+import { ingredientsData } from '../src/data/ingredients';
 
 describe('Recipe Class', function() {
   let recipeDetails, recipe;
@@ -83,7 +84,9 @@ describe('Recipe Class', function() {
 
     it('should be able to create instances of Ingredients and store them', function() {
       const ingredient1 = new Ingredient(recipeDetails.ingredients[0]);
-      recipe.getIngredientsDetails();
+      ingredient1.retrieveNameAndCost(ingredientsData);
+
+      recipe.getIngredientsInformation();
 
       expect(recipe.ingredients).to.be.an('array');
       expect(recipe.ingredients.length).to.equal(3);
@@ -111,16 +114,18 @@ describe('Recipe Class', function() {
 
   describe('Recipe functionality', function() {
     it('should return a list of ingredients', function() {
+      recipe.getIngredientsInformation();
       const listOfIngredients = recipe.returnIngredientsList();
 
       expect(listOfIngredients).to.be.an('array');
-      expect(listOfIngredients).to.deep.equal(['1.5 c wheat flour', '0.5 tsp bicarbonate of soda', '1 large egg']);
+      expect(listOfIngredients).to.deep.equal(['1.5 c wheat flour', '0.5 tsp bicarbonate of soda', '1 large eggs']);
     });
 
     it('should return the total cost of all ingredients', function() {
+      recipe.getIngredientsInformation();
       const totalCost = recipe.returnCostInDollars();
 
-      expect(totalCost).to.equal(9.72);
+      expect(totalCost).to.equal(9.76);
     });
 
     it('should return the instructions', function() {
