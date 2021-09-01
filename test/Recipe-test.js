@@ -77,7 +77,7 @@ describe('Recipe Class', function() {
       expect(recipe.image).to.equal("https://spoonacular.com/recipeImages/595736-556x370.jpg");
     });
 
-    it('should store its ingredients', function() {
+    it('should store ingredients', function() {
       expect(recipe.ingredients).to.equal(recipeDetails.ingredients);
     });
 
@@ -87,7 +87,7 @@ describe('Recipe Class', function() {
 
       expect(recipe.ingredients).to.be.an('array');
       expect(recipe.ingredients.length).to.equal(3);
-      expect(recipe.ingredients[0]).to.be.an.intanceOf(Ingredient);
+      expect(recipe.ingredients[0]).to.be.an.instanceOf(Ingredient);
       expect(recipe.ingredients[0]).to.deep.equal(ingredient1);
       expect(recipe.ingredients[0].name).to.equal('wheat flour');
     });
