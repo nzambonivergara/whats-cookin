@@ -3,29 +3,79 @@
   <head>
     <meta charset="UTF-8">
     <title>Whats Cookin</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Raleway:wght@100;200;300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   </head>
   <body>
-    <h1>punny name here
-      <nav class="nav-bar">
-        <div class="nav-bar__nav-tabs">
-          <button type="button" class="nav-tabs__all-recipes"></button> all recipes
-          <button type="button" class="nav-tabs__favorites"></button> favourites
-          <button type="button" class="nav-tabs__this-week"></button> this week
-        </div>
+    <nav class="nav-bar">
+      <div class="nav-bar__nav-tabs">
+        <button type="button" class="nav-tabs__all-recipes">All Recipes</button> 
+        <button type="button" class="nav-tabs__favorites">Favorites</button>
+        <button type="button" class="nav-tabs__this-week">This Week</button> 
+      </div>
+      <div class="nav-bar__home-search">
         <div class="search-bar">
-          <label for="SearchInput" class="search-bar__search-label"></label> search bar
-          <input type="search" class="search-bar__search-input" name="SearchInput" value=""> search bar
-          <button type="button" class="search-bar__initiate-search-button"></button> search button
-          <button type="button" class="search-bar__home-button"></button> home
+          <label for="SearchInput" class="search-bar__search-label">Search</label> 
+          <input type="search" class="search-bar__search-input" name="SearchInput" value=""> 
+          <button type="button" class="search-bar__initiate-search-button">
+            <span class="material-icons">
+              search
+            </span>              
+          </button> 
         </div>
-      </nav>
-    </h1>
+        <button type="button" class="search-bar__home-button">
+          <h1>what's cookin</h1>
+        </button>
+      </div>
+    </nav>
     <main class="featured">
       <section class="home-view">
-        <img class="featured__featured-recipe-image" src="" alt="image of featured recipe"> featured recipe
-        <button type="button" class="featured__save-recipe-button"></button> save recipe
+        <div class="featured__featured-recipe-image-container">
+          <button type="button" class="featured__save-recipe-button">Save to Favorites</button> 
+          <img class="featured__featured-recipe-image" src="https://static.onecms.io/wp-content/uploads/sites/44/2019/08/26231103/4465921.jpg" alt="image of featured recipe">
+        </div>
+        <section class="featured__search-ingredient-glide">
+          <p class="search-ingredient-glide__header">SEARCH BY INGREDIENT:</p>
+          <div class="search-ingredient-glide__images-container">
+            <button class="images-container__button">
+              <p class="images-container__ingredient-name">chicken</p>
+              <img class="images-container__image" src="https://www.lecremedelacrumb.com/wp-content/uploads/2016/04/baked-lemon-chicken-6.jpg" alt="image of chicken dish">
+            </button>
+            <button class="images-container__button">
+              <p class="images-container__ingredient-name">seafood</p>
+              <img class="images-container__image" src="https://assets.epicurious.com/photos/59cbba7e8ecca72fb3121952/4:3/w_4444,h_3333,c_limit/clam-toasts-with-pancetta.jpg" alt="image of mussels dish">
+            </button>
+            <button class="images-container__button">
+              <p class="images-container__ingredient-name">eggs</p>
+              <img class="images-container__image" src="https://www.loveandoliveoil.com/wp-content/uploads/2015/10/shakshuka.jpg" alt="image of egg entree dish">
+            </button>
+            <button class="images-container__button">
+              <p class="images-container__ingredient-name">chocolate</p>
+              <img class="images-container__image" src="https://www.alsothecrumbsplease.com/wp-content/uploads/2019/10/Chocolate-Souffle-14.jpg" alt="image of chocolate dessert dish">
+            </button>
+            <button class="images-container__button">
+              <p class="images-container__ingredient-name">cheese</p>
+              <img class="images-container__image" src="https://swirled.com/wp-content/uploads/2018/11/croque-monsieur-horiz-c-1800-750x549.jpg" alt="imahe of cheese toast dish">
+            </button>
+            <button class="images-container__button">
+              <p class="images-container__ingredient-name">greens</p>
+              <img class="images-container__image" src="https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F44%2F2021%2F02%2F04%2Fwatercress-salad-honey-Balsamic-tofu-2000.jpg&q=85" alt="image of fresh greens dish">
+            </button>
+            <button class="images-container__button">
+              <p class="images-container__ingredient-name">potatoes</p>
+              <img class="images-container__image" src="https://therecipecritic.com/wp-content/uploads/2020/12/airfryerpotatoes2.jpg" alt="image of sauteed potatoes">
+            </button>
+            <button class="images-container__button">
+              <p class="images-container__ingredient-name">fruit</p>
+              <img class="images-container__image" src="https://addapinch.com/wp-content/uploads/2017/06/honey-lime-fruit-salad-recipe-DSC_0506.jpg" alt="image of mixed fruit">
+            </button>
+          </div>
+        </section>
       </section>
-      <section class="recipes-view">
+      <section class="recipes-view hidden">
         <h1>all recipes</h1>
         <section class="recipes-view__glide">
 
@@ -70,7 +120,7 @@
         </section>
         <button type="button" class="recipes-view__add-recipe-button"></button> add recipe
       </section>
-      <section class="favorites-view">
+      <section class="favorites-view hidden">
         <h1></h1>
         <div class="favorites-view__favorites">
           <!-- dynamically populated html -->
@@ -172,7 +222,7 @@
 
 
       </section>
-      <section class="weekly-recipes-view">
+      <section class="weekly-recipes-view hidden">
         <h1></h1>
         <section class="weekly-recipes-view__week-one">
           <h2>week of ...</h2>
@@ -279,7 +329,7 @@
           </div>
         </section>
       </section>
-      <section class="single-recipe-view">
+      <section class="single-recipe-view hidden">
         <h1>recipe name</h1>
         <button type="button" class="single-recipe-view__add-to-favorites-button"></button> add to favourites
         <button type="button" class="single-recipe-view__add-to-week-button"></button> cook this week
