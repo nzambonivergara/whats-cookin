@@ -1,3 +1,5 @@
+import Ingredient from './Ingredient';
+
 class User {
   constructor(usersData) {
     this.name = usersData.name;
@@ -5,8 +7,6 @@ class User {
     this.pantry = usersData.pantry
     this.favoriteRecipes = [];
     this.weeklyFavorites = [];
-    this.filteredByTag = [];
-    this.filteredByIngredient = [];
     this.filteredByName = [];
   }
 
@@ -15,8 +15,9 @@ class User {
     favRecipe.push(recipe);
   }
 
-  addWeeklyRecipe() {
-
+  addWeeklyRecipe(recipe) {
+    let weeklyFav = this.weeklyFavorites;
+    weeklyFav.push(recipe);
   }
 
   removeFavorite(recipe) {
@@ -25,7 +26,8 @@ class User {
   }
 
   removeWeeklyRecipe(recipe) {
-
+    return this.weeklyFavorites.splice(
+      this.weeklyFavorites.indexOf(recipe), 1);
   }
 
   filterFavoriteRecipesByTags(tags) {
@@ -40,19 +42,25 @@ class User {
     return recipes;
   }
 
-  // idOfIngredient(ingredientName, ingredientsData) {
-  //   return ingredientsData.name === ingredientName
-  // }
-  //
-  // filterFavoriteRecipesByIngredient(ingredientNames, ingredientsData) {
-  //   ingredientNames.forEach((ingredient) => {
-  //     let ingredientById = ingredientsData.find(function() {
-  //       this.idOfIngredient(ingredient, ingredientsData)
+  filterFavoriteRecipesByIngredient(ingredientName, ingredientsData) {
+    this.getIngredientNames( ingredientsData);
+  }
+
+  // getIngredientNames(ingredientsData) {
+  //   const recipes = this.favoriteRecipes
+  //   console.log(recipes)
+  //   recipes.forEach((recipe, i) => {
+  //     let ingredients[i] = recipe.getIngredientsInformation(ingredientsData);
+  //     console.log(ingredients[i])
+  //     ingredients.forEach((ingredient, i) => {
+  //       if (ingredient.id === ingredientsData[i].id) {
+  //         ingredient.name = ingredientsData[i].name;
+  //       }
   //     })
-  //     console.log(ingredientById)
-  //     return ingredientById
   //   })
   // }
+
+
 }
 
 export default User;
