@@ -162,6 +162,48 @@ button {
   color: #fff;
 }
 
+.all-recipes-view {
+  display: flex;
+  align-items: center;
+}
+
+.all-recipes-view__recipes-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  height: 100%;
+  gap: 10px;
+  padding: 20px;
+}
+
+.recipes-container__recipe-card {
+  height: 200px;
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  border: 1px solid lightgrey;
+}
+
+.recipes-container__recipe-card:hover {
+  cursor: pointer;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),  0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.recipe-card__image {
+  height: 125px;
+  width: 200px;
+}
+
+.recipe-card__name {
+  font-weight: bold;
+}
+
+.top-banner__title {
+  font-size: 2rem;
+  margin-top: 15px;
+}
+
 .hidden {
   display: none;
 }
