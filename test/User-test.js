@@ -1,12 +1,12 @@
 import { expect } from 'chai';
-import User from '../src/classes/User.js';
-import Recipe from '../src/classes/Recipe.js';
-import { usersData } from '../src/data/users-sample.js';
-import { recipeData } from '../src/data/recipes-sample.js';
-import { ingredientsData } from '../src/data/ingredients-sample.js';
+import User from '../src/classes/User';
+import Recipe from '../src/classes/Recipe';
+import { usersData } from '../src/data/users-sample';
+import { recipeData } from '../src/data/recipes-sample';
+import { ingredientsData } from '../src/data/ingredients-sample';
 
 describe('User', function() {
-  let user, recipeOne, recipeTwo, recipeThree, tagOne, tagTwo, tagThree, ingredientOne, nameOne;
+  let user, recipeOne, recipeTwo, recipeThree, tagOne, tagTwo, tagThree, ingredientsOne, ingredientsTwo, ingredientsThree, nameOne;
 
   beforeEach(function() {
     user = new User(usersData[0]);
@@ -17,6 +17,9 @@ describe('User', function() {
     tagTwo = 'snack'
     tagThree = 'side dish'
     nameOne = 'cookies'
+    // ingredientsOne = recipeOne.getIngredientsInformation()
+    // ingredientsTwo = recipeTwo.getIngredientsInformation()
+    // ingredientsThree = recipeThree.getIngredientsInformation()
     user.addFavorite(recipeOne);
     user.addFavorite(recipeTwo);
     user.addFavorite(recipeThree);
@@ -61,7 +64,7 @@ describe('User', function() {
       );
     });
 
-  it.only('should be able to filter favorites by ingredient', function() {
+  it.skip('should be able to filter favorites by ingredient', function() {
     expect(user.filterFavoriteRecipesByIngredient(['wheat flour'], ingredientsData)).to.deep.equal([recipeOne, recipeThree]);
   });
 
@@ -70,14 +73,14 @@ describe('User', function() {
     expect(user.filteredByName).to.deep.equal([recipeOne, recipeThree]);
   });
 
-  it.skip('should be able to add a recipe to the user\'s weekly meal plan',
+  it('should be able to add a recipe to the user\'s weekly meal plan',
     function() {
       expect(user.weeklyFavorites).to.deep.equal(
         [recipeOne, recipeTwo, recipeThree]
       );
     });
 
-  it.skip('should be able to remove a recipe from the user\'s weekly meal plan',
+  it('should be able to remove a recipe from the user\'s weekly meal plan',
     function() {
       user.removeWeeklyRecipe(recipeTwo);
       expect(user.weeklyFavorites).to.deep.equal([recipeOne, recipeThree]);
