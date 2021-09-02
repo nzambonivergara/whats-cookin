@@ -107,6 +107,7 @@ describe('Recipe Repository', () => {
 
   beforeEach(() => {
     repo = new RecipeRepository(recipeData);
+    repo.getRecipesInformation();
   });
 
   it('Should be a function', () => {
@@ -122,20 +123,20 @@ describe('Recipe Repository', () => {
   });
 
   it('Should filter recipes based on one tag', () => {
-    const expected = repo.findRecipesByTag('snack');
+    const expected = repo.findRecipesByTag(['snack']);
     expect(expected[0].name).to.equal('Loaded Chocolate Chip Pudding Cookie Cups');
     expect(expected.length).to.equal(1);
   });
 
   it('Should filter recipes based on more than one tag', () => {
-    const expected = repo.findRecipesByTag('snack', 'antipastisi');
+    const expected = repo.findRecipesByTag(['snack', 'antipasti']);
     expect(expected[0].name).to.equal('Loaded Chocolate Chip Pudding Cookie Cups');
     expect(expected.length).to.equal(1);
   });
 
   it('Should filter recipes based on name', () => {
     const expected = repo.findRecipesByName('Maple Dijon Apple Cider Grilled Pork Chops');
-    expect(expected[0].id).to.equal(678353);
+    expect(expected.id).to.equal(678353);
   });
 
   it('Should filter recipes based on ingredients', () => {
