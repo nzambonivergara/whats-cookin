@@ -13,6 +13,13 @@ body {
   margin: 0;
   padding: 0;
   width: 100%;
+  overscroll-behavior-y: none;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+body::-webkit-scrollbar {
+  display: none;
 }
 
 h1, h2, h3, h4 {
@@ -59,6 +66,12 @@ button {
   padding: 8px;
 }
 
+.nav-bar {
+  position: fixed;
+  top: 0;
+  z-index: 999;
+}
+
 .nav-bar__nav-tabs {
   display: flex;
   justify-content: space-around;
@@ -93,6 +106,8 @@ button {
 .search-bar__search-label {
   margin-right: 8px;
 }
+
+/* --------------- HOME VIEW ------------------- */
 
 .search-ingredient-glide__images-container {
   display: flex;
@@ -157,9 +172,91 @@ button {
   z-index: 1;
 }
 
-.featured__save-recipe-button:hover {
+.featured__save-recipe-button:hover,
+.recipe-button:hover {
   background-color: #Ef5D60;
   color: #fff;
+}
+
+/* ----------- ALL RECIPES VIEW --------------- */
+
+.all-recipes-view {
+  display: flex;
+  align-items: center;
+}
+
+.all-recipes-view__recipes-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  height: 100%;
+  gap: 10px;
+  padding: 20px;
+}
+
+.recipes-container__recipe-card {
+  height: 200px;
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  border: 1px solid lightgrey;
+}
+
+.recipes-container__recipe-card:hover {
+  cursor: pointer;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),  0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.recipe-card__image {
+  height: 125px;
+  width: 200px;
+}
+
+.recipe-card__name {
+  font-weight: bold;
+}
+
+.top-banner__title {
+  font-size: 2rem;
+  margin-top: 15px;
+}
+
+/* ---------- SINGLE RECIPE VIEW ----------- */
+
+.single-recipe-view__recipe-information {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.recipe-button {
+  background-color: #fff;
+  border: 1px solid lightgrey;
+  color: #Ef5D60;
+  height: 35px;
+  width: 300px;
+  transition: all 0.2s ease-in-out;
+  margin: 15px 0px;
+  padding: 5px;
+}
+
+.recipe-title {
+  margin-top: 30px;
+}
+
+.recipe-image {
+  margin-top: 175px;
+  width: 600px;
+  height: 400px;
+}
+
+.total-cost {
+  color: #Ef5D60;
+  font-weight: bold;
+}
+
+.single-recipe-view__instructions {
+  margin: 20px 100px;
 }
 
 .hidden {
