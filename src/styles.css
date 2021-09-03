@@ -94,6 +94,8 @@ button {
   margin-right: 8px;
 }
 
+/* --------------- HOME VIEW ------------------- */
+
 .search-ingredient-glide__images-container {
   display: flex;
   gap: 10px;
@@ -157,10 +159,13 @@ button {
   z-index: 1;
 }
 
-.featured__save-recipe-button:hover {
+.featured__save-recipe-button:hover,
+.recipe-button:hover {
   background-color: #Ef5D60;
   color: #fff;
 }
+
+/* ----------- ALL RECIPES VIEW --------------- */
 
 .all-recipes-view {
   display: flex;
@@ -202,6 +207,43 @@ button {
 .top-banner__title {
   font-size: 2rem;
   margin-top: 15px;
+}
+
+/* ---------- SINGLE RECIPE VIEW ----------- */
+
+.single-recipe-view__recipe-information {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.recipe-button {
+  background-color: #fff;
+  border: 1px solid lightgrey;
+  color: #Ef5D60;
+  height: 35px;
+  width: 300px;
+  transition: all 0.2s ease-in-out;
+  margin: 15px 0px;
+  padding: 5px;
+}
+
+.recipe-title {
+  margin-top: 30px;
+}
+
+.recipe-image {
+  margin-top: 175px;
+  width: 600px;
+  height: 400px;
+}
+
+.total-cost {
+  color: #Ef5D60;
+  font-weight: bold;
+}
+
+.single-recipe-view__instructions {
+  margin: 20px 100px;
 }
 
 .hidden {
