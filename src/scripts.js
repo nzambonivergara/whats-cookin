@@ -22,9 +22,17 @@ const recipeCost = document.getElementById('recipeCost');
 const recipeImage = document.getElementById('recipeImage');
 const recipeIngredients = document.getElementById('recipeIngredients');
 const recipeInstructions = document.getElementById('recipeInstructions');
+const homeViewImage = document.getElementById('homeViewImage');
+const addToFavoritesButton = document.getElementById('addToFavoritesButton');
+const mainContentContainer = document.getElementById('mainContentContainer');
+const searchIngredientGlide = document.getElementById('searchIngredientGlide');
+const taggedRecipesContainer = document.getElementById('taggedRecipesContainer');
+
+let tags = [];
 
 homeViewButton.addEventListener('click', displayHomeView);
 allRecipesButton.addEventListener('click', displayAllRecipes);
+searchIngredientGlide.addEventListener('click', selectTag);
 allRecipesContainer.addEventListener('click', displayRecipe);
 
 function displayHomeView() {
@@ -42,14 +50,12 @@ function displayAllRecipes() {
   hide(singleRecipeView);
   show(allRecipesSection);
   sortRecipesByName();
-  recipeRepository.getRecipesInformation();
-  renderAllRecipeCards();
+  renderRecipeCards(allRecipesContainer, recipeRepository.recipes);
 }
 
-function renderAllRecipeCards() {
-  allRecipesContainer.innerHTML = '';
-  recipeRepository.recipes.forEach(recipe => {
-    allRecipesContainer.innerHTML +=
+function renderRecipeCards(container, recipes) {
+  recipes.forEach(recipe => {
+    container.innerHTML +=
       `<article class="recipes-container__recipe-card" id=${recipe.id}>
           <img src="${recipe.image}" class="recipe-card__image" alt=${recipe.name}>
           <p class="recipe-card__name">${recipe.name}</p>
@@ -94,6 +100,57 @@ function createInstructionList(recipe) {
     acc += `<p class="ingredient-list__item">${instruction}</p>`
     return acc
   }, '');
+
+function selectTag(e) {
+  const tagElement = e.target.closest('p') || e.target.previousElementSibling;
+  const tag = tagElement.innerText;
+  //check to see what is selected --event target
+  if (!tags.includes(tag)) {
+    // if tag doesnt exist in array, push it in
+    addTag(tag);
+  } else {
+    //if tag does exist in array, take it out
+    removeTag(tag);
+  }
+
+  //toggle tagElement styling from red to white or w to r
+  tagElement.classList.toggle('tag-selected');
+  updateMain();
+}
+
+function addTag(tag) {
+  //add recipes to tag []
+  tags.push(tag);
+  console.log(tags);
+}
+
+function removeTag(tag) {
+  //remove tag from tag []
+  tags = tags.filter((element) => {
+    if (element === tag) {
+      return false
+    }
+    return true
+  })
+  console.log(tags)
+}
+
+function updateMain() {
+  if (tags.length) {
+    const filteredRecipes = recipeRepository.findRecipesByTag(tags);
+
+    hide(mainContentContainer);
+    show(taggedRecipesContainer);
+    renderRecipeCards(taggedRecipesContainer, filteredRecipes);
+  } else {
+    const recipeCards = document.querySelectorAll('.recipes-container__recipe-card');
+    recipeCards.forEach((recipeCard) => {
+      recipeCard.remove();
+    })
+    
+    show(mainContentContainer);
+    hide(taggedRecipesContainer);
+  }
 }
 
 function show(element) {

@@ -33,13 +33,14 @@
     </nav>
     <main class="featured">
       <section class="home-view" id="homeViewSection">
-        <div class="featured__featured-recipe-image-container">
-          <button type="button" class="featured__save-recipe-button">Save to Favorites</button>
-          <img class="featured__featured-recipe-image" src="https://static.onecms.io/wp-content/uploads/sites/44/2019/08/26231103/4465921.jpg" alt="image of featured recipe">
+        <div class="tagged-recipes-view__recipes-container hidden" id="taggedRecipesContainer"></div>
+        <div class="featured__featured-recipe-image-container" id=mainContentContainer>
+          <button type="button" class="featured__save-recipe-button" id=addToFavoritesButton>add to favorites</button>
+          <img class="featured__featured-recipe-image" id="homeViewImage" src="https://images.unsplash.com/photo-1455619452474-d2be8b1e70cd?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2850&q=80" alt="image of featured recipe">
         </div>
         <section class="featured__search-ingredient-glide">
           <p class="search-ingredient-glide__header">SEARCH BY CATEGORY:</p>
-          <div class="search-ingredient-glide__images-container">
+          <div class="search-ingredient-glide__images-container" id="searchIngredientGlide">
             <button class="images-container__button">
               <p class="images-container__ingredient-name">antipasti</p>
               <img class="images-container__image" src="https://images.immediate.co.uk/production/volatile/sites/2/2019/07/Weekend_Project_Antipasti1-c89af68.jpg?quality=45&resize=768,574" alt="image of grilled vegetable dish">
