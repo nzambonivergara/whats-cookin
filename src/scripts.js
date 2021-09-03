@@ -61,7 +61,7 @@ function sortRecipesByName() {
   recipeRepository.recipes.sort((a, b) => a.name - b.name);
 }
 
-function displayRecipe() {
+function displayRecipe(event) {
   const card = event.target.parentNode;
   if (card.classList.contains('recipes-container__recipe-card')) {
     hide(allRecipesSection);
