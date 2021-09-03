@@ -339,7 +339,7 @@ const recipesData = [
 let recipesList = recipesData;
 let filteredRecipes;
 
-let searchBar = document.querySelector('.search-bar__search-input');
+let searchBar = document.querySelector('.favorites-view__favorites');
 let mainGlide = document.querySelector(
   '.search-ingredient-glide__images-container'
 );
