@@ -104,35 +104,31 @@ function createInstructionList(recipe) {
 function selectTag(e) {
   const tagElement = e.target.closest('p') || e.target.previousElementSibling;
   const tag = tagElement.innerText;
-  //check to see what is selected --event target
-  if (!tags.includes(tag)) {
-    // if tag doesnt exist in array, push it in
-    addTag(tag);
-  } else {
-    //if tag does exist in array, take it out
-    removeTag(tag);
-  }
-
-  //toggle tagElement styling from red to white or w to r
-  tagElement.classList.toggle('tag-selected');
+ 
+  toggleTag(tag, tagElement);
   updateMain();
 }
 
+function toggleTag(tag, tagElement) {
+  if (!tags.includes(tag)) {
+    addTag(tag);
+  } else {
+    removeTag(tag);
+  }
+  tagElement.classList.toggle('tag-selected');
+}
+
 function addTag(tag) {
-  //add recipes to tag []
   tags.push(tag);
-  console.log(tags);
 }
 
 function removeTag(tag) {
-  //remove tag from tag []
   tags = tags.filter((element) => {
     if (element === tag) {
       return false
     }
     return true
   })
-  console.log(tags)
 }
 
 function updateMain() {
@@ -141,16 +137,21 @@ function updateMain() {
 
     hide(mainContentContainer);
     show(taggedRecipesContainer);
+    
     renderRecipeCards(taggedRecipesContainer, filteredRecipes);
   } else {
-    const recipeCards = document.querySelectorAll('.recipes-container__recipe-card');
-    recipeCards.forEach((recipeCard) => {
-      recipeCard.remove();
-    })
+    removeAllRecipeCards();
     
     show(mainContentContainer);
     hide(taggedRecipesContainer);
   }
+}
+
+function removeAllRecipeCards() {
+  const recipeCards = document.querySelectorAll('.recipes-container__recipe-card');
+    recipeCards.forEach((recipeCard) => {
+      recipeCard.remove();
+    })
 }
 
 function show(element) {
