@@ -12,7 +12,7 @@
   <body>
     <nav class="nav-bar">
       <div class="nav-bar__nav-tabs">
-        <button type="button" class="nav-tabs__all-recipes">All Recipes</button>
+        <button type="button" class="nav-tabs__all-recipes" id="allRecipesButton">All Recipes</button>
         <button type="button" class="nav-tabs__favorites">Favorites</button>
         <button type="button" class="nav-tabs__this-week">This Week</button>
       </div>
@@ -26,13 +26,13 @@
             </span>
           </button>
         </div>
-        <button type="button" class="search-bar__home-button">
+        <button type="button" class="search-bar__home-button" id="homeViewButton">
           <h1>what's cookin</h1>
         </button>
       </div>
     </nav>
     <main class="featured">
-      <section class="home-view">
+      <section class="home-view" id="homeViewSection">
         <div class="featured__featured-recipe-image-container">
           <button type="button" class="featured__save-recipe-button">Save to Favorites</button>
           <img class="featured__featured-recipe-image" src="https://static.onecms.io/wp-content/uploads/sites/44/2019/08/26231103/4465921.jpg" alt="image of featured recipe">
@@ -75,58 +75,23 @@
           </div>
         </section>
       </section>
-      <section class="recipes-view hidden">
-        <h1>all recipes</h1>
-        <section class="recipes-view__glide">
-
-          <h2>bfast</h2>
-          <div class="glide__gliders">
-            <!-- <article class="gliders__breakfast-glide">
-              <img src="" class="breakfast-glide__image-one" alt="">
-            </article> -->
-          </div>
+      <section class="all-recipes-view hidden" id="allRecipesSection">
+        <div class="top-banner">
+          <!-- <img class="top-banner__image" src="https://image.freepik.com/free-photo/chicken-wings-barbecue-sweetly-sour-sauce-picnic-summer-menu-tasty-food-top-view-flat-lay_2829-6471.jpg" alt="barbecue chicken bowl on wood table"> -->
+          <h1 class="top-banner__title">All Recipes</h1>
+        </div>
+        <section class="all-recipes-view__recipes-container" id="allRecipesContainer">
+          <!-- <article class="recipes-container__recipe-card" id=123456>
+              <img src="https://spoonacular.com/recipeImages/595736-556x370.jpg" class="recipe-card__image" alt="Loaded Chocolate Chip Pudding Cookie Cups">
+              <p class="recipe-card__name">Loaded Chocolate Chip Pudding Cookie Cups</h2>
+          </article> -->
         </section>
-        <section class="recipes-view__glide">
-          <h2>lunch</h2>
-          <div class="glide__gliders">
-            <!-- <article class="gliders__lunch-glide">
-              <img src="" class="lunch-glide__image-one" alt="">
-            </article> -->
-          </div>
-        </section>
-        <section class="recipes-view__glide">
-          <h2>dinner</h2>
-          <div class="glide__gliders">
-            <!-- <article class="gliders__dinner-glide">
-              <img src="" class="dinner-glide__image-one" alt="">
-            </article> -->
-          </div>
-        </section>
-        <section class="recipes-view__glide">
-          <h2>appetizers</h2>
-          <div class="glide__gliders">
-            <!-- <article class="gliders__appetizers-glide">
-              <img src="" class="appetizers-glide__image-one" alt="">
-            </article> -->
-          </div>
-        </section>
-        <section class="recipes-view__glide">
-          <h2>desserts</h2>
-          <div class="glide__gliders">
-            <!-- <article class="gliders__dessert-glide">
-              <img src="" class="dessert-glide__image-one" alt="">
-            </article> -->
-          </div>
-        </section>
-        <button type="button" class="recipes-view__add-recipe-button"></button> add recipe
       </section>
-      <section class="favorites-view hidden">
+      <section class="favorites-view hidden" id="favoriteRecipesSection">
         <h1></h1>
         <div class="favorites-view__favorites">
           <!-- dynamically populated html -->
         </div>
-
-
         <div class="favorites-view__saved-week-one-recipes">
           <!-- <article class="saved-week-one-recipes__saved=glide-one">
             <img src="" class="saved-glide-one__image-one" alt="">
@@ -222,7 +187,7 @@
 
 
       </section>
-      <section class="weekly-recipes-view hidden">
+      <section class="weekly-recipes-view hidden" id="weeklyRecipesSection">
         <h1></h1>
         <section class="weekly-recipes-view__week-one">
           <h2>week of ...</h2>
@@ -330,24 +295,25 @@
         </section>
       </section>
       <section class="single-recipe-view hidden">
-        <h1>recipe name</h1>
-        <button type="button" class="single-recipe-view__add-to-favorites-button"></button> add to favourites
-        <button type="button" class="single-recipe-view__add-to-week-button"></button> cook this week
-        <div class="single-recipe-view__ingredients">
-          <h2>ingredients title</h2>
-          <p class="ingredients__ingredient-list">ingredients</p>
+        <h1>Recipe Name</h1>
+        <div>
+          <button type="button" class="single-recipe-view__add-to-favorites-button">♡</button>
+          <p>ADD TO FAVORITES</p>
         </div>
-        <img src="" class="single-recipe-view__recipe-image" alt=""> recipe img
-        <p class="single-recipe-view__total-cost">total cost</p>
+        <div>
+          <button type="button" class="single-recipe-view__add-to-week-button"></button>
+          <p>ADD THIS WEEK'S RECIPES</p>
+        </div>
+        <p class="single-recipe-view__total-cost">💲COST: </p>
+        <img src= class="single-recipe-view__recipe-image" alt=>
+
+        <div class="single-recipe-view__ingredients">
+          <h2>INGREDIENTS</h2>
+          <div class="ingredients__ingredient-list"></div>
+        </div>
         <div class="single-recipe-view__instructions">
-          <h2>instructions</h2>
-
-          <!-- <div class="instructions__steps">
-            <h3></h3>
-            <p></p>
-          </div> -->
-          <!-- dynamic HTML -->
-
+          <h2>INSTRUCTIONS</h2>
+          <div class="instructions__instructions-list"></div>
         </div>
       </section>
     </main>
