@@ -114,6 +114,62 @@ function displayAllRecipes() {
   renderRecipeCards(allRecipesContainer, recipeRepository.recipes);
 }
 
+//
+function renderWeeklyRecipeCards() {
+  const d = new Date();
+  const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  setWeeklyRecipesDate(d, months);
+  setWeekGlider(generatedWeekGlider);
+  setWeekGlider(generatedWeekGlider);
+  setWeekGlider(generatedWeekGlider);
+  setWeekGlider(generatedWeekGlider);
+  setWeekGlider(generatedWeekGlider);
+  setWeekGlider(generatedWeekGlider);
+  setWeekGlider(generatedWeekGlider);
+}
+
+function randomRecipe(data) {
+  return Math.floor(Math.random() * data.length);
+}
+
+function setWeekGlider(week) {
+  console.log(1)
+  let i = randomRecipe(recipesList);
+  week.innerHTML += `
+    <button class="images-container__button">
+      <p class="images-container__ingredient-name">${recipesList[i].name}</p>
+      <img class="images-container__image" src="${recipesList[i].image}" alt="image of chicken dish">
+    </button>`;
+}
+
+function addDays(aDate, numOfDays) {
+  aDate.setDate(aDate.getDate() + numOfDays);
+  return format(aDate);
+}
+
+function format(date) {
+  return [
+    ("0" + date.getDate()).slice(-2)
+  ].join('/');
+}
+
+function setWeeklyRecipesDate(d, months) {
+  generatedWeek.innerText = `Week of ${months[d.getMonth()]}, ${d.getDate()}`;
+  generatedWeek.innerText = `Week of ${months[d.getMonth()]}, ${addDays(d, 7)}`;
+  generatedWeek.innerText = `Week of ${months[d.getMonth()]}, ${addDays(d, 14)}`;
+  generatedWeek.innerText = `Week of ${months[d.getMonth()]}, ${addDays(d, 21)}`;
+}
+
+function displayWeeklyRecipes() {
+  hide(homeViewSection);
+  hide(favoriteRecipesSection);
+  hide(singleRecipeView);
+  hide(allRecipesSection);
+  show(weeklyRecipesSection);
+
+  renderWeeklyRecipeCards();
+}
+
 function displayRecipe(event) {
   const card = event.target.parentNode;
 
@@ -123,10 +179,6 @@ function displayRecipe(event) {
     show(singleRecipeView);
     renderIndividualRecipe(card.id);
   }
-}
-
-function displayWeeklyRecipes() {
-
 }
 
 function selectTag(e) {
