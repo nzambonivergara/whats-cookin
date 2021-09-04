@@ -11,12 +11,12 @@ class User {
   }
 
   addFavorite(recipe) {
-    let favRecipe = this.favoriteRecipes;
+    const favRecipe = this.favoriteRecipes;
     favRecipe.push(recipe);
   }
 
   addWeeklyRecipe(recipe) {
-    let weeklyFav = this.weeklyFavorites;
+    const weeklyFav = this.weeklyFavorites;
     weeklyFav.push(recipe);
   }
 
@@ -43,24 +43,8 @@ class User {
   }
 
   filterFavoriteRecipesByIngredient(ingredientName, ingredientsData) {
-    this.getIngredientNames( ingredientsData);
+    this.getIngredientNames(ingredientsData);
   }
-
-  // getIngredientNames(ingredientsData) {
-  //   const recipes = this.favoriteRecipes
-  //   console.log(recipes)
-  //   recipes.forEach((recipe, i) => {
-  //     let ingredients[i] = recipe.getIngredientsInformation(ingredientsData);
-  //     console.log(ingredients[i])
-  //     ingredients.forEach((ingredient, i) => {
-  //       if (ingredient.id === ingredientsData[i].id) {
-  //         ingredient.name = ingredientsData[i].name;
-  //       }
-  //     })
-  //   })
-  // }
-
-
 }
 
 export default User;

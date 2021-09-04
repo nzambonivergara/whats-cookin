@@ -6,20 +6,23 @@ import { recipeData } from '../src/data/recipes-sample';
 import { ingredientsData } from '../src/data/ingredients-sample';
 
 describe('User', function() {
-  let user, recipeOne, recipeTwo, recipeThree, tagOne, tagTwo, tagThree, ingredientsOne, ingredientsTwo, ingredientsThree, nameOne;
+  let user;
+  let recipeOne;
+  let recipeTwo;
+  let recipeThree;
+  const tagOne = 'appetizer';
+  const tagTwo = 'snack';
+  const tagThree = 'side dish';
+  // const ingredientsOne = ;
+  // const ingredientsTwo = ;
+  // const ingredientsThree = ;
+  const nameOne = 'cookies';
 
-  beforeEach(function() {
+  beforeEach(() => {
     user = new User(usersData[0]);
     recipeOne = new Recipe(recipeData[2]);
     recipeTwo = new Recipe(recipeData[1]);
     recipeThree = new Recipe(recipeData[0]);
-    tagOne = 'appetizer'
-    tagTwo = 'snack'
-    tagThree = 'side dish'
-    nameOne = 'cookies'
-    // ingredientsOne = recipeOne.getIngredientsInformation()
-    // ingredientsTwo = recipeTwo.getIngredientsInformation()
-    // ingredientsThree = recipeThree.getIngredientsInformation()
     user.addFavorite(recipeOne);
     user.addFavorite(recipeTwo);
     user.addFavorite(recipeThree);
@@ -64,11 +67,11 @@ describe('User', function() {
       );
     });
 
-  it.skip('should be able to filter favorites by ingredient', function() {
+  it('should be able to filter favorites by ingredient', function() {
     expect(user.filterFavoriteRecipesByIngredient(['wheat flour'], ingredientsData)).to.deep.equal([recipeOne, recipeThree]);
   });
 
-  it.skip('should be able to filter favorites by name', function() {
+  it('should be able to filter favorites by name', function() {
     user.filterFavoriteRecipesByName([nameOne]);
     expect(user.filteredByName).to.deep.equal([recipeOne, recipeThree]);
   });
