@@ -4,6 +4,7 @@ import { recipeData } from './data/recipes';
 import RecipeRepository from './classes/RecipeRepository';
 
 const recipeRepository = new RecipeRepository(recipeData);
+recipeRepository.getRecipesInformation();
 
 const homeViewSection = document.getElementById('homeViewSection');
 const homeViewButton = document.getElementById('homeViewButton');
@@ -34,6 +35,7 @@ homeViewButton.addEventListener('click', displayHomeView);
 allRecipesButton.addEventListener('click', displayAllRecipes);
 searchIngredientGlide.addEventListener('click', selectTag);
 allRecipesContainer.addEventListener('click', displayRecipe);
+taggedRecipesContainer.addEventListener('click', displayRecipe);
 
 function displayHomeView() {
   show(homeViewSection);
@@ -54,6 +56,7 @@ function displayAllRecipes() {
 }
 
 function renderRecipeCards(container, recipes) {
+  container.innerHTML = '';
   recipes.forEach(recipe => {
     container.innerHTML +=
       `<article class="recipes-container__recipe-card" id=${recipe.id}>
@@ -73,6 +76,7 @@ function displayRecipe(event) {
     hide(allRecipesSection);
     show(singleRecipeView);
     renderIndividualRecipe(card.id);
+    hide(homeViewSection);
   }
 }
 
@@ -100,6 +104,7 @@ function createInstructionList(recipe) {
     acc += `<p class="ingredient-list__item">${instruction}</p>`
     return acc
   }, '');
+}
 
 function selectTag(e) {
   const tagElement = e.target.closest('p') || e.target.previousElementSibling;
