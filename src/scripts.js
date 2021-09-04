@@ -47,6 +47,7 @@ homeViewButton.addEventListener('click', displayHomeView);
 allRecipesButton.addEventListener('click', displayAllRecipes);
 allRecipesContainer.addEventListener('click', displayRecipe);
 taggedRecipesContainer.addEventListener('click', displayRecipe);
+searchedRecipesContainer.addEventListener('click', displayRecipe);
 weeklyRecipesButton.addEventListener('click', displayWeeklyRecipes);
 searchIngredientGlide.addEventListener('click', selectTag);
 
@@ -58,7 +59,7 @@ function prepSearch(event) {
 function checkSearchField(searchTerm) {
   if (!searchBar.value && !displayedSearchResults.innerHTML) {
     console.log('first condition')
-    return
+    return;
 
   } else if (searchBar.value){
     console.log('second condition')
@@ -66,7 +67,10 @@ function checkSearchField(searchTerm) {
     hide(homeViewSection);
     show(searchResults);
     show(displayedSearchResults);
-
+    addStyling(singleRecipeView, 'single-recipe-view-alt');
+    addStyling(allRecipesSection, 'all-recipes-view__recipes-container-alt');
+    removeStyling(singleRecipeView, 'single-recipe-view');
+    removeStyling(allRecipesSection, 'all-recipes-view__recipes-container');
     searchingNow(searchTerm);
 
   } else {
@@ -87,7 +91,7 @@ function searchingNow(searchTerm) {
 function displaySearchResults(filteredRecipes) {
   filteredRecipes.forEach((recipe) => {
     displayedSearchResults.innerHTML += `
-      <article class="recipes-container__recipe-card" id=${recipe.id}>
+      <article class="search-results-container__recipe-card" id=${recipe.id}>
         <img src="${recipe.image}" class="recipe-card__image" alt=${recipe.name}>
         <p class="recipe-card__name">${recipe.name}</p>
       </article>`;
@@ -103,6 +107,9 @@ function displayHomeView() {
   hide(displayedSearchResults);
   hide(favoriteRecipesSection);
   show(homeViewSection);
+
+  removeStyling(singleRecipeView, 'single-recipe-view-alt');
+  removeStyling(allRecipesSection, 'all-recipes-view__recipes-container-alt');
 }
 
 function displayAllRecipes() {
@@ -113,6 +120,9 @@ function displayAllRecipes() {
   hide(favoriteRecipesSection);
   show(allRecipesSection);
 
+  removeStyling(singleRecipeView, 'single-recipe-view-alt');
+  removeStyling(allRecipesSection, 'all-recipes-view__recipes-container-alt');
+
   sortRecipesByName();
   renderRecipeCards(allRecipesContainer, recipeRepository.recipes);
 }
@@ -122,6 +132,7 @@ function renderWeeklyRecipeCards() {
   const d = new Date();
   const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
   setWeeklyRecipesDate(d, months);
+
   setWeekGlider(generatedWeekGlider);
   setWeekGlider(generatedWeekGlider);
   setWeekGlider(generatedWeekGlider);
@@ -136,7 +147,6 @@ function randomRecipe(data) {
 }
 
 function setWeekGlider(week) {
-  console.log(1)
   let i = randomRecipe(recipesList);
   week.innerHTML += `
     <button class="images-container__button">
@@ -254,10 +264,10 @@ function individualRecipeInterpolation(recipe) {
 }
 
 function createIngredientList(recipe) {
-  const ingredientList = recipe.returnIngredientsList()
+  const ingredientList = recipe.returnIngredientsList();
 
   recipeIngredients.innerHTML= ingredientList.reduce((acc, ingredient) => {
-    acc += `<p class="ingredient-list__item">● ${ingredient}</p>`
+    acc += `<p class="ingredient-list__item">● ${ingredient}</p>`;
     return acc;
   }, '')
 }
@@ -266,8 +276,8 @@ function createInstructionList(recipe) {
   const instructionsList = recipe.returnInstructions();
 
   recipeInstructions.innerHTML = instructionsList.reduce((acc, instruction) => {
-    acc += `<p class="ingredient-list__item">${instruction}</p>`
-    return acc
+    acc += `<p class="ingredient-list__item">${instruction}</p>`;
+    return acc;
   }, '');
 }
 
@@ -293,4 +303,12 @@ function show(element) {
 
 function hide(element) {
   element.classList.add('hidden');
+}
+
+function addStyling(element, className) {
+  element.classList.add(className);
+}
+
+function removeStyling(element, className) {
+  element.classList.remove(className);
 }
