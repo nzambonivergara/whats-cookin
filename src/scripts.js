@@ -36,8 +36,8 @@ const mainContentContainer = document.getElementById('mainContentContainer');
 const searchIngredientGlide = document.getElementById('searchIngredientGlide');
 const taggedRecipesContainer = document.getElementById('taggedRecipesContainer');
 
-const searchBar = document.getElementById('.searchBarInput');
-const searchResults = document.getElementById('?');
+const searchBar = document.getElementById('searchBarInput');
+const searchResults = document.getElementById('searchedRecipesContainer');
 
 searchBar.addEventListener('keyup', () => {prepSearch(event)});
 homeViewButton.addEventListener('click', displayHomeView);
@@ -51,7 +51,6 @@ function prepSearch(event) {
   searchResults.innerHTML = '';
 
   searchingNow(event.target.value);
-  displayFilteredRecipes();
 }
 
 function searchingNow(event) {
@@ -63,9 +62,11 @@ function searchingNow(event) {
     const searchedByIngredient = recipe.ingredients.toString().toLowerCase().includes(searchTerm.toLowerCase());
     return searchedByName || searchedByTag || searchedByIngredient
   });
+
+  displaySearchResults(filteredRecipes);
 }
 
-function displaySearchResults() {
+function displaySearchResults(filteredRecipes) {
   filteredRecipes.forEach((recipe) => {
     searchResults.innerHTML += `
     <button class="images-container__button">
