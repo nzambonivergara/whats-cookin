@@ -23,6 +23,8 @@ const allRecipesSection = document.getElementById('allRecipesSection');
 const allRecipesContainer = document.getElementById('allRecipesContainer');
 
 const favoriteRecipesSection = document.getElementById('favoriteRecipesSection');
+const favoriteRecipesContainer = document.getElementById('favoriteRecipesContainer');
+const favoritesViewButton = document.getElementById('favoritesViewButton');
 const favoriteRecipeButton = document.getElementById('favoriteRecipeButton');
 
 const generatedWeek = document.getElementById('generatedWeek');
@@ -54,20 +56,36 @@ allRecipesContainer.addEventListener('click', displayRecipe);
 taggedRecipesContainer.addEventListener('click', displayRecipe);
 weeklyRecipesButton.addEventListener('click', displayWeeklyRecipes);
 searchIngredientGlide.addEventListener('click', selectTag);
+favoritesViewButton.addEventListener('click', displayFavoritesView);
 favoriteRecipeButton.addEventListener('click', favoriteRecipe);
+favoriteRecipesContainer.addEventListener('click', displayRecipe);
 
-function favoriteRecipe() {
-  const favoriteRecipe = recipeRepository.recipes.find(recipe => recipe.name === favoriteRecipeButton.name);
-  user.addFavorite(favoriteRecipe);
+function favoriteRecipe(event) {
+  const favoriteRecipe = recipeRepository.recipes.find(recipe => recipe.id === parseInt(favoriteRecipeButton.name));
 
-  renderRecipeCards(favoriteRecipesSection, user.favoriteRecipes);
+  if (user.favoriteRecipes.includes(favoriteRecipe)) {
+    user.removeFavorite(favoriteRecipe);
+  } else {
+    user.addFavorite(favoriteRecipe);
+  }
+  favoriteRecipeButton.classList.toggle('favorite-selected');
+}
+
+function displayFavoritesView() {
+  hide(searchResults);
+  hide(singleRecipeView);
+  hide(allRecipesSection);
+  hide(weeklyRecipesSection);
+  show(favoriteRecipesSection);
+  hide(homeViewSection);
+
+  renderRecipeCards(favoriteRecipesContainer, user.favoriteRecipes);
 }
 
 function getRandomUser() {
   const index =  Math.floor(Math.random() * usersData.length);
   const userData = usersData[index];
   user = new User(userData);
-  console.log(user)
 }
 
 function prepSearch(event) {
@@ -140,6 +158,7 @@ function displayRecipe(event) {
   if (card.classList.contains('recipes-container__recipe-card')) {
     hide(homeViewSection);
     hide(allRecipesSection);
+    hide(favoriteRecipesSection);
     show(singleRecipeView);
     renderIndividualRecipe(card.id);
   }
@@ -204,6 +223,11 @@ function removeTag(tag) {
 
 function renderIndividualRecipe(recipeId) {
   const recipe = recipeRepository.recipes.find(recipe => recipe.id === parseInt(recipeId));
+  if (user.favoriteRecipes.includes(recipe)) {
+    favoriteRecipeButton.classList.add('favorite-selected');
+  } else {
+    favoriteRecipeButton.classList.remove('favorite-selected');
+  }
 
   individualRecipeInterpolation(recipe);
 
