@@ -13,6 +13,7 @@ recipeRepository.getRecipesInformation();
 const homeViewImage = document.getElementById('homeViewImage');
 const homeViewButton = document.getElementById('homeViewButton');
 const homeViewSection = document.getElementById('homeViewSection');
+const singleRecipeView = document.getElementById('singleRecipeView');
 
 const allRecipesButton = document.getElementById('allRecipesButton');
 const allRecipesSection = document.getElementById('allRecipesSection');
@@ -30,14 +31,15 @@ const recipeCost = document.getElementById('recipeCost');
 const recipeImage = document.getElementById('recipeImage');
 const recipeIngredients = document.getElementById('recipeIngredients');
 const recipeInstructions = document.getElementById('recipeInstructions');
-const singleRecipeView = document.getElementById('singleRecipeView');
 const addToFavoritesButton = document.getElementById('addToFavoritesButton');
 const mainContentContainer = document.getElementById('mainContentContainer');
 const searchIngredientGlide = document.getElementById('searchIngredientGlide');
 const taggedRecipesContainer = document.getElementById('taggedRecipesContainer');
 
+const noResults = document.getElementById('noResults');
 const searchBar = document.getElementById('searchBarInput');
 const searchResults = document.getElementById('searchedRecipesContainer');
+const displayedSearchResults = document.getElementById('searchedRecipes');
 
 searchBar.addEventListener('keyup', () => {prepSearch(event)});
 searchResults.addEventListener('click', displayRecipe);
@@ -49,35 +51,41 @@ weeklyRecipesButton.addEventListener('click', displayWeeklyRecipes);
 searchIngredientGlide.addEventListener('click', selectTag);
 
 function prepSearch(event) {
-  searchResults.innerHTML = '';
-  if (searchBar.value === '') {
-    hide(searchResults);
-    show(homeViewSection);
+  const searchTerm = event.target.value.toLowerCase();
+  checkSearchField(searchTerm);
+}
+
+function checkSearchField(searchTerm) {
+  if (!searchBar.value && !displayedSearchResults.innerHTML) {
+    hide(displayedSearchResults);
+    show(noResults);
+    show(searchResults);
+
+  } else if (searchBar.value && displayedSearchResults.innerHTML){
+    hide(noResults);
+    hide(homeViewSection);
+    show(searchResults);
+    show(displayedSearchResults);
+
+    searchingNow(searchTerm);
 
   } else {
-    hide(homeViewImage);
-    hide(taggedRecipesContainer);
+    hide(displayedSearchResults);
+    show(noResults);
     show(searchResults);
-    searchingNow(event);
   }
 }
 
-function searchingNow(event) {
-  const searchTerm = event.target.value;
-
-  filteredRecipes = recipesList.filter(recipe => {
-    const searchedByTag = recipe.tags.toString().toLowerCase().includes(searchTerm.toLowerCase());
-    const searchedByName = recipe.name.toLowerCase().includes(searchTerm.toLowerCase());
-    const searchedByIngredient = recipe.ingredients.toString().toLowerCase().includes(searchTerm.toLowerCase());
-    return searchedByName || searchedByTag || searchedByIngredient;
-  });
+function searchingNow(searchTerm) {
+  displayedSearchResults.innerHTML = '';
+  filteredRecipes = recipeRepository.findRecipes(searchTerm);
 
   displaySearchResults(filteredRecipes);
 }
 
 function displaySearchResults(filteredRecipes) {
   filteredRecipes.forEach((recipe) => {
-    searchResults.innerHTML += `
+    displayedSearchResults.innerHTML += `
       <article class="recipes-container__recipe-card" id=${recipe.id}>
         <img src="${recipe.image}" class="recipe-card__image" alt=${recipe.name}>
         <p class="recipe-card__name">${recipe.name}</p>
@@ -86,6 +94,7 @@ function displaySearchResults(filteredRecipes) {
 }
 
 function displayHomeView() {
+  hide(searchResults);
   hide(singleRecipeView);
   hide(allRecipesSection);
   hide(weeklyRecipesSection);
@@ -94,6 +103,7 @@ function displayHomeView() {
 }
 
 function displayAllRecipes() {
+  hide(searchResults);
   hide(homeViewSection);
   hide(singleRecipeView);
   hide(weeklyRecipesSection);
