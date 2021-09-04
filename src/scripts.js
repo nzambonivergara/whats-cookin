@@ -26,6 +26,7 @@ const favoriteRecipesSection = document.getElementById('favoriteRecipesSection')
 const favoriteRecipesContainer = document.getElementById('favoriteRecipesContainer');
 const favoritesViewButton = document.getElementById('favoritesViewButton');
 const favoriteRecipeButton = document.getElementById('favoriteRecipeButton');
+const noFavoritesMessage = document.getElementById('noFavoritesMessage');
 
 const generatedWeek = document.getElementById('generatedWeek');
 const generatedWeekGlider = document.getElementById('generatedWeekGlider');
@@ -68,6 +69,7 @@ function favoriteRecipe(event) {
   } else {
     user.addFavorite(favoriteRecipe);
   }
+
   favoriteRecipeButton.classList.toggle('favorite-selected');
 }
 
@@ -78,8 +80,12 @@ function displayFavoritesView() {
   hide(weeklyRecipesSection);
   show(favoriteRecipesSection);
   hide(homeViewSection);
-
   renderRecipeCards(favoriteRecipesContainer, user.favoriteRecipes);
+  if (user.favoriteRecipes.length) {
+    hide(noFavoritesMessage);
+  } else {
+    show(noFavoritesMessage);
+  }
 }
 
 function getRandomUser() {

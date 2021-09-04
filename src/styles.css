@@ -283,6 +283,13 @@ button {
   margin: 20px 0;
 }
 
+/* ----- Favorites View ------- */
+
+.recipes-container__no-favorites {
+  margin-top: 75px;
+  font-size: 20px;
+}
+
 .favorite-selected {
   background-color: #Ef5D60;
   color: #fff;
