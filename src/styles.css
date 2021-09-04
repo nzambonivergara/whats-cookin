@@ -27,7 +27,9 @@ nav {
   box-sizing: border-box;
   border-bottom: 1px solid #011936;
   padding: 0 20px;
+  position: fixed;
   width: 100%;
+  z-index: 1;
 }
 
 h1 {
@@ -38,8 +40,9 @@ h1 {
 main {
   box-sizing: border-box;
   display: flex;
-  justify-content: center;
   flex: 1;
+  justify-content: center;
+  padding-top: 51px;
   width: 100%;
 }
 
@@ -113,7 +116,6 @@ button {
 
 .featured__featured-recipe-image {
   position: absolute;
-  top: -50%;
   width: 100%;
 }
 
@@ -132,13 +134,18 @@ button {
   background-color: white;
   padding: 6px;
   text-align: center;
+  transition: all 0.2s ease-in-out;
   width: 80px;
   z-index: 1;
 }
 
+.tag-selected {
+  background-color: #Ef5D60;
+}
+
 .images-container__image{
   border: 4px solid #fff;
-  height: 400px;
+  height: 300px;
   position: absolute;
 }
 
@@ -172,6 +179,7 @@ button {
   align-items: center;
 }
 
+.tagged-recipes-view__recipes-container,
 .all-recipes-view__recipes-container {
   display: flex;
   justify-content: center;
