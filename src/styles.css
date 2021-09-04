@@ -106,7 +106,8 @@ button {
 
 /* --------------- HOME VIEW ------------------- */
 
-.search-ingredient-glide__images-container {
+.search-ingredient-glide__images-container,
+.week-one__glider-one {
   display: flex;
   gap: 10px;
   overflow-x: scroll;
@@ -187,13 +188,19 @@ button {
 }
 
 .tagged-recipes-view__recipes-container,
-.all-recipes-view__recipes-container {
+.all-recipes-view__recipes-container,
+.recipes-container__no-results,
+.weekly-recipes-view__week-one {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
   height: 100%;
   gap: 10px;
   padding: 20px;
+}
+
+.recipes-container__no-results {
+  font-size: 28;
 }
 
 .recipes-container__recipe-card {
