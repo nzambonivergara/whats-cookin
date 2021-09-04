@@ -13,9 +13,16 @@ body {
   margin: 0;
   padding: 0;
   width: 100%;
+  overscroll-behavior-y: none;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
-h1, h2, h3, h4 {
+body::-webkit-scrollbar {
+  display: none;
+}
+
+h1, h2, h3, h4, #weekOne, #weekTwo, #weekThree, #weekFour {
   font-family: 'Quicksand', sans-serif;
 }
 

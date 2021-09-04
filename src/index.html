@@ -19,7 +19,7 @@
       <div class="nav-bar__home-search">
         <div class="search-bar">
           <label for="SearchInput" class="search-bar__search-label">Search</label>
-          <input type="search" class="search-bar__search-input" name="SearchInput" value="">
+          <input type="search" class="search-bar__search-input" name="SearchInput" value="" id="searchBarInput">
           <button type="button" class="search-bar__initiate-search-button">
             <span class="material-icons">
               search
@@ -76,222 +76,45 @@
           </div>
         </section>
       </section>
+      <section class="tagged-recipes-view__recipes-container hidden" id="searchedRecipesContainer">
+        <p class="recipes-container__no-results hidden" id="noResults">No Results Match Your Search</p>
+        <div id="searchedRecipes">
+
+        </div>
+      </section>
       <section class="all-recipes-view hidden" id="allRecipesSection">
         <div class="top-banner">
           <!-- <img class="top-banner__image" src="https://image.freepik.com/free-photo/chicken-wings-barbecue-sweetly-sour-sauce-picnic-summer-menu-tasty-food-top-view-flat-lay_2829-6471.jpg" alt="barbecue chicken bowl on wood table"> -->
           <h1 class="top-banner__title">All Recipes</h1>
         </div>
         <section class="all-recipes-view__recipes-container" id="allRecipesContainer">
-          <!-- <article class="recipes-container__recipe-card" id=123456>
-              <img src="https://spoonacular.com/recipeImages/595736-556x370.jpg" class="recipe-card__image" alt="Loaded Chocolate Chip Pudding Cookie Cups">
-              <p class="recipe-card__name">Loaded Chocolate Chip Pudding Cookie Cups</h2>
-          </article> -->
+
         </section>
       </section>
       <section class="favorites-view hidden" id="favoriteRecipesSection">
         <h1></h1>
         <div class="favorites-view__favorites">
-          <!-- dynamically populated html -->
+
         </div>
         <div class="favorites-view__saved-week-one-recipes">
-          <!-- <article class="saved-week-one-recipes__saved=glide-one">
-            <img src="" class="saved-glide-one__image-one" alt="">
-          </article> -->
-          <!-- <article class="saved-week-one-recipes__saved=glide-one">
-            <img src="" class="saved-glide-one__image-two" alt="">
-          </article> -->
-          <!-- <article class="saved-week-one-recipes__saved=glide-one">
-            <img src="" class="saved-glide-one__image-three" alt="">
-          </article> -->
-          <!-- <article class="saved-week-one-recipes__saved=glide-one">
-            <img src="" class="saved-glide-one__image-four" alt="">
-          </article> -->
-          <!-- <article class="saved-week-one-recipes__saved=glide-one">
-            <img src="" class="saved-glide-one__image-five" alt="">
-          </article> -->
-          <!-- <article class="saved-week-one-recipes__saved=glide-one">
-            <img src="" class="saved-glide-one__image-six" alt="">
-          </article> -->
-          <!-- <article class="saved-week-one-recipes__saved=glide-one">
-            <img src="" class="saved-glide-one__image-seven" alt="">
-          </article> -->
+
         </div>
         <div class="favorites-view__saved-week-two-recipes">
-          <!-- <article class="saved-week-two-recipes__saved-glide-two">
-            <img src="" class="saved-glide-two__image-one" alt="">
-          </article> -->
-          <!-- <article class="saved-week-two-recipes__saved-glide-two">
-            <img src="" class="saved-glide-two__image-two" alt="">
-          </article> -->
-          <!-- <article class="saved-week-two-recipes__saved-glide-two">
-            <img src="" class="saved-glide-two__image-three" alt="">
-          </article> -->
-          <!-- <article class="saved-week-two-recipes__saved-glide-two">
-            <img src="" class="saved-glide-two__image-four" alt="">
-          </article> -->
-          <!-- <article class="saved-week-two-recipes__saved-glide-two">
-            <img src="" class="saved-glide-two__image-five" alt="">
-          </article> -->
-          <!-- <article class="saved-week-two-recipes__saved-glide-two">
-            <img src="" class="saved-glide-two__image-six" alt="">
-          </article> -->
-          <!-- <article class="saved-week-two-recipes__saved-glide-two">
-            <img src="" class="saved-glide-two__image-seven" alt="">
-          </article> -->
+
         </div>
         <div class="favorites-view__saved-week-three-recipes">
-          <!-- <article class="saved-week-three-recipes__saved-glide-three">
-            <img src="" class="saved-glide-three__image-one" alt="">
-          </article> -->
-          <!-- <article class="saved-week-three-recipes__saved-glide-three">
-            <img src="" class="saved-glide-three__image-two" alt="">
-          </article> -->
-          <!-- <article class="saved-week-three-recipes__saved-glide-three">
-            <img src="" class="saved-glide-three__image-three" alt="">
-          </article> -->
-          <!-- <article class="saved-week-three-recipes__saved-glide-three">
-            <img src="" class="saved-glide-three__image-four" alt="">
-          </article> -->
-          <!-- <article class="saved-week-three-recipes__saved-glide-three">
-            <img src="" class="saved-glide-three__image-five" alt="">
-          </article> -->
-          <!-- <article class="saved-week-three-recipes__saved-glide-three">
-            <img src="" class="saved-glide-three__image-six" alt="">
-          </article> -->
-          <!-- <article class="saved-week-three-recipes__saved-glide-three">
-            <img src="" class="saved-glide-three__image-seven" alt="">
-          </article> -->
+
         </div>
         <div class="favorites-view__saved-week-four-recipes">
-          <!-- <article class="saved-week-four-recipes__saved-glide-four">
-            <img src="" class="saved-glide-four__image-one" alt="">
-          </article> -->
-          <!-- <article class="saved-week-four-recipes__saved-glide-four">
-            <img src="" class="saved-glide-four__image-two" alt="">
-          </article> -->
-          <!-- <article class="saved-week-four-recipes__saved-glide-four">
-            <img src="" class="saved-glide-four__image-three" alt="">
-          </article> -->
-          <!-- <article class="saved-week-four-recipes__saved-glide-four">
-            <img src="" class="saved-glide-four__image-four" alt="">
-          </article> -->
-          <!-- <article class="saved-week-four-recipes__saved-glide-four">
-            <img src="" class="saved-glide-four__image-five" alt="">
-          </article> -->
-          <!-- <article class="saved-week-four-recipes__saved-glide-four">
-            <img src="" class="saved-glide-four__image-six" alt="">
-          </article> -->
-          <!-- <article class="saved-week-four-recipes__saved-glide-four">
-            <img src="" class="saved-glide-four__image-seven" alt="">
-          </article> -->
+
         </div>
-
-
       </section>
       <section class="weekly-recipes-view hidden" id="weeklyRecipesSection">
         <h1></h1>
         <section class="weekly-recipes-view__week-one">
-          <h2>week of ...</h2>
-          <div class="week-one__gliders-one">
-            <!-- <article class="gliders-one__day-one">
-              <img src="" class="day-one__one-glider" alt="">
-            </article> -->
-            <!-- <article class="gliders-one__day-two">
-              <img src="" class="day-two__one-glider" alt="">
-            </article> -->
-            <!-- <article class="gliders-one__day-three">
-              <img src="" class="day-three__one-glider" alt="">
-            </article> -->
-            <!-- <article class="gliders-one__day-four">
-              <img src="" class="day-four__one-glider" alt="">
-            </article> -->
-            <!-- <article class="gliders-one__day-five">
-              <img src="" class="day-five__one-glider" alt="">
-            </article> -->
-            <!-- <article class="gliders-one__day-six">
-              <img src="" class="day-six__one-glider" alt="">
-            </article> -->
-            <!-- <article class="gliders-one__day-seven">
-              <img src="" class="day-seven__one-glider" alt="">
-            </article> -->
-          </div>
-        </section>
-        <section class="weekly-recipes-view__week-two">
-          <h2>week of ...</h2>
-          <div class="glide__gliders">
-            <!-- <article class="gliders-two__day-one">
-              <img src="" class="day-one__two-glider" alt="">
-            </article> -->
-            <!-- <article class="gliders-two__day-two">
-              <img src="" class="day-one__two-glider" alt="">
-            </article> -->
-            <!-- <article class="gliders-two__day-three">
-              <img src="" class="day-one__two-glider" alt="">
-            </article> -->
-            <!-- <article class="gliders-two__day-four">
-              <img src="" class="day-one__two-glider" alt="">
-            </article> -->
-            <!-- <article class="gliders-two__day-five">
-              <img src="" class="day-one__two-glider" alt="">
-            </article> -->
-            <!-- <article class="gliders-two__day-six">
-              <img src="" class="day-one__two-glider" alt="">
-            </article> -->
-            <!-- <article class="gliders-two__day-seven">
-              <img src="" class="day-one__two-glider" alt="">
-            </article> -->
-          </div>
-        </section>
-        <section class="weekly-recipes-view__week-three">
-          <h2>week of ...</h2>
-          <div class="glide__gliders">
-            <!-- <article class="gliders-three__day-one">
-              <img src="" class="day-one__three-glider" alt="">
-            </article> -->
-            <!-- <article class="gliders-three__day-two">
-              <img src="" class="day-one__three-glider" alt="">
-            </article> -->
-            <!-- <article class="gliders-one__day-one">
-              <img src="" class="day-one__glider" alt="">
-            </article> -->
-            <!-- <article class="gliders-one__day-one">
-              <img src="" class="day-one__glider" alt="">
-            </article> -->
-            <!-- <article class="gliders-one__day-one">
-              <img src="" class="day-one__glider" alt="">
-            </article> -->
-            <!-- <article class="gliders-one__day-one">
-              <img src="" class="day-one__glider" alt="">
-            </article> -->
-            <!-- <article class="gliders-one__day-one">
-              <img src="" class="day-one__glider" alt="">
-            </article> -->
-          </div>
-        </section>
-        <section class="weekly-recipes-view__week-four">
-          <h2>week of ...</h2>
-          <div class="glide__gliders">
-            <!-- <article class="gliders-one__day-one">
-              <img src="" class="day-one__glider" alt="">
-            </article> -->
-            <!-- <article class="gliders-one__day-one">
-              <img src="" class="day-one__glider" alt="">
-            </article> -->
-            <!-- <article class="gliders-one__day-one">
-              <img src="" class="day-one__glider" alt="">
-            </article> -->
-            <!-- <article class="gliders-one__day-one">
-              <img src="" class="day-one__glider" alt="">
-            </article> -->
-            <!-- <article class="gliders-one__day-one">
-              <img src="" class="day-one__glider" alt="">
-            </article> -->
-            <!-- <article class="gliders-one__day-one">
-              <img src="" class="day-one__glider" alt="">
-            </article> -->
-            <!-- <article class="gliders-one__day-one">
-              <img src="" class="day-one__glider" alt="">
-            </article> -->
+          <h2 id="generatedWeek"></h2>
+          <div class="week-one__glider-one" id="generatedWeekGlider">
+
           </div>
         </section>
       </section>
