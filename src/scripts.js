@@ -246,6 +246,18 @@ function renderIndividualRecipe(recipeId) {
 
   createIngredientList(recipe);
   createInstructionList(recipe);
+  checkIfRecipeInWeekly(recipe);
+}
+
+function checkIfRecipeInWeekly(recipe) {
+  const matchingRecipe = user.weeklyFavorites.find((weeklyRecipe) => weeklyRecipe.id === recipe.id);
+  if (matchingRecipe) {
+    show(removeFromWeekButton);
+    hide(addToWeekButton);
+  } else {
+    show(addToWeekButton);
+    hide(removeFromWeekButton);
+  }
 }
 
 function individualRecipeInterpolation(recipe) {
