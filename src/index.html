@@ -13,7 +13,7 @@
     <nav class="nav-bar">
       <div class="nav-bar__nav-tabs">
         <button type="button" class="nav-tabs__all-recipes" id="allRecipesButton">All Recipes</button>
-        <button type="button" class="nav-tabs__favorites">Favorites</button>
+        <button type="button" class="nav-tabs__favorites" id="favoritesViewButton">Favorites</button>
         <button type="button" class="nav-tabs__this-week">This Week</button>
       </div>
       <div class="nav-bar__home-search">
@@ -92,22 +92,8 @@
         </section>
       </section>
       <section class="favorites-view hidden" id="favoriteRecipesSection">
-        <h1></h1>
-        <div class="favorites-view__favorites">
-
-        </div>
-        <div class="favorites-view__saved-week-one-recipes">
-
-        </div>
-        <div class="favorites-view__saved-week-two-recipes">
-
-        </div>
-        <div class="favorites-view__saved-week-three-recipes">
-
-        </div>
-        <div class="favorites-view__saved-week-four-recipes">
-
-        </div>
+        <h1 class="top-banner__title">Favorite Recipes</h1>
+        <div class="favorites-view__favorites-container" id="favoriteRecipesContainer"></div>
       </section>
       <section class="weekly-recipes-view hidden" id="weeklyRecipesSection">
         <h1></h1>
