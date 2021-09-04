@@ -202,6 +202,7 @@ button {
 
 .recipe-card__name {
   font-weight: bold;
+  text-transform: capitalize;
 }
 
 .top-banner__title {
@@ -210,6 +211,13 @@ button {
 }
 
 /* ---------- SINGLE RECIPE VIEW ----------- */
+
+.single-recipe-view {
+  max-width: 1000px;
+  margin: 0px auto;
+  display: flex;
+  align-items: center
+}
 
 .single-recipe-view__recipe-information {
   display: flex;
@@ -220,19 +228,24 @@ button {
   background-color: #fff;
   border: 1px solid lightgrey;
   color: #Ef5D60;
-  height: 35px;
-  width: 300px;
+  width: 275px;
   transition: all 0.2s ease-in-out;
-  margin: 15px 0px;
+  margin: 15px 10px;
   padding: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
 }
 
 .recipe-title {
   margin-top: 30px;
+  font-size: 36px;
+  text-transform: capitalize;
 }
 
 .recipe-image {
-  margin-top: 175px;
+  margin-top: 25px;
   width: 600px;
   height: 400px;
 }
@@ -240,10 +253,20 @@ button {
 .total-cost {
   color: #Ef5D60;
   font-weight: bold;
+  display: flex;
+  align-items: center;
+}
+
+.recipe-buttons-container {
+  display: flex;
+}
+
+.recipe-information__container {
+  margin: 25px;
 }
 
 .single-recipe-view__instructions {
-  margin: 20px 100px;
+  margin: 20px 0;
 }
 
 .hidden {
