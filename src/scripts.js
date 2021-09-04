@@ -40,6 +40,7 @@ const searchBar = document.getElementById('searchBarInput');
 const searchResults = document.getElementById('searchedRecipesContainer');
 
 searchBar.addEventListener('keyup', () => {prepSearch(event)});
+searchResults.addEventListener('click', displayRecipe);
 homeViewButton.addEventListener('click', displayHomeView);
 allRecipesButton.addEventListener('click', displayAllRecipes);
 allRecipesContainer.addEventListener('click', displayRecipe);
@@ -49,18 +50,26 @@ searchIngredientGlide.addEventListener('click', selectTag);
 
 function prepSearch(event) {
   searchResults.innerHTML = '';
+  if (searchBar.value === '') {
+    hide(searchResults);
+    show(homeViewSection);
 
-  searchingNow(event.target.value);
+  } else {
+    hide(homeViewImage);
+    hide(taggedRecipesContainer);
+    show(searchResults);
+    searchingNow(event);
+  }
 }
 
 function searchingNow(event) {
-  const searchTerm = event;
+  const searchTerm = event.target.value;
 
   filteredRecipes = recipesList.filter(recipe => {
     const searchedByTag = recipe.tags.toString().toLowerCase().includes(searchTerm.toLowerCase());
     const searchedByName = recipe.name.toLowerCase().includes(searchTerm.toLowerCase());
     const searchedByIngredient = recipe.ingredients.toString().toLowerCase().includes(searchTerm.toLowerCase());
-    return searchedByName || searchedByTag || searchedByIngredient
+    return searchedByName || searchedByTag || searchedByIngredient;
   });
 
   displaySearchResults(filteredRecipes);
@@ -69,10 +78,10 @@ function searchingNow(event) {
 function displaySearchResults(filteredRecipes) {
   filteredRecipes.forEach((recipe) => {
     searchResults.innerHTML += `
-    <button class="images-container__button">
-      <p class="images-container__ingredient-name">${recipe.name}</p>
-      <img class="images-container__image" src="${recipe.image}" alt="image of chicken dish">
-    </button>`;
+      <article class="recipes-container__recipe-card" id=${recipe.id}>
+        <img src="${recipe.image}" class="recipe-card__image" alt=${recipe.name}>
+        <p class="recipe-card__name">${recipe.name}</p>
+      </article>`;
   });
 }
 
