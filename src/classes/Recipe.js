@@ -20,13 +20,15 @@ class Recipe {
   }
 
   returnIngredientsList() {
-    return this.ingredients.map(ingredient => `${ingredient.amount} ${ingredient.unit} ${ingredient.name}`)
+    return this.ingredients.map(ingredient => `${ingredient.amount.toFixed(2).replace(/\.00$/, '')} ${ingredient.unit} ${ingredient.name}`)
   }
 
   returnCostInDollars() {
-    return this.ingredients.reduce((cost, ingredient) => {
-      return cost += ingredient.calculateCost();
+    const cost = this.ingredients.reduce((acc, ingredient) => {
+      acc += ingredient.calculateCost();
+      return acc;
     }, 0)
+    return cost.toFixed(2);
   }
 
   returnInstructions() {

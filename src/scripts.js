@@ -8,63 +8,66 @@ const recipesList = recipeData;
 let filteredRecipes;
 let tags = [];
 
-const homeViewSection = document.getElementById('homeViewSection');
-const homeViewButton = document.getElementById('homeViewButton');
+recipeRepository.getRecipesInformation();
 
+const homeViewImage = document.getElementById('homeViewImage');
+const homeViewButton = document.getElementById('homeViewButton');
+const homeViewSection = document.getElementById('homeViewSection');
+
+const allRecipesButton = document.getElementById('allRecipesButton');
 const allRecipesSection = document.getElementById('allRecipesSection');
 const allRecipesContainer = document.getElementById('allRecipesContainer');
-const allRecipesButton = document.getElementById('allRecipesButton');
 
 const favoriteRecipesSection = document.getElementById('favoriteRecipesSection');
 
-const weeklyRecipesSection = document.getElementById('weeklyRecipesSection');
+const generatedWeek = document.getElementById('generatedWeek');
+const generatedWeekGlider = document.getElementById('generatedWeekGlider');
 const weeklyRecipesButton = document.querySelector('.nav-tabs__this-week');
-const weekOne = document.getElementById('weekOne');
-const weekTwo = document.getElementById('weekTwo');
-const weekThree = document.getElementById('weekThree');
-const weekFour = document.getElementById('weekFour');
-const weekOneGlider = document.querySelector('.week-one__glider-one');
-const weekTwoGlider = document.querySelector('.week-two__glider-two');
-const weekThreeGlider = document.querySelector('.week-three__glider-three');
-const weekFourGlider = document.querySelector('.week-four__glider-four');
+const weeklyRecipesSection = document.getElementById('weeklyRecipesSection');
 
-const singleRecipeView = document.getElementById('singleRecipeView');
 const recipeName = document.getElementById('recipeName');
 const recipeCost = document.getElementById('recipeCost');
 const recipeImage = document.getElementById('recipeImage');
 const recipeIngredients = document.getElementById('recipeIngredients');
 const recipeInstructions = document.getElementById('recipeInstructions');
-
+const singleRecipeView = document.getElementById('singleRecipeView');
+const addToFavoritesButton = document.getElementById('addToFavoritesButton');
 const mainContentContainer = document.getElementById('mainContentContainer');
 const searchIngredientGlide = document.getElementById('searchIngredientGlide');
 const taggedRecipesContainer = document.getElementById('taggedRecipesContainer');
 
-const searchBar = document.querySelector('.search-bar__search-input');
-const mainGlide = document.querySelector('.search-ingredient-glide__images-container');
+const searchBar = document.getElementById('.searchBarInput');
+const searchResults = document.getElementById('?');
 
+searchBar.addEventListener('keyup', () => {prepSearch(event)});
 homeViewButton.addEventListener('click', displayHomeView);
 allRecipesButton.addEventListener('click', displayAllRecipes);
 allRecipesContainer.addEventListener('click', displayRecipe);
-// weeklyRecipesButton.addEventListener('click', displayWeeklyRecipes);
+taggedRecipesContainer.addEventListener('click', displayRecipe);
+weeklyRecipesButton.addEventListener('click', displayWeeklyRecipes);
 searchIngredientGlide.addEventListener('click', selectTag);
 
-searchBar.addEventListener('keyup', () => {searchingNow(event)});
+function prepSearch(event) {
+  searchResults.innerHTML = '';
 
-function searchingNow(event) {
-  mainGlide.innerHTML = '';
-  const searchTerm = event.target.value;
-  filteredRecipes = recipesList.filter(recipe => {
-    const searchedByName = recipe.name.toLowerCase().includes(searchTerm.toLowerCase());
-    const searchedByTag = recipe.tags.toString().toLowerCase().includes(searchTerm.toLowerCase());
-    const searchedByIngredient = recipe.ingredients.toString().toLowerCase().includes(searchTerm.toLowerCase());
-    return searchedByName || searchedByTag || searchedByIngredient
-  });
+  searchingNow(event.target.value);
   displayFilteredRecipes();
 }
 
-function displayFilteredRecipes() {
+function searchingNow(event) {
+  const searchTerm = event;
+
+  filteredRecipes = recipesList.filter(recipe => {
+    const searchedByTag = recipe.tags.toString().toLowerCase().includes(searchTerm.toLowerCase());
+    const searchedByName = recipe.name.toLowerCase().includes(searchTerm.toLowerCase());
+    const searchedByIngredient = recipe.ingredients.toString().toLowerCase().includes(searchTerm.toLowerCase());
+    return searchedByName || searchedByTag || searchedByIngredient
+  });
+}
+
+function displaySearchResults() {
   filteredRecipes.forEach((recipe) => {
-    mainGlide.innerHTML += `
+    searchResults.innerHTML += `
     <button class="images-container__button">
       <p class="images-container__ingredient-name">${recipe.name}</p>
       <img class="images-container__image" src="${recipe.image}" alt="image of chicken dish">
@@ -73,37 +76,37 @@ function displayFilteredRecipes() {
 }
 
 function displayHomeView() {
-  hide(allRecipesSection);
-  hide(favoriteRecipesSection);
-  hide(weeklyRecipesSection);
   hide(singleRecipeView);
+  hide(allRecipesSection);
+  hide(weeklyRecipesSection);
+  hide(favoriteRecipesSection);
   show(homeViewSection);
 }
 
 function displayAllRecipes() {
   hide(homeViewSection);
-  hide(favoriteRecipesSection);
-  hide(weeklyRecipesSection);
   hide(singleRecipeView);
+  hide(weeklyRecipesSection);
+  hide(favoriteRecipesSection);
   show(allRecipesSection);
 
   sortRecipesByName();
-  recipeRepository.getRecipesInformation();
   renderRecipeCards(allRecipesContainer, recipeRepository.recipes);
 }
 
-function renderRecipeCards(container, recipes) {
-  recipes.forEach(recipe => {
-    container.innerHTML +=
-      `<article class="recipes-container__recipe-card" id=${recipe.id}>
-          <img src="${recipe.image}" class="recipe-card__image" alt=${recipe.name}>
-          <p class="recipe-card__name">${recipe.name}</p>
-      </article>`;
-  });
+function displayRecipe(event) {
+  const card = event.target.parentNode;
+
+  if (card.classList.contains('recipes-container__recipe-card')) {
+    hide(homeViewSection);
+    hide(allRecipesSection);
+    show(singleRecipeView);
+    renderIndividualRecipe(card.id);
+  }
 }
 
-function sortRecipesByName() {
-  recipeRepository.recipes.sort((a, b) => a.name - b.name);
+function displayWeeklyRecipes() {
+
 }
 
 function selectTag(e) {
@@ -114,9 +117,32 @@ function selectTag(e) {
   updateMain();
 }
 
+function updateMain() {
+  if (tags.length) {
+    const filteredRecipes = recipeRepository.findRecipesByTag(tags);
+    renderRecipeCards(taggedRecipesContainer, filteredRecipes);
+    hide(mainContentContainer);
+    show(taggedRecipesContainer);
+
+  } else {
+    removeAllRecipeCards();
+    hide(taggedRecipesContainer);
+    show(mainContentContainer);
+  }
+}
+
+function removeAllRecipeCards() {
+  const recipeCards = document.querySelectorAll('.recipes-container__recipe-card');
+
+  recipeCards.forEach((recipeCard) => {
+    recipeCard.remove();
+  })
+}
+
 function toggleTag(tag, tagElement) {
   if (!tags.includes(tag)) {
     addTag(tag);
+
   } else {
     removeTag(tag);
   }
@@ -136,65 +162,54 @@ function removeTag(tag) {
   })
 }
 
-function updateMain() {
-  if (tags.length) {
-    const filteredRecipes = recipeRepository.findRecipesByTag(tags);
-
-    hide(mainContentContainer);
-    show(taggedRecipesContainer);
-
-    renderRecipeCards(taggedRecipesContainer, filteredRecipes);
-  } else {
-    removeAllRecipeCards();
-
-    show(mainContentContainer);
-    hide(taggedRecipesContainer);
-  }
-}
-
-function removeAllRecipeCards() {
-  const recipeCards = document.querySelectorAll('.recipes-container__recipe-card');
-    recipeCards.forEach((recipeCard) => {
-      recipeCard.remove();
-    })
-}
-
-function displayRecipe() {
-  const card = event.target.parentNode;
-  if (card.classList.contains('recipes-container__recipe-card')) {
-    hide(allRecipesSection);
-    hide(homeViewSection);
-    hide(favoriteRecipesSection);
-    hide(weeklyRecipesSection);
-    show(singleRecipeView);
-    renderIndividualRecipe(card.id);
-  }
-}
-
 function renderIndividualRecipe(recipeId) {
   const recipe = recipeRepository.recipes.find(recipe => recipe.id === parseInt(recipeId));
-  recipeName.innerText = recipe.name;
-  recipeCost.innerText = recipe.returnCostInDollars();
-  recipeImage.src = recipe.image;
-  recipeImage.alt = recipe.name;
+
+  individualRecipeInterpolation(recipe);
+
   createIngredientList(recipe);
   createInstructionList(recipe);
 }
 
+function individualRecipeInterpolation(recipe) {
+  recipeImage.alt = recipe.name;
+  recipeImage.src = recipe.image;
+  recipeName.innerText = recipe.name;
+  recipeCost.innerText = recipe.returnCostInDollars();
+}
+
 function createIngredientList(recipe) {
-  const ingredientList = recipe.returnIngredientsList();
+  const ingredientList = recipe.returnIngredientsList()
+
   recipeIngredients.innerHTML= ingredientList.reduce((acc, ingredient) => {
-    acc += `<p class="ingredient-list__item">● ${ingredient}</p>`;
+    acc += `<p class="ingredient-list__item">● ${ingredient}</p>`
     return acc;
-  }, '');
+  }, '')
 }
 
 function createInstructionList(recipe) {
   const instructionsList = recipe.returnInstructions();
+
   recipeInstructions.innerHTML = instructionsList.reduce((acc, instruction) => {
-    acc += `<p class="ingredient-list__item">${instruction}</p>`;
-    return acc;
+    acc += `<p class="ingredient-list__item">${instruction}</p>`
+    return acc
   }, '');
+}
+
+function renderRecipeCards(container, recipes) {
+  container.innerHTML = '';
+
+  recipes.forEach(recipe => {
+    container.innerHTML +=
+      `<article class="recipes-container__recipe-card" id=${recipe.id}>
+          <img src="${recipe.image}" class="recipe-card__image" alt=${recipe.name}>
+          <p class="recipe-card__name">${recipe.name}</p>
+      </article>`;
+  });
+}
+
+function sortRecipesByName() {
+  recipeRepository.recipes.sort((a, b) => a.name - b.name);
 }
 
 function show(element) {
