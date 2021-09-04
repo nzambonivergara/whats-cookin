@@ -20,6 +20,7 @@ const allRecipesSection = document.getElementById('allRecipesSection');
 const allRecipesContainer = document.getElementById('allRecipesContainer');
 
 const favoriteRecipesSection = document.getElementById('favoriteRecipesSection');
+const favoriteRecipeButton = document.getElementById('favoriteRecipeButton');
 
 const generatedWeek = document.getElementById('generatedWeek');
 const generatedWeekGlider = document.getElementById('generatedWeekGlider');
@@ -49,6 +50,14 @@ allRecipesContainer.addEventListener('click', displayRecipe);
 taggedRecipesContainer.addEventListener('click', displayRecipe);
 weeklyRecipesButton.addEventListener('click', displayWeeklyRecipes);
 searchIngredientGlide.addEventListener('click', selectTag);
+favoriteRecipeButton.addEventListener('click', favoriteRecipe);
+
+function favoriteRecipe() {
+  const favoriteRecipe = recipeRepository.recipes.find(recipe => recipe.name === favoriteRecipeButton.name);
+  user.addFavorite(favoriteRecipe);
+
+  renderRecipeCards(favoriteRecipesSection, user.favoriteRecipes);
+}
 
 function prepSearch(event) {
   const searchTerm = event.target.value.toLowerCase();
@@ -196,6 +205,7 @@ function individualRecipeInterpolation(recipe) {
   recipeImage.src = recipe.image;
   recipeName.innerText = recipe.name;
   recipeCost.innerText = recipe.returnCostInDollars();
+  favoriteRecipeButton.name = recipe.id;
 }
 
 function createIngredientList(recipe) {
