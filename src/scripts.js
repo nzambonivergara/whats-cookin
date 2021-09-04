@@ -57,11 +57,11 @@ function prepSearch(event) {
 
 function checkSearchField(searchTerm) {
   if (!searchBar.value && !displayedSearchResults.innerHTML) {
-    hide(displayedSearchResults);
-    show(noResults);
-    show(searchResults);
+    console.log('first condition')
+    return
 
-  } else if (searchBar.value && displayedSearchResults.innerHTML){
+  } else if (searchBar.value){
+    console.log('second condition')
     hide(noResults);
     hide(homeViewSection);
     show(searchResults);
@@ -70,6 +70,7 @@ function checkSearchField(searchTerm) {
     searchingNow(searchTerm);
 
   } else {
+    console.log('third condition')
     hide(displayedSearchResults);
     show(noResults);
     show(searchResults);
@@ -94,10 +95,12 @@ function displaySearchResults(filteredRecipes) {
 }
 
 function displayHomeView() {
+  hide(noResults)
   hide(searchResults);
   hide(singleRecipeView);
   hide(allRecipesSection);
   hide(weeklyRecipesSection);
+  hide(displayedSearchResults);
   hide(favoriteRecipesSection);
   show(homeViewSection);
 }
