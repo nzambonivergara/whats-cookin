@@ -59,6 +59,7 @@ function searchingNow(event) {
     const searchedByIngredient = recipe.ingredients.toString().toLowerCase().includes(searchTerm.toLowerCase());
     return searchedByName || searchedByTag || searchedByIngredient
   });
+  displayFilteredRecipes();
 }
 
 function displayFilteredRecipes() {
