@@ -43,6 +43,7 @@ const searchResults = document.getElementById('searchedRecipesContainer');
 const displayedSearchResults = document.getElementById('searchedRecipes');
 
 const addToWeekButton = document.getElementById('addToWeekButton');
+const removeFromWeekButton = document.getElementById('removeFromWeekButton');
 const noWeeklyRecipes = document.getElementById('noWeeklyRecipes');
 const weeklyRecipes = document.getElementById('weeklyRecipes');
 
@@ -56,6 +57,7 @@ taggedRecipesContainer.addEventListener('click', displayRecipe);
 weeklyRecipes.addEventListener('click', displayRecipe);
 weeklyRecipesButton.addEventListener('click', displayWeeklyRecipes);
 addToWeekButton.addEventListener('click', addToWeeklyRecipes);
+removeFromWeekButton.addEventListener('click', removeFromWeeklyRecipes);
 searchIngredientGlide.addEventListener('click', selectTag);
 
 function getRandomUser() {
@@ -141,9 +143,23 @@ function displayRecipe(event) {
 }
 
 function addToWeeklyRecipes() {
+  const recipe = findRecipeTitle();
+  user.addWeeklyRecipe(recipe);
+  hide(addToWeekButton);
+  show(removeFromWeekButton);
+}
+
+function removeFromWeeklyRecipes() {
+  const recipe = findRecipeTitle();
+  user.removeWeeklyRecipe(recipe);
+  hide(removeFromWeekButton);
+  show(addToWeekButton);
+}
+
+function findRecipeTitle() {
   const recipeTitle = document.querySelector('.recipe-title').innerText;
   const recipe = recipeRepository.findRecipesByName(recipeTitle);
-  user.addWeeklyRecipe(recipe);
+  return recipe;
 }
 
 function displayWeeklyRecipes() {
