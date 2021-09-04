@@ -2,11 +2,14 @@ import './styles.css';
 import apiCalls from './apiCalls';
 import { recipeData } from './data/recipes';
 import RecipeRepository from './classes/RecipeRepository';
+import User from './classes/User';
+import { usersData } from './data/users';
 
 const recipeRepository = new RecipeRepository(recipeData);
 const recipesList = recipeData;
 let filteredRecipes;
 let tags = [];
+let user;
 
 recipeRepository.getRecipesInformation();
 
@@ -41,6 +44,7 @@ const searchBar = document.getElementById('searchBarInput');
 const searchResults = document.getElementById('searchedRecipesContainer');
 const displayedSearchResults = document.getElementById('searchedRecipes');
 
+window.addEventListener('load', getRandomUser);
 searchBar.addEventListener('keyup', () => {prepSearch(event)});
 searchResults.addEventListener('click', displayRecipe);
 homeViewButton.addEventListener('click', displayHomeView);
@@ -49,6 +53,13 @@ allRecipesContainer.addEventListener('click', displayRecipe);
 taggedRecipesContainer.addEventListener('click', displayRecipe);
 weeklyRecipesButton.addEventListener('click', displayWeeklyRecipes);
 searchIngredientGlide.addEventListener('click', selectTag);
+
+function getRandomUser() {
+  const index =  Math.floor(Math.random() * usersData.length);
+  const userData = usersData[index];
+  user = new User(userData);
+  console.log(user)
+}
 
 function prepSearch(event) {
   const searchTerm = event.target.value.toLowerCase();
