@@ -11,8 +11,7 @@ class User {
   }
 
   addFavorite(recipe) {
-    const favRecipe = this.favoriteRecipes;
-    favRecipe.push(recipe);
+    this.favoriteRecipes.push(recipe);
   }
 
   addWeeklyRecipe(recipe) {
@@ -21,8 +20,7 @@ class User {
   }
 
   removeFavorite(recipe) {
-    return this.favoriteRecipes.splice(
-      this.favoriteRecipes.indexOf(recipe), 1);
+    this.favoriteRecipes.splice(this.favoriteRecipes.indexOf(recipe), 1);
   }
 
   removeWeeklyRecipe(recipe) {

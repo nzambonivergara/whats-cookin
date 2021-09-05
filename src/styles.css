@@ -181,12 +181,18 @@ button {
   color: #fff;
 }
 
+
 /* ----------- ALL RECIPES VIEW --------------- */
 
 .all-recipes-view,
+<<<<<<< HEAD
 .all-recipes-view-alt
 .weekly-recipes-view,
 .all-recipes-view {
+=======
+.favorites-view,
+.weekly-recipes-view {
+>>>>>>> 1689b3ca0133c063c7a840de45e918af3354fc71
   display: flex;
   align-items: center;
 }
@@ -194,9 +200,13 @@ button {
 .weekly-recipes-view__recipes,
 .tagged-recipes-view__recipes-container,
 .all-recipes-view__recipes-container,
+<<<<<<< HEAD
 .all-recipes-view__recipes-container,
 .recipes-container__no-results,
 .weekly-recipes-view__week-one {
+=======
+.favorites-view__favorites-container {
+>>>>>>> 1689b3ca0133c063c7a840de45e918af3354fc71
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
@@ -239,6 +249,7 @@ button {
   text-transform: capitalize;
 }
 
+<<<<<<< HEAD
 .top-banner__title {
   font-size: 2rem;
   margin-top: 15px;
@@ -268,6 +279,8 @@ button {
   margin: 0px 25px 40px 25px;
 }
 
+=======
+>>>>>>> 1689b3ca0133c063c7a840de45e918af3354fc71
 /* ---------- SINGLE RECIPE VIEW ----------- */
 
 .single-recipe-view,
@@ -301,7 +314,8 @@ button {
   gap: 8px;
 }
 
-.recipe-title {
+.recipe-title,
+.top-banner__title {
   margin-top: 30px;
   font-size: 36px;
   text-transform: capitalize;
@@ -330,6 +344,13 @@ button {
 
 .single-recipe-view__instructions {
   margin: 20px 0;
+}
+
+/* ----- Favorites View ------- */
+
+.recipes-container__no-favorites {
+  margin-top: 75px;
+  font-size: 20px;
 }
 
 .hidden {

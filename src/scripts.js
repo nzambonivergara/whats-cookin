@@ -23,6 +23,11 @@ const allRecipesSection = document.getElementById('allRecipesSection');
 const allRecipesContainer = document.getElementById('allRecipesContainer');
 
 const favoriteRecipesSection = document.getElementById('favoriteRecipesSection');
+const favoriteRecipesContainer = document.getElementById('favoriteRecipesContainer');
+const favoritesViewButton = document.getElementById('favoritesViewButton');
+const addToFavoritesButton = document.getElementById('addToFavoritesButton');
+const removeFromFavoritesButton = document.getElementById('removeFromFavoritesButton')
+const noFavoritesMessage = document.getElementById('noFavoritesMessage');
 
 const weeklyRecipesButton = document.querySelector('.nav-tabs__this-week');
 const weeklyRecipesSection = document.getElementById('weeklyRecipesSection');
@@ -32,7 +37,6 @@ const recipeCost = document.getElementById('recipeCost');
 const recipeImage = document.getElementById('recipeImage');
 const recipeIngredients = document.getElementById('recipeIngredients');
 const recipeInstructions = document.getElementById('recipeInstructions');
-const addToFavoritesButton = document.getElementById('addToFavoritesButton');
 const mainContentContainer = document.getElementById('mainContentContainer');
 const searchIngredientGlide = document.getElementById('searchIngredientGlide');
 const taggedRecipesContainer = document.getElementById('taggedRecipesContainer');
@@ -60,6 +64,48 @@ weeklyRecipesButton.addEventListener('click', displayWeeklyRecipes);
 addToWeekButton.addEventListener('click', addToWeeklyRecipes);
 removeFromWeekButton.addEventListener('click', removeFromWeeklyRecipes);
 searchIngredientGlide.addEventListener('click', selectTag);
+favoritesViewButton.addEventListener('click', displayFavoritesView);
+addToFavoritesButton.addEventListener('click', addToFavorites);
+removeFromFavoritesButton.addEventListener('click', removeFromFavorites);
+favoriteRecipesContainer.addEventListener('click', displayRecipe);
+
+function addToFavorites(event) {
+  const favoriteRecipe = recipeRepository.recipes.find(recipe => recipe.id === parseInt(addToFavoritesButton.name));
+
+  user.addFavorite(favoriteRecipe);
+  hide(addToFavoritesButton);
+  show(removeFromFavoritesButton);
+}
+
+
+function removeFromFavorites(event) {
+  const favoriteRecipe = recipeRepository.recipes.find(recipe => recipe.id === parseInt(removeFromFavoritesButton.name));
+
+  user.removeFavorite(favoriteRecipe);
+  show(addToFavoritesButton);
+  hide(removeFromFavoritesButton);
+}
+
+function displayFavoritesView() {
+  show(favoriteRecipesSection);
+  hide(searchResults);
+  hide(singleRecipeView);
+  hide(allRecipesSection);
+  hide(weeklyRecipesSection);
+  hide(homeViewSection);
+
+  checkFavoriteRecipes();
+}
+
+function checkFavoriteRecipes() {
+  if (user.favoriteRecipes.length) {
+    hide(noFavoritesMessage);
+    renderRecipeCards(favoriteRecipesContainer, user.favoriteRecipes);
+  } else {
+    show(noFavoritesMessage);
+    hide(favoriteRecipesContainer);
+  }
+}
 
 function getRandomUser() {
   const index =  Math.floor(Math.random() * usersData.length);
@@ -154,6 +200,7 @@ function displayRecipe(event) {
     hide(homeViewSection);
     hide(allRecipesSection);
     hide(weeklyRecipesSection);
+    hide(favoriteRecipesSection);
     show(singleRecipeView);
     renderIndividualRecipe(card.id);
   }
@@ -261,6 +308,7 @@ function renderIndividualRecipe(recipeId) {
   createIngredientList(recipe);
   createInstructionList(recipe);
   checkIfRecipeInWeekly(recipe);
+  checkIfRecipeInFavorites(recipe);
 }
 
 function checkIfRecipeInWeekly(recipe) {
@@ -274,11 +322,23 @@ function checkIfRecipeInWeekly(recipe) {
   }
 }
 
+function checkIfRecipeInFavorites(recipe) {
+  if (user.favoriteRecipes.includes(recipe)) {
+    show(removeFromFavoritesButton);
+    hide(addToFavoritesButton);
+  } else {
+    hide(removeFromFavoritesButton);
+    show(addToFavoritesButton);
+  }
+}
+
 function individualRecipeInterpolation(recipe) {
   recipeImage.alt = recipe.name;
   recipeImage.src = recipe.image;
   recipeName.innerText = recipe.name;
   recipeCost.innerText = recipe.returnCostInDollars();
+  addToFavoritesButton.name = recipe.id;
+  removeFromFavoritesButton.name = recipe.id;
 }
 
 function createIngredientList(recipe) {
