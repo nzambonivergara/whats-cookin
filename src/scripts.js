@@ -21,11 +21,6 @@ const allRecipesContainer = document.getElementById('allRecipesContainer');
 
 const favoriteRecipesSection = document.getElementById('favoriteRecipesSection');
 
-const generatedWeek = document.getElementById('generatedWeek');
-const generatedWeekGlider = document.getElementById('generatedWeekGlider');
-const weeklyRecipesButton = document.querySelector('.nav-tabs__this-week');
-const weeklyRecipesSection = document.getElementById('weeklyRecipesSection');
-
 const recipeName = document.getElementById('recipeName');
 const recipeCost = document.getElementById('recipeCost');
 const recipeImage = document.getElementById('recipeImage');
@@ -47,7 +42,7 @@ homeViewButton.addEventListener('click', displayHomeView);
 allRecipesButton.addEventListener('click', displayAllRecipes);
 allRecipesContainer.addEventListener('click', displayRecipe);
 taggedRecipesContainer.addEventListener('click', displayRecipe);
-searchedRecipesContainer.addEventListener('click', displayRecipe);
+displayedSearchResults.addEventListener('click', displayRecipe);
 weeklyRecipesButton.addEventListener('click', displayWeeklyRecipes);
 searchIngredientGlide.addEventListener('click', selectTag);
 
@@ -58,13 +53,12 @@ function prepSearch(event) {
 
 function checkSearchField(searchTerm) {
   if (!searchBar.value && !displayedSearchResults.innerHTML) {
-    console.log('first condition')
     return;
 
   } else if (searchBar.value){
-    console.log('second condition')
     hide(noResults);
     hide(homeViewSection);
+    hide(weeklyRecipesSection);
     show(searchResults);
     show(displayedSearchResults);
     addStyling(singleRecipeView, 'single-recipe-view-alt');
@@ -74,7 +68,6 @@ function checkSearchField(searchTerm) {
     searchingNow(searchTerm);
 
   } else {
-    console.log('third condition')
     hide(displayedSearchResults);
     show(noResults);
     show(searchResults);
@@ -104,7 +97,7 @@ function displaySearchResults(filteredRecipes) {
 }
 
 function displayHomeView() {
-  hide(noResults)
+  hide(noResults);
   hide(searchResults);
   hide(singleRecipeView);
   hide(allRecipesSection);
@@ -130,62 +123,6 @@ function displayAllRecipes() {
 
   sortRecipesByName();
   renderRecipeCards(allRecipesContainer, recipeRepository.recipes);
-}
-
-//
-function renderWeeklyRecipeCards() {
-  const d = new Date();
-  const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-  setWeeklyRecipesDate(d, months);
-
-  setWeekGlider(generatedWeekGlider);
-  setWeekGlider(generatedWeekGlider);
-  setWeekGlider(generatedWeekGlider);
-  setWeekGlider(generatedWeekGlider);
-  setWeekGlider(generatedWeekGlider);
-  setWeekGlider(generatedWeekGlider);
-  setWeekGlider(generatedWeekGlider);
-}
-
-function randomRecipe(data) {
-  return Math.floor(Math.random() * data.length);
-}
-
-function setWeekGlider(week) {
-  let i = randomRecipe(recipesList);
-  week.innerHTML += `
-    <button class="images-container__button">
-      <p class="images-container__ingredient-name">${recipesList[i].name}</p>
-      <img class="images-container__image" src="${recipesList[i].image}" alt="image of chicken dish">
-    </button>`;
-}
-
-function addDays(aDate, numOfDays) {
-  aDate.setDate(aDate.getDate() + numOfDays);
-  return format(aDate);
-}
-
-function format(date) {
-  return [
-    ("0" + date.getDate()).slice(-2)
-  ].join('/');
-}
-
-function setWeeklyRecipesDate(d, months) {
-  generatedWeek.innerText = `Week of ${months[d.getMonth()]}, ${d.getDate()}`;
-  generatedWeek.innerText = `Week of ${months[d.getMonth()]}, ${addDays(d, 7)}`;
-  generatedWeek.innerText = `Week of ${months[d.getMonth()]}, ${addDays(d, 14)}`;
-  generatedWeek.innerText = `Week of ${months[d.getMonth()]}, ${addDays(d, 21)}`;
-}
-
-function displayWeeklyRecipes() {
-  hide(homeViewSection);
-  hide(favoriteRecipesSection);
-  hide(singleRecipeView);
-  hide(allRecipesSection);
-  show(weeklyRecipesSection);
-
-  renderWeeklyRecipeCards();
 }
 
 function displayRecipe(event) {
@@ -274,7 +211,7 @@ function createIngredientList(recipe) {
   recipeIngredients.innerHTML= ingredientList.reduce((acc, ingredient) => {
     acc += `<p class="ingredient-list__item">● ${ingredient}</p>`;
     return acc;
-  }, '')
+  }, '');
 }
 
 function createInstructionList(recipe) {
