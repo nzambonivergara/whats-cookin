@@ -110,12 +110,12 @@
         </div>
       </section>
       <section class="weekly-recipes-view hidden" id="weeklyRecipesSection">
-        <h1></h1>
-        <section class="weekly-recipes-view__week-one">
-          <h2 id="generatedWeek"></h2>
-          <div class="week-one__glider-one" id="generatedWeekGlider">
-
-          </div>
+        <h1 class="weekly-view-title">Recipes This Week</h1>
+        <section class="no-weekly-recipes" id="noWeeklyRecipes">
+          <p class="no-weekly-recipes-saved">No weekly recipes saved...</p>
+          <p class="redirect-for-recipes">Start adding recipes to this week's section!</p>
+        </section>
+        <section class="weekly-recipes-view__recipes hidden" id="weeklyRecipes">
         </section>
       </section>
       <section class="single-recipe-view hidden" id="singleRecipeView">
@@ -133,9 +133,13 @@
                 <span class="material-icons">favorite_border</span>
                 <p>ADD TO FAVORITES</p>
               </button>
-              <button type="button" class="recipe-button add-to-week-button">
+              <button type="button" class="recipe-button week-button" id="addToWeekButton">
                 <span class="material-icons">date_range</span>
                 <p>ADD TO THIS WEEK'S</p>
+              </button>
+              <button type="button" class="recipe-button week-button hidden" id="removeFromWeekButton">
+                <span class="material-icons">date_range</span>
+                <p>REMOVE FROM THIS WEEK'S</p>
               </button>
             </div>
           </div>

@@ -24,8 +24,6 @@ const allRecipesContainer = document.getElementById('allRecipesContainer');
 
 const favoriteRecipesSection = document.getElementById('favoriteRecipesSection');
 
-const generatedWeek = document.getElementById('generatedWeek');
-const generatedWeekGlider = document.getElementById('generatedWeekGlider');
 const weeklyRecipesButton = document.querySelector('.nav-tabs__this-week');
 const weeklyRecipesSection = document.getElementById('weeklyRecipesSection');
 
@@ -44,6 +42,11 @@ const searchBar = document.getElementById('searchBarInput');
 const searchResults = document.getElementById('searchedRecipesContainer');
 const displayedSearchResults = document.getElementById('searchedRecipes');
 
+const addToWeekButton = document.getElementById('addToWeekButton');
+const removeFromWeekButton = document.getElementById('removeFromWeekButton');
+const noWeeklyRecipes = document.getElementById('noWeeklyRecipes');
+const weeklyRecipes = document.getElementById('weeklyRecipes');
+
 window.addEventListener('load', getRandomUser);
 searchBar.addEventListener('keyup', () => {prepSearch(event)});
 searchResults.addEventListener('click', displayRecipe);
@@ -51,14 +54,16 @@ homeViewButton.addEventListener('click', displayHomeView);
 allRecipesButton.addEventListener('click', displayAllRecipes);
 allRecipesContainer.addEventListener('click', displayRecipe);
 taggedRecipesContainer.addEventListener('click', displayRecipe);
+weeklyRecipes.addEventListener('click', displayRecipe);
 weeklyRecipesButton.addEventListener('click', displayWeeklyRecipes);
+addToWeekButton.addEventListener('click', addToWeeklyRecipes);
+removeFromWeekButton.addEventListener('click', removeFromWeeklyRecipes);
 searchIngredientGlide.addEventListener('click', selectTag);
 
 function getRandomUser() {
   const index =  Math.floor(Math.random() * usersData.length);
   const userData = usersData[index];
   user = new User(userData);
-  console.log(user)
 }
 
 function prepSearch(event) {
@@ -131,13 +136,51 @@ function displayRecipe(event) {
   if (card.classList.contains('recipes-container__recipe-card')) {
     hide(homeViewSection);
     hide(allRecipesSection);
+    hide(weeklyRecipesSection);
     show(singleRecipeView);
     renderIndividualRecipe(card.id);
   }
 }
 
-function displayWeeklyRecipes() {
+function addToWeeklyRecipes() {
+  const recipe = findRecipeTitle();
+  user.addWeeklyRecipe(recipe);
+  hide(addToWeekButton);
+  show(removeFromWeekButton);
+}
 
+function removeFromWeeklyRecipes() {
+  const recipe = findRecipeTitle();
+  user.removeWeeklyRecipe(recipe);
+  hide(removeFromWeekButton);
+  show(addToWeekButton);
+}
+
+function findRecipeTitle() {
+  const recipeTitle = document.querySelector('.recipe-title').innerText;
+  const recipe = recipeRepository.findRecipesByName(recipeTitle);
+  return recipe;
+}
+
+function displayWeeklyRecipes() {
+  show(weeklyRecipesSection);
+  hide(homeViewSection);
+  hide(allRecipesSection);
+  hide(favoriteRecipesSection); 
+  hide(singleRecipeView);
+  
+  checkWeeklyFavorites();
+}
+
+function checkWeeklyFavorites() {
+  if (!user.weeklyFavorites.length) {
+    show(noWeeklyRecipes);
+    hide(weeklyRecipes);
+  } else {
+    show(weeklyRecipes);
+    hide(noWeeklyRecipes);
+    renderRecipeCards(weeklyRecipes, user.weeklyFavorites); 
+  }   
 }
 
 function selectTag(e) {
@@ -200,6 +243,18 @@ function renderIndividualRecipe(recipeId) {
 
   createIngredientList(recipe);
   createInstructionList(recipe);
+  checkIfRecipeInWeekly(recipe);
+}
+
+function checkIfRecipeInWeekly(recipe) {
+  const matchingRecipe = user.weeklyFavorites.find((weeklyRecipe) => weeklyRecipe.id === recipe.id);
+  if (matchingRecipe) {
+    show(removeFromWeekButton);
+    hide(addToWeekButton);
+  } else {
+    show(addToWeekButton);
+    hide(removeFromWeekButton);
+  }
 }
 
 function individualRecipeInterpolation(recipe) {
