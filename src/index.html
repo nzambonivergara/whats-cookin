@@ -13,7 +13,7 @@
     <nav class="nav-bar">
       <div class="nav-bar__nav-tabs">
         <button type="button" class="nav-tabs__all-recipes" id="allRecipesButton">All Recipes</button>
-        <button type="button" class="nav-tabs__favorites">Favorites</button>
+        <button type="button" class="nav-tabs__favorites" id="favoritesViewButton">Favorites</button>
         <button type="button" class="nav-tabs__this-week">This Week</button>
       </div>
       <div class="nav-bar__home-search">
@@ -35,7 +35,6 @@
       <section class="home-view" id="homeViewSection">
         <div class="tagged-recipes-view__recipes-container hidden" id="taggedRecipesContainer"></div>
         <div class="featured__featured-recipe-image-container" id=mainContentContainer>
-          <button type="button" class="featured__save-recipe-button" id=addToFavoritesButton>add to favorites</button>
           <img class="featured__featured-recipe-image" id="homeViewImage" src="https://images.unsplash.com/photo-1455619452474-d2be8b1e70cd?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2850&q=80" alt="image of featured recipe">
         </div>
         <section class="featured__search-ingredient-glide">
@@ -92,21 +91,9 @@
         </section>
       </section>
       <section class="favorites-view hidden" id="favoriteRecipesSection">
-        <h1></h1>
-        <div class="favorites-view__favorites">
-
-        </div>
-        <div class="favorites-view__saved-week-one-recipes">
-
-        </div>
-        <div class="favorites-view__saved-week-two-recipes">
-
-        </div>
-        <div class="favorites-view__saved-week-three-recipes">
-
-        </div>
-        <div class="favorites-view__saved-week-four-recipes">
-
+        <h1 class="top-banner__title">Favorite Recipes</h1>
+        <p class="recipes-container__no-favorites" id="noFavoritesMessage"> <span class="material-icons">favorite_border</span>   You haven't added any favorite recipes. Explore and add your favorites!   <span class="material-icons">favorite_border</span></p>
+        <div class="favorites-view__favorites-container" id="favoriteRecipesContainer">
         </div>
       </section>
       <section class="weekly-recipes-view hidden" id="weeklyRecipesSection">
@@ -129,10 +116,14 @@
           <div class="recipe-information__container">
             <img id="recipeImage" class="recipe-image">
             <div class="recipe-buttons-container">
-              <button type="button" class="recipe-button add-to-favorites-button">
+              <button type="button" class="recipe-button favorite-button" id="addToFavoritesButton">
                 <span class="material-icons">favorite_border</span>
                 <p>ADD TO FAVORITES</p>
               </button>
+              <button type="button" class="recipe-button favorite-button hidden" id="removeFromFavoritesButton">
+               <span class="material-icons">favorite_border</span>
+               <p>REMOVE FROM FAVORITES</p>
+             </button>
               <button type="button" class="recipe-button week-button" id="addToWeekButton">
                 <span class="material-icons">date_range</span>
                 <p>ADD TO THIS WEEK'S</p>
