@@ -11,7 +11,7 @@ class User {
   }
 
   addFavorite(recipe) {
-    this.favoriteRecipes.push(recipe)
+    this.favoriteRecipes.push(recipe);
   }
 
   addWeeklyRecipe(recipe) {

@@ -35,7 +35,6 @@
       <section class="home-view" id="homeViewSection">
         <div class="tagged-recipes-view__recipes-container hidden" id="taggedRecipesContainer"></div>
         <div class="featured__featured-recipe-image-container" id=mainContentContainer>
-          <button type="button" class="featured__save-recipe-button" id=addToFavoritesButton>add to favorites</button>
           <img class="featured__featured-recipe-image" id="homeViewImage" src="https://images.unsplash.com/photo-1455619452474-d2be8b1e70cd?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2850&q=80" alt="image of featured recipe">
         </div>
         <section class="featured__search-ingredient-glide">
@@ -117,10 +116,14 @@
           <div class="recipe-information__container">
             <img id="recipeImage" class="recipe-image">
             <div class="recipe-buttons-container">
-              <button type="button" class="recipe-button add-to-favorites-button" id="favoriteRecipeButton">
+              <button type="button" class="recipe-button favorite-button" id="addToFavoritesButton">
                 <span class="material-icons">favorite_border</span>
                 <p>ADD TO FAVORITES</p>
               </button>
+              <button type="button" class="recipe-button favorite-button hidden" id="removeFromFavoritesButton">
+               <span class="material-icons">favorite_border</span>
+               <p>REMOVE FROM FAVORITES</p>
+             </button>
               <button type="button" class="recipe-button add-to-week-button">
                 <span class="material-icons">date_range</span>
                 <p>ADD TO THIS WEEK'S</p>

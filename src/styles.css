@@ -290,11 +290,6 @@ button {
   font-size: 20px;
 }
 
-.favorite-selected {
-  background-color: #Ef5D60;
-  color: #fff;
-}
-
 .hidden {
   display: none;
 }
