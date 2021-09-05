@@ -73,6 +73,7 @@ function addToFavorites(event) {
   const favoriteRecipe = recipeRepository.recipes.find(recipe => recipe.id === parseInt(addToFavoritesButton.name));
 
   user.addFavorite(favoriteRecipe);
+  
   hide(addToFavoritesButton);
   show(removeFromFavoritesButton);
 }
@@ -150,22 +151,14 @@ function checkSearchField(searchTerm) {
 
 function searchingNow(searchTerm) {
   displayedSearchResults.innerHTML = '';
+  filteredRecipes = recipeRepository.recipes.filter(recipe => {
+    const searchedByTag = recipe.tags.toString().toLowerCase().includes(searchTerm);
+    const searchedByName = recipe.name.toLowerCase().includes(searchTerm);
+    const searchedByIngredient = recipe.ingredients.toString().toLowerCase().includes(searchTerm);
+    return searchedByName || searchedByTag || searchedByIngredient;
+  });
 
-  const matchingByTag = recipeRepository.findRecipesByTag(searchTerm);
-  const matchingByName = recipeRepository.findRecipesByName(searchTerm);
-  const matchingByIngredient = recipeRepository.findRecipesByIngredient(searchTerm);
-  const matchingRecipes = matchingByName || matchingByTag || matchingByIngredient;
-
-  displaySearchResults(matchingRecipes);
-
-  // filteredRecipes = recipeRepository.recipes.filter(recipe => {
-  //   const searchedByTag = recipe.tags.toString().toLowerCase().includes(searchTerm);
-  //   const searchedByName = recipe.name.toLowerCase().includes(searchTerm);
-  //   const searchedByIngredient = recipe.ingredients.toString().toLowerCase().includes(searchTerm);
-  //   return searchedByName || searchedByTag || searchedByIngredient;
-  // });
-
-  // displaySearchResults(filteredRecipes);
+  displaySearchResults(filteredRecipes);
 }
 
 function displaySearchResults(filteredRecipes) {
