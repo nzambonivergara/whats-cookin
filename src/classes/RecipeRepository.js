@@ -23,17 +23,25 @@ class RecipeRepository {
     return recipes;
   }
 
-  findRecipes(searchTerm) {
-    const filteredRecipes = this.recipes.filter(recipe => {
-      const searchedByTag = recipe.tags.toString().toLowerCase().includes(searchTerm);
-      const searchedByName = recipe.name.toLowerCase().includes(searchTerm);
-      const searchedByIngredient = recipe.ingredients.toString().toLowerCase().includes(searchTerm);
-      return searchedByName || searchedByTag || searchedByIngredient;
-    });
+  // findRecipesByName(name) {
+  //   const foundRecipe = this.recipes.find((recipe) => {
+  //     return recipe.name === name;
+  //   })
+  //   return foundRecipe;
+  // }
 
-    return filteredRecipes
-  }
+//   findRecipesByIngredient(ingredientName) {
+//     const filteredRecipe = this.recipes.filter((recipe) => {
+//       const hasMatchingIngredient = recipe.ingredients.find((ingredient) => {
+//         return ingredient.name === ingredientName;
+//       })
+//       if (hasMatchingIngredient) {
+//         return true;
+//       }
+//       return false;
+//     })
+//     return filteredRecipe;
+//   }
 }
-
 
 export default RecipeRepository;
