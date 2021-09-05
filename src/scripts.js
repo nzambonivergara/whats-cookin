@@ -99,6 +99,7 @@ function displayFavoritesView() {
 function checkFavoriteRecipes() {
   if (user.favoriteRecipes.length) {
     hide(noFavoritesMessage);
+    show(favoriteRecipesContainer);
     renderRecipeCards(favoriteRecipesContainer, user.favoriteRecipes);
   } else {
     show(noFavoritesMessage);
