@@ -74,15 +74,20 @@ function favoriteRecipe(event) {
 }
 
 function displayFavoritesView() {
+  show(favoriteRecipesSection);
   hide(searchResults);
   hide(singleRecipeView);
   hide(allRecipesSection);
   hide(weeklyRecipesSection);
-  show(favoriteRecipesSection);
   hide(homeViewSection);
-  renderRecipeCards(favoriteRecipesContainer, user.favoriteRecipes);
+
+  checkFavoriteRecipes();
+}
+
+function checkFavoriteRecipes() {
   if (user.favoriteRecipes.length) {
     hide(noFavoritesMessage);
+    renderRecipeCards(favoriteRecipesContainer, user.favoriteRecipes);
   } else {
     show(noFavoritesMessage);
   }
@@ -170,10 +175,6 @@ function displayRecipe(event) {
   }
 }
 
-function displayWeeklyRecipes() {
-
-}
-
 function selectTag(e) {
   const tagElement = e.target.closest('p') || e.target.previousElementSibling;
   const tag = tagElement.innerText;
@@ -229,16 +230,20 @@ function removeTag(tag) {
 
 function renderIndividualRecipe(recipeId) {
   const recipe = recipeRepository.recipes.find(recipe => recipe.id === parseInt(recipeId));
-  if (user.favoriteRecipes.includes(recipe)) {
-    favoriteRecipeButton.classList.add('favorite-selected');
-  } else {
-    favoriteRecipeButton.classList.remove('favorite-selected');
-  }
 
   individualRecipeInterpolation(recipe);
 
   createIngredientList(recipe);
   createInstructionList(recipe);
+  checkIfRecipeInFavorites(recipe);
+}
+
+function checkIfRecipeInFavorites(recipe) {
+  if (user.favoriteRecipes.includes(recipe)) {
+    favoriteRecipeButton.classList.add('favorite-selected');
+  } else {
+    favoriteRecipeButton.classList.remove('favorite-selected');
+  }
 }
 
 function individualRecipeInterpolation(recipe) {
