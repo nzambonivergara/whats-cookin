@@ -23,25 +23,25 @@ class RecipeRepository {
     return recipes;
   }
 
-  // findRecipesByName(name) {
-  //   const foundRecipe = this.recipes.find((recipe) => {
-  //     return recipe.name === name;
-  //   })
-  //   return foundRecipe;
-  // }
+  findRecipesByName(name) {
+    const foundRecipe = this.recipes.find((recipe) => {
+      return recipe.name === name;
+    })
+    return foundRecipe;
+  }
 
-//   findRecipesByIngredient(ingredientName) {
-//     const filteredRecipe = this.recipes.filter((recipe) => {
-//       const hasMatchingIngredient = recipe.ingredients.find((ingredient) => {
-//         return ingredient.name === ingredientName;
-//       })
-//       if (hasMatchingIngredient) {
-//         return true;
-//       }
-//       return false;
-//     })
-//     return filteredRecipe;
-//   }
+  findRecipesByIngredient(ingredientName) {
+    const filteredRecipe = this.recipes.filter((recipe) => {
+      const hasMatchingIngredient = recipe.ingredients.find((ingredient) => {
+        return ingredient.name === ingredientName;
+      })
+      if (hasMatchingIngredient) {
+        return true;
+      }
+      return false;
+    })
+    return filteredRecipe;
+  }
 }
 
 export default RecipeRepository;
