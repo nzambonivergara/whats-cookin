@@ -83,7 +83,12 @@ function checkSearchField(searchTerm) {
 
 function searchingNow(searchTerm) {
   displayedSearchResults.innerHTML = '';
-  filteredRecipes = recipeRepository.findRecipes(searchTerm);
+  filteredRecipes = recipeRepository.recipes.filter(recipe => {
+    const searchedByTag = recipe.tags.toString().toLowerCase().includes(searchTerm);
+    const searchedByName = recipe.name.toLowerCase().includes(searchTerm);
+    const searchedByIngredient = recipe.ingredients.toString().toLowerCase().includes(searchTerm);
+    return searchedByName || searchedByTag || searchedByIngredient;
+  });
 
   displaySearchResults(filteredRecipes);
 }
