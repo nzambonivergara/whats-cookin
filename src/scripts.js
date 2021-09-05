@@ -3,7 +3,7 @@ import apiCalls from './apiCalls';
 import { recipeData } from './data/recipes';
 import RecipeRepository from './classes/RecipeRepository';
 import User from './classes/User';
-import { usersData } from './data/users';
+import { loadUsers } from './apiCalls';
 
 const recipeRepository = new RecipeRepository(recipeData);
 const recipesList = recipeData;
@@ -51,7 +51,7 @@ const removeFromWeekButton = document.getElementById('removeFromWeekButton');
 const noWeeklyRecipes = document.getElementById('noWeeklyRecipes');
 const weeklyRecipes = document.getElementById('weeklyRecipes');
 
-window.addEventListener('load', getRandomUser);
+window.addEventListener('load', getUser);
 searchBar.addEventListener('keyup', () => {prepSearch(event)});
 searchResults.addEventListener('click', displayRecipe);
 homeViewButton.addEventListener('click', displayHomeView);
@@ -76,7 +76,6 @@ function addToFavorites(event) {
   hide(addToFavoritesButton);
   show(removeFromFavoritesButton);
 }
-
 
 function removeFromFavorites(event) {
   const favoriteRecipe = recipeRepository.recipes.find(recipe => recipe.id === parseInt(removeFromFavoritesButton.name));
@@ -108,10 +107,17 @@ function checkFavoriteRecipes() {
   }
 }
 
-function getRandomUser() {
-  const index =  Math.floor(Math.random() * usersData.length);
-  const userData = usersData[index];
-  user = new User(userData);
+function getRandomUser(array) {
+  const index =  Math.floor(Math.random() * array.length);
+  const userData = array[index];
+  return userData;
+}
+
+function getUser() {
+  loadUsers().then(usersData => {
+    const userData = getRandomUser(usersData);
+    user = new User(userData);
+  });
 }
 
 function prepSearch(event) {
@@ -144,14 +150,22 @@ function checkSearchField(searchTerm) {
 
 function searchingNow(searchTerm) {
   displayedSearchResults.innerHTML = '';
-  filteredRecipes = recipeRepository.recipes.filter(recipe => {
-    const searchedByTag = recipe.tags.toString().toLowerCase().includes(searchTerm);
-    const searchedByName = recipe.name.toLowerCase().includes(searchTerm);
-    const searchedByIngredient = recipe.ingredients.toString().toLowerCase().includes(searchTerm);
-    return searchedByName || searchedByTag || searchedByIngredient;
-  });
 
-  displaySearchResults(filteredRecipes);
+  const matchingByTag = recipeRepository.findRecipesByTag(searchTerm);
+  const matchingByName = recipeRepository.findRecipesByName(searchTerm);
+  const matchingByIngredient = recipeRepository.findRecipesByIngredient(searchTerm);
+  const matchingRecipes = matchingByName || matchingByTag || matchingByIngredient;
+
+  displaySearchResults(matchingRecipes);
+
+  // filteredRecipes = recipeRepository.recipes.filter(recipe => {
+  //   const searchedByTag = recipe.tags.toString().toLowerCase().includes(searchTerm);
+  //   const searchedByName = recipe.name.toLowerCase().includes(searchTerm);
+  //   const searchedByIngredient = recipe.ingredients.toString().toLowerCase().includes(searchTerm);
+  //   return searchedByName || searchedByTag || searchedByIngredient;
+  // });
+
+  // displaySearchResults(filteredRecipes);
 }
 
 function displaySearchResults(filteredRecipes) {
