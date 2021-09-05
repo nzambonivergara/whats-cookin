@@ -22,7 +22,7 @@ body::-webkit-scrollbar {
   display: none;
 }
 
-h1, h2, h3, h4, #weekOne, #weekTwo, #weekThree, #weekFour {
+h1, h2, h3, h4 {
   font-family: 'Quicksand', sans-serif;
 }
 
@@ -183,11 +183,13 @@ button {
 /* ----------- ALL RECIPES VIEW --------------- */
 
 .all-recipes-view,
-.favorites-view {
+.favorites-view,
+.weekly-recipes-view {
   display: flex;
   align-items: center;
 }
 
+.weekly-recipes-view__recipes,
 .tagged-recipes-view__recipes-container,
 .all-recipes-view__recipes-container,
 .favorites-view__favorites-container {
