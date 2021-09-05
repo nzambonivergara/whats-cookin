@@ -173,17 +173,14 @@ function displayWeeklyRecipes() {
 }
 
 function checkWeeklyFavorites() {
-  console.log(user)
   if (!user.weeklyFavorites.length) {
     show(noWeeklyRecipes);
     hide(weeklyRecipes);
-  }
-
-  if (user.weeklyFavorites.length) {
+  } else {
     show(weeklyRecipes);
     hide(noWeeklyRecipes);
     renderRecipeCards(weeklyRecipes, user.weeklyFavorites); 
-  }
+  }   
 }
 
 function selectTag(e) {
