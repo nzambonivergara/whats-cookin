@@ -1,4 +1,10 @@
-// Your fetch requests will live here!
+function loadUsers() {
+  return fetch('https://what-s-cookin-starter-kit.herokuapp.com/api/v1/users')
+    .then(response => response.json())
+    .then(data => data.usersData)
+    .catch(error => console.error(error)) 
+}
 
-
-console.log('I will be a fetch request!')
+export {
+  loadUsers,
+}

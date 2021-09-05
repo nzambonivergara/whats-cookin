@@ -3,7 +3,7 @@ import apiCalls from './apiCalls';
 import { recipeData } from './data/recipes';
 import RecipeRepository from './classes/RecipeRepository';
 import User from './classes/User';
-import { usersData } from './data/users';
+import { loadUsers } from './apiCalls';
 
 const recipeRepository = new RecipeRepository(recipeData);
 const recipesList = recipeData;
@@ -51,7 +51,7 @@ const removeFromWeekButton = document.getElementById('removeFromWeekButton');
 const noWeeklyRecipes = document.getElementById('noWeeklyRecipes');
 const weeklyRecipes = document.getElementById('weeklyRecipes');
 
-window.addEventListener('load', getRandomUser);
+window.addEventListener('load', getUser);
 searchBar.addEventListener('keyup', () => {prepSearch(event)});
 searchResults.addEventListener('click', displayRecipe);
 homeViewButton.addEventListener('click', displayHomeView);
@@ -73,10 +73,10 @@ function addToFavorites(event) {
   const favoriteRecipe = recipeRepository.recipes.find(recipe => recipe.id === parseInt(addToFavoritesButton.name));
 
   user.addFavorite(favoriteRecipe);
+  
   hide(addToFavoritesButton);
   show(removeFromFavoritesButton);
 }
-
 
 function removeFromFavorites(event) {
   const favoriteRecipe = recipeRepository.recipes.find(recipe => recipe.id === parseInt(removeFromFavoritesButton.name));
@@ -108,10 +108,17 @@ function checkFavoriteRecipes() {
   }
 }
 
-function getRandomUser() {
-  const index =  Math.floor(Math.random() * usersData.length);
-  const userData = usersData[index];
-  user = new User(userData);
+function getRandomUser(array) {
+  const index =  Math.floor(Math.random() * array.length);
+  const userData = array[index];
+  return userData;
+}
+
+function getUser() {
+  loadUsers().then(usersData => {
+    const userData = getRandomUser(usersData);
+    user = new User(userData);
+  });
 }
 
 function prepSearch(event) {
