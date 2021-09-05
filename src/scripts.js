@@ -58,6 +58,7 @@ homeViewButton.addEventListener('click', displayHomeView);
 allRecipesButton.addEventListener('click', displayAllRecipes);
 allRecipesContainer.addEventListener('click', displayRecipe);
 taggedRecipesContainer.addEventListener('click', displayRecipe);
+displayedSearchResults.addEventListener('click', displayRecipe);
 weeklyRecipes.addEventListener('click', displayRecipe);
 weeklyRecipesButton.addEventListener('click', displayWeeklyRecipes);
 addToWeekButton.addEventListener('click', addToWeeklyRecipes);
@@ -119,16 +120,18 @@ function prepSearch(event) {
 
 function checkSearchField(searchTerm) {
   if (!searchBar.value && !displayedSearchResults.innerHTML) {
-    hide(displayedSearchResults);
-    show(noResults);
-    show(searchResults);
+    return;
 
-  } else if (searchBar.value && displayedSearchResults.innerHTML){
+  } else if (searchBar.value){
     hide(noResults);
     hide(homeViewSection);
+    hide(weeklyRecipesSection);
     show(searchResults);
     show(displayedSearchResults);
-
+    addStyling(singleRecipeView, 'single-recipe-view-alt');
+    addStyling(allRecipesSection, 'all-recipes-view__recipes-container-alt');
+    removeStyling(singleRecipeView, 'single-recipe-view');
+    removeStyling(allRecipesSection, 'all-recipes-view__recipes-container');
     searchingNow(searchTerm);
 
   } else {
@@ -140,7 +143,12 @@ function checkSearchField(searchTerm) {
 
 function searchingNow(searchTerm) {
   displayedSearchResults.innerHTML = '';
-  filteredRecipes = recipeRepository.findRecipes(searchTerm);
+  filteredRecipes = recipeRepository.recipes.filter(recipe => {
+    const searchedByTag = recipe.tags.toString().toLowerCase().includes(searchTerm);
+    const searchedByName = recipe.name.toLowerCase().includes(searchTerm);
+    const searchedByIngredient = recipe.ingredients.toString().toLowerCase().includes(searchTerm);
+    return searchedByName || searchedByTag || searchedByIngredient;
+  });
 
   displaySearchResults(filteredRecipes);
 }
@@ -148,7 +156,7 @@ function searchingNow(searchTerm) {
 function displaySearchResults(filteredRecipes) {
   filteredRecipes.forEach((recipe) => {
     displayedSearchResults.innerHTML += `
-      <article class="recipes-container__recipe-card" id=${recipe.id}>
+      <article class="search-results-container__recipe-card" id=${recipe.id}>
         <img src="${recipe.image}" class="recipe-card__image" alt=${recipe.name}>
         <p class="recipe-card__name">${recipe.name}</p>
       </article>`;
@@ -156,12 +164,17 @@ function displaySearchResults(filteredRecipes) {
 }
 
 function displayHomeView() {
+  hide(noResults);
   hide(searchResults);
   hide(singleRecipeView);
   hide(allRecipesSection);
   hide(weeklyRecipesSection);
+  hide(displayedSearchResults);
   hide(favoriteRecipesSection);
   show(homeViewSection);
+
+  removeStyling(singleRecipeView, 'single-recipe-view-alt');
+  removeStyling(allRecipesSection, 'all-recipes-view__recipes-container-alt');
 }
 
 function displayAllRecipes() {
@@ -172,6 +185,9 @@ function displayAllRecipes() {
   hide(favoriteRecipesSection);
   show(allRecipesSection);
 
+  removeStyling(singleRecipeView, 'single-recipe-view-alt');
+  removeStyling(allRecipesSection, 'all-recipes-view__recipes-container-alt');
+
   sortRecipesByName();
   renderRecipeCards(allRecipesContainer, recipeRepository.recipes);
 }
@@ -179,7 +195,8 @@ function displayAllRecipes() {
 function displayRecipe(event) {
   const card = event.target.parentNode;
 
-  if (card.classList.contains('recipes-container__recipe-card')) {
+  if (card.classList.contains('recipes-container__recipe-card')
+  || card.classList.contains('search-results-container__recipe-card')) {
     hide(homeViewSection);
     hide(allRecipesSection);
     hide(weeklyRecipesSection);
@@ -325,20 +342,20 @@ function individualRecipeInterpolation(recipe) {
 }
 
 function createIngredientList(recipe) {
-  const ingredientList = recipe.returnIngredientsList()
+  const ingredientList = recipe.returnIngredientsList();
 
   recipeIngredients.innerHTML= ingredientList.reduce((acc, ingredient) => {
-    acc += `<p class="ingredient-list__item">● ${ingredient}</p>`
+    acc += `<p class="ingredient-list__item">● ${ingredient}</p>`;
     return acc;
-  }, '')
+  }, '');
 }
 
 function createInstructionList(recipe) {
   const instructionsList = recipe.returnInstructions();
 
   recipeInstructions.innerHTML = instructionsList.reduce((acc, instruction) => {
-    acc += `<p class="ingredient-list__item">${instruction}</p>`
-    return acc
+    acc += `<p class="ingredient-list__item">${instruction}</p>`;
+    return acc;
   }, '');
 }
 
@@ -364,4 +381,12 @@ function show(element) {
 
 function hide(element) {
   element.classList.add('hidden');
+}
+
+function addStyling(element, className) {
+  element.classList.add(className);
+}
+
+function removeStyling(element, className) {
+  element.classList.remove(className);
 }

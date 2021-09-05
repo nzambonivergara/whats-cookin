@@ -104,9 +104,11 @@ button {
   margin-right: 8px;
 }
 
+
 /* --------------- HOME VIEW ------------------- */
 
-.search-ingredient-glide__images-container {
+.search-ingredient-glide__images-container,
+.week-one__glider-one {
   display: flex;
   gap: 10px;
   overflow-x: scroll;
@@ -183,8 +185,14 @@ button {
 /* ----------- ALL RECIPES VIEW --------------- */
 
 .all-recipes-view,
+<<<<<<< HEAD
+.all-recipes-view-alt
+.weekly-recipes-view,
+.all-recipes-view {
+=======
 .favorites-view,
 .weekly-recipes-view {
+>>>>>>> 1689b3ca0133c063c7a840de45e918af3354fc71
   display: flex;
   align-items: center;
 }
@@ -192,7 +200,13 @@ button {
 .weekly-recipes-view__recipes,
 .tagged-recipes-view__recipes-container,
 .all-recipes-view__recipes-container,
+<<<<<<< HEAD
+.all-recipes-view__recipes-container,
+.recipes-container__no-results,
+.weekly-recipes-view__week-one {
+=======
 .favorites-view__favorites-container {
+>>>>>>> 1689b3ca0133c063c7a840de45e918af3354fc71
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
@@ -201,7 +215,16 @@ button {
   padding: 20px;
 }
 
-.recipes-container__recipe-card {
+.all-recipes-view-alt {
+  padding-right: 100px;
+}
+
+.recipes-container__no-results {
+  font-size: 17px;
+}
+
+.recipes-container__recipe-card,
+.search-results-container__recipe-card {
   height: 200px;
   width: 200px;
   display: flex;
@@ -210,7 +233,8 @@ button {
   border: 1px solid lightgrey;
 }
 
-.recipes-container__recipe-card:hover {
+.recipes-container__recipe-card:hover,
+.search-results-container__recipe-card {
   cursor: pointer;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),  0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
@@ -225,13 +249,50 @@ button {
   text-transform: capitalize;
 }
 
+<<<<<<< HEAD
+.top-banner__title {
+  font-size: 2rem;
+  margin-top: 15px;
+}
+
+/* ---------- SEARCHED RECIPE VIEW -------------- */
+
+.search-results {
+  font-size: 30px;
+  font-style: italic;
+  display: flex;
+  justify-content: center;
+}
+
+.searched-recipes-view__recipes-container {
+  margin: 45px 0px 0px 0px;
+}
+
+.recipes-container__search-results {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin: 0px 90px 0px 90px;
+}
+
+.search-results-container__recipe-card {
+  margin: 0px 25px 40px 25px;
+}
+
+=======
+>>>>>>> 1689b3ca0133c063c7a840de45e918af3354fc71
 /* ---------- SINGLE RECIPE VIEW ----------- */
 
-.single-recipe-view {
+.single-recipe-view,
+.single-recipe-view-alt {
   max-width: 1000px;
   margin: 0px auto;
   display: flex;
   align-items: center
+}
+
+.single-recipe-view-alt {
+  padding-right: 190px;
 }
 
 .single-recipe-view__recipe-information {

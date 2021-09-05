@@ -36,7 +36,7 @@ class RecipeRepository {
         return ingredient.name === ingredientName;
       })
       if (hasMatchingIngredient) {
-        return true; 
+        return true;
       }
       return false;
     })
