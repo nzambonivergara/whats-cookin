@@ -128,7 +128,8 @@ function displayAllRecipes() {
 function displayRecipe(event) {
   const card = event.target.parentNode;
 
-  if (card.classList.contains('recipes-container__recipe-card')) {
+  if (card.classList.contains('recipes-container__recipe-card')
+  || card.classList.contains('search-results-container__recipe-card')) {
     hide(homeViewSection);
     hide(allRecipesSection);
     show(singleRecipeView);
