@@ -120,7 +120,7 @@ button {
   position: fixed;
   width: 82.5%;
   height: 54px;
-  margin: 19px 0px 0px 117px;
+  margin: 19px 0px 0px 125px;
   background-color: #D5DECE;
   border-radius: 18px;
   opacity: 65%;
@@ -174,7 +174,7 @@ button {
 }
 
 .featured__search-ingredient-glide {
-  padding: 605px 10px 10px;
+  margin: 554px;
   position: fixed;
   width: 100%;
   display: flex;
