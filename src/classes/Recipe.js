@@ -1,5 +1,4 @@
 import Ingredient from './Ingredient';
-import { ingredientsData } from '../data/ingredients';
 
 class Recipe {
   constructor(recipe) {
@@ -11,7 +10,7 @@ class Recipe {
     this.tags = recipe.tags;
   }
 
-  getIngredientsInformation() {
+  getIngredientsInformation(ingredientsData) {
     this.ingredients = this.ingredients.map(ingredient => {
       return new Ingredient(ingredient);
     });
