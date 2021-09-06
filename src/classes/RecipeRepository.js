@@ -23,11 +23,11 @@ class RecipeRepository {
     return recipes;
   }
 
-  findRecipesByName(name) {
-    const foundRecipe = this.recipes.find((recipe) => {
-      return recipe.name.toLowerCase() === name.toLowerCase();
+  findRecipesByName(searchTerm) {
+    const foundRecipes = this.recipes.filter((recipe) => {
+      return recipe.name.toLowerCase().includes(searchTerm);
     })
-    return foundRecipe;
+    return foundRecipes;
   }
 
   findRecipesByIngredient(ingredientName) {
