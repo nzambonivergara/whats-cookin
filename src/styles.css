@@ -172,20 +172,17 @@ button {
   width: 100%;
 }
 
-.featured__save-recipe-button {
-  background-color: #fff;
-  border: 1px solid #011936;
-  bottom: 20px;
-  color: #Ef5D60;
-  font-size: larger;
-  height: 40px;
+.featured__main-title {
+  top: 100px;
+  color: #011936;
+  font-family: 'Quicksand';
+  font-size: 85px;
+  font-weight: 700;
   position: absolute;
-  right: 20px;
-  transition: all 0.2s ease-in-out;
+  right: 40px;
   z-index: 1;
 }
 
-.featured__save-recipe-button:hover,
 .recipe-button:hover {
   background-color: #Ef5D60;
   color: #fff;
@@ -193,7 +190,7 @@ button {
 
 
 /* ----------- ALL RECIPES VIEW --------------- */
-
+.searched-recipes-view__recipes-container,
 .all-recipes-view,
 .all-recipes-view-alt,
 .weekly-recipes-view,
@@ -249,7 +246,7 @@ button {
   font-weight: bold;
   text-transform: capitalize;
 }
-
+ 
 .top-banner__title {
   font-size: 2rem;
   margin-top: 15px;
@@ -262,10 +259,6 @@ button {
   font-style: italic;
   display: flex;
   justify-content: center;
-}
-
-.searched-recipes-view__recipes-container {
-  margin: 45px 0px 0px 0px;
 }
 
 .recipes-container__search-results {
@@ -347,10 +340,13 @@ button {
 }
 
 /* ----- Favorites View ------- */
-
+.no-weekly-recipes,
 .recipes-container__no-favorites {
-  margin-top: 75px;
+  align-items: center;
+  display: flex;
   font-size: 20px;
+  margin-top: 75px;
+  text-align: center;
 }
 
 .hidden {
