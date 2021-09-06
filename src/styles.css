@@ -6,6 +6,9 @@ html {
 
 body {
   flex: 1;
+  background-image: url(https://images.unsplash.com/photo-1490818387583-1baba5e638af?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3331&q=80);
+  background-size: cover;
+  background-repeat: no-repeat;
   color: #011936;
   display: flex;
   flex-direction: column;
@@ -107,12 +110,12 @@ button {
 
 /* --------------- HOME VIEW ------------------- */
 
-.search-ingredient-glide__images-container,
-.week-one__glider-one {
+.search-ingredient-glide__images-container {
   display: flex;
-  gap: 10px;
+  justify-content: space-around;
   overflow-x: scroll;
   width: 100%;
+  z-index: 1;
 }
 
 .featured__featured-recipe-image-container {
@@ -125,26 +128,30 @@ button {
 
 .featured__featured-recipe-image {
   position: absolute;
+  top: -40%;
   width: 100%;
 }
 
 .images-container__button {
   align-items: center;
+  background-color: #485A68;
+  border: 1px solid #011936;
+  border-radius: 50%;
   display: flex;
-  height: 200px;
+  height: 100px;
   justify-content: center;
-  min-width: 200px;
+  min-width: 100px;
   overflow: hidden;
   position: relative;
 }
 
 .images-container__ingredient-name {
-  border: 1px solid #011936;
-  background-color: white;
-  padding: 6px;
+  color: #fff;
+  font-size: 16px;
+  font-family: 'Raleway';
+  font-weight: 700;
   text-align: center;
   transition: all 0.2s ease-in-out;
-  width: 80px;
   z-index: 1;
 }
 
@@ -160,8 +167,9 @@ button {
 
 .featured__search-ingredient-glide {
   position: fixed;
-  bottom: 20px;
-  padding: 0 10px 10px;
+  bottom: 0;
+  padding-bottom: 10px;
+  width: 100%;
 }
 
 .featured__save-recipe-button {
@@ -190,6 +198,7 @@ button {
 .all-recipes-view-alt,
 .weekly-recipes-view,
 .favorites-view {
+  background-color: rgba(255, 255, 255, 0.85);
   display: flex;
   align-items: center;
 }
@@ -274,10 +283,11 @@ button {
 
 .single-recipe-view,
 .single-recipe-view-alt {
+  background-color: rgba(255, 255, 255, 0.85);
   max-width: 1000px;
   margin: 0px auto;
   display: flex;
-  align-items: center
+  align-items: center;
 }
 
 .single-recipe-view-alt {
@@ -333,6 +343,7 @@ button {
 
 .single-recipe-view__instructions {
   margin: 20px 0;
+  padding: 0 20px;
 }
 
 /* ----- Favorites View ------- */
