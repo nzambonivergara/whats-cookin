@@ -144,12 +144,15 @@ function checkSearchField(searchTerm) {
     hide(noResults);
     hide(homeViewSection);
     hide(weeklyRecipesSection);
+    hide(taggedRecipesContainer);
     show(searchResults);
     show(displayedSearchResults);
+
     addStyling(singleRecipeView, 'single-recipe-view-alt');
     addStyling(allRecipesSection, 'all-recipes-view__recipes-container-alt');
     removeStyling(singleRecipeView, 'single-recipe-view');
     removeStyling(allRecipesSection, 'all-recipes-view__recipes-container');
+
     searchingNow(searchTerm);
 
   } else {
@@ -161,11 +164,13 @@ function checkSearchField(searchTerm) {
 
 function searchingNow(searchTerm) {
   displayedSearchResults.innerHTML = '';
-  filteredRecipes = recipeRepository.recipes.filter(recipe => {
-    const searchedByTag = recipe.tags.toString().toLowerCase().includes(searchTerm);
-    const searchedByName = recipe.name.toLowerCase().includes(searchTerm);
-    const searchedByIngredient = recipe.ingredients.toString().toLowerCase().includes(searchTerm);
-    return searchedByName || searchedByTag || searchedByIngredient;
+  const filteredRecipes = recipeRepository.findRecipesByName(searchTerm);
+  const foundRecipesByIngredient = recipeRepository.findRecipesByIngredient(searchTerm);
+
+  foundRecipesByIngredient.forEach(recipe => {
+    if (!filteredRecipes.includes(recipe)) {
+      filteredRecipes.push(recipe);
+    }
   });
 
   displaySearchResults(filteredRecipes);
@@ -282,14 +287,23 @@ function updateMain() {
     const filteredRecipes = recipeRepository.findRecipesByTag(tags);
     renderRecipeCards(taggedRecipesContainer, filteredRecipes);
 
+    hide(noResults);
+    hide(searchResults);
+    hide(singleRecipeView);
+    hide(allRecipesSection);
     hide(mainContentContainer);
+    hide(weeklyRecipesSection);
+    hide(favoriteRecipesSection);
+    hide(displayedSearchResults);
+    show(homeViewSection);
+    show(mainContentContainer);
     show(taggedRecipesContainer);
 
   } else {
     removeAllRecipeCards();
 
     hide(taggedRecipesContainer);
-    show(mainContentContainer);
+    show(homeViewImage)
   }
 }
 
