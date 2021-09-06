@@ -144,12 +144,15 @@ function checkSearchField(searchTerm) {
     hide(noResults);
     hide(homeViewSection);
     hide(weeklyRecipesSection);
+    hide(taggedRecipesContainer);
     show(searchResults);
     show(displayedSearchResults);
+
     addStyling(singleRecipeView, 'single-recipe-view-alt');
     addStyling(allRecipesSection, 'all-recipes-view__recipes-container-alt');
     removeStyling(singleRecipeView, 'single-recipe-view');
     removeStyling(allRecipesSection, 'all-recipes-view__recipes-container');
+
     searchingNow(searchTerm);
 
   } else {
@@ -282,14 +285,23 @@ function updateMain() {
     const filteredRecipes = recipeRepository.findRecipesByTag(tags);
     renderRecipeCards(taggedRecipesContainer, filteredRecipes);
 
+    hide(noResults);
+    hide(searchResults);
+    hide(singleRecipeView);
+    hide(allRecipesSection);
     hide(mainContentContainer);
+    hide(weeklyRecipesSection);
+    hide(favoriteRecipesSection);
+    hide(displayedSearchResults);
+    show(homeViewSection);
+    show(mainContentContainer);
     show(taggedRecipesContainer);
 
   } else {
     removeAllRecipeCards();
 
     hide(taggedRecipesContainer);
-    show(mainContentContainer);
+    show(homeViewImage)
   }
 }
 
