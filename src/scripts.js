@@ -1,12 +1,10 @@
 import './styles.css';
 import apiCalls from './apiCalls';
-import { recipeData } from './data/recipes';
 import RecipeRepository from './classes/RecipeRepository';
 import User from './classes/User';
-import { loadUsers, loadIngredients, } from './apiCalls';
+import { loadUsers, loadIngredients, loadRecipes } from './apiCalls';
 
-const recipeRepository = new RecipeRepository(recipeData);
-const recipesList = recipeData;
+let recipeRepository;
 let filteredRecipes;
 let tags = [];
 let user;
@@ -108,6 +106,7 @@ function checkFavoriteRecipes() {
 
 function getData() {
   getUser();
+  getRecipes();
   getIngredients();
 }
 
@@ -121,6 +120,12 @@ function getUser() {
   loadUsers().then(usersData => {
     const userData = getRandomUser(usersData);
     user = new User(userData);
+  });
+}
+
+function getRecipes() {
+  loadRecipes().then(recipeData => {
+    recipeRepository = new RecipeRepository(recipeData);
   });
 }
 
