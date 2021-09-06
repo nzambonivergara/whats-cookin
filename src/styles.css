@@ -5,14 +5,14 @@ html {
 }
 
 body {
-  flex: 1;
-  color: #011936;
   display: flex;
   flex-direction: column;
-  font-family: 'Raleway', sans-serif;
+  flex: 1;
   margin: 0;
-  padding: 0;
   width: 100%;
+  padding: 0;
+  color: #011936;
+  font-family: 'Raleway', sans-serif;
   overscroll-behavior-y: none;
   -ms-overflow-style: none;
   scrollbar-width: none;
@@ -27,15 +27,15 @@ h1, h2, h3, h4 {
 }
 
 nav {
-  background-color: #E0E0E0;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  box-sizing: border-box;
-  border-bottom: 1px solid #011936;
-  padding: 0 20px;
   position: fixed;
   width: 100%;
+  padding: 0 20px;
+  box-sizing: border-box;
+  border-bottom: 1px solid #011936;
+  background-color: #E0E0E0;
   z-index: 1;
 }
 
@@ -45,12 +45,12 @@ h1 {
 }
 
 main {
-  box-sizing: border-box;
   display: flex;
-  flex: 1;
   justify-content: center;
-  padding-top: 51px;
+  flex: 1;
   width: 100%;
+  padding-top: 51px;
+  box-sizing: border-box;
 }
 
 main > section {
@@ -61,28 +61,28 @@ main > section {
 }
 
 button {
-  background-color: transparent;
-  border-style: none;
-  cursor: pointer;
   display: flex;
   justify-content: space-around;
   padding: 8px;
+  border-style: none;
+  background-color: transparent;
+  cursor: pointer;
 }
 
 .nav-bar__nav-tabs {
   display: flex;
   justify-content: space-around;
-  flex-direction: row;
   align-items: center;
+  flex-direction: row;
 }
 
 .nav-bar__nav-tabs > button {
-  font-family: 'Raleway', sans-serif;
-  font-size: 16px;
-  font-weight: 700;
-  height: 50px;
   align-items: center;
   width: 120px;
+  height: 50px;
+  font-weight: 700;
+  font-family: 'Raleway', sans-serif;
+  font-size: 16px;
 }
 
 .nav-bar__nav-tabs > button:hover {
@@ -104,16 +104,15 @@ button {
   margin-right: 8px;
 }
 
-
 /* --------------- HOME VIEW ------------------- */
 
 .search-ingredient-glide__images-container {
   display: flex;
-  gap: 32px;
-  overflow-x: scroll;
-  width: 100%;
   justify-content: center;
   margin-right: 19px;
+  width: 100%;
+  gap: 32px;
+  overflow-x: scroll;
   -webkit-filter: saturate(135%);
   -moz-filter: saturate(135%);
   -ms-filter: saturate(135%);
@@ -122,20 +121,20 @@ button {
 
 .search-ingredient-glide__background {
   position: fixed;
+  margin: 19px 0px 0px 125px;
   width: 82.5%;
   height: 54px;
-  margin: 19px 0px 0px 125px;
-  background-color: #D5DECE;
   border-radius: 18px;
+  background-color: #D5DECE;
   opacity: 65%;
 }
 
 .featured__featured-recipe-image-container {
   display: flex;
-  flex: 1;
   flex-direction: column;
-  overflow: hidden;
   position: relative;
+  flex: 1;
+  overflow: hidden;
 }
 
 .featured__featured-recipe-image {
@@ -155,13 +154,13 @@ button {
 .images-container__button-six,
 .images-container__button-seven,
 .images-container__button-eight {
-  align-items: center;
   display: flex;
-  height: 91px;
   justify-content: center;
-  min-width: 110px;
-  overflow: hidden;
+  align-items: center;
   position: relative;
+  min-width: 110px;
+  height: 91px;
+  overflow: hidden;
   border-radius: 28px;
   border: .5px solid;
   opacity: 80%;
@@ -182,13 +181,13 @@ button {
 }
 
 .images-container__ingredient-name {
-  border: 1px solid #011936;
-  background-color: white;
-  border-radius: 16px;
+  width: 80px;
   padding: 7px;
+  border: 1px solid #011936;
+  border-radius: 16px;
+  background-color: white;
   text-align: center;
   transition: all 0.2s ease-in-out;
-  width: 80px;
   z-index: 1;
 }
 
@@ -197,26 +196,26 @@ button {
 }
 
 .images-container__image{
-  border: 4px solid #fff;
-  height: 300px;
   position: absolute;
+  height: 300px;
+  border: 4px solid #fff;
 }
 
 .featured__search-ingredient-glide {
-  margin: 550px;
-  position: fixed;
-  width: 100%;
   display: flex;
+  position: fixed;
+  margin: 550px;
+  width: 100%;
 }
 
 .featured__save-recipe-button {
-  background-color: #fff;
+  position: absolute;
+  height: 40px;
   border: 1px solid #011936;
-  bottom: 20px;
+  background-color: #fff;
   color: #Ef5D60;
   font-size: larger;
-  height: 40px;
-  position: absolute;
+  bottom: 20px;
   right: 20px;
   transition: all 0.2s ease-in-out;
   z-index: 1;
@@ -224,8 +223,8 @@ button {
 
 .featured__save-recipe-button:hover,
 .recipe-button:hover {
-  background-color: #Ef5D60;
   color: #fff;
+  background-color: #Ef5D60;
 }
 
 
@@ -248,8 +247,8 @@ button {
   justify-content: center;
   flex-wrap: wrap;
   height: 100%;
-  gap: 10px;
   padding: 20px;
+  gap: 10px;
 }
 
 .all-recipes-view-alt {
@@ -262,10 +261,10 @@ button {
 
 .recipes-container__recipe-card,
 .search-results-container__recipe-card {
-  height: 200px;
-  width: 200px;
   display: flex;
   flex-direction: column;
+  width: 200px;
+  height: 200px;
   text-align: center;
   border: 1px solid lightgrey;
 }
@@ -277,8 +276,8 @@ button {
 }
 
 .recipe-card__image {
-  height: 125px;
   width: 200px;
+  height: 125px;
 }
 
 .recipe-card__name {
@@ -287,17 +286,17 @@ button {
 }
 
 .top-banner__title {
-  font-size: 2rem;
   margin-top: 15px;
+  font-size: 2rem;
 }
 
 /* ---------- SEARCHED RECIPE VIEW -------------- */
 
 .search-results {
-  font-size: 30px;
-  font-style: italic;
   display: flex;
   justify-content: center;
+  font-size: 30px;
+  font-style: italic;
 }
 
 .searched-recipes-view__recipes-container {
@@ -319,8 +318,8 @@ button {
 
 .single-recipe-view,
 .single-recipe-view-alt {
-  max-width: 1000px;
   margin: 0px auto;
+  max-width: 1000px;
   display: flex;
   align-items: center
 }
@@ -335,16 +334,16 @@ button {
 }
 
 .recipe-button {
-  background-color: #fff;
-  border: 1px solid lightgrey;
-  color: #Ef5D60;
-  width: 275px;
-  transition: all 0.2s ease-in-out;
-  margin: 15px 10px;
-  padding: 5px;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 15px 10px;
+  width: 275px;
+  padding: 5px;
+  color: #Ef5D60;
+  border: 1px solid lightgrey;
+  background-color: #fff;
+  transition: all 0.2s ease-in-out;
   gap: 8px;
 }
 
@@ -362,10 +361,10 @@ button {
 }
 
 .total-cost {
-  color: #Ef5D60;
-  font-weight: bold;
   display: flex;
   align-items: center;
+  color: #Ef5D60;
+  font-weight: bold;
 }
 
 .recipe-buttons-container {
