@@ -147,7 +147,14 @@ button {
   -o-filter: grayscale(15%) saturate(35%);
 }
 
-.images-container__button {
+.images-container__button-one,
+.images-container__button-two,
+.images-container__button-three,
+.images-container__button-four,
+.images-container__button-five,
+.images-container__button-six,
+.images-container__button-seven,
+.images-container__button-eight {
   align-items: center;
   display: flex;
   height: 91px;
@@ -158,6 +165,20 @@ button {
   border-radius: 28px;
   border: .5px solid;
   opacity: 80%;
+  transition-property: padding-bottom padding;
+  transition-duration: .4s;
+}
+
+.images-container__button-one:hover,
+.images-container__button-two:hover,
+.images-container__button-three:hover,
+.images-container__button-four:hover,
+.images-container__button-five:hover,
+.images-container__button-six:hover,
+.images-container__button-seven:hover,
+.images-container__button-eight:hover {
+  padding: 25px;
+  padding-bottom: 50px;
 }
 
 .images-container__ingredient-name {
@@ -182,10 +203,10 @@ button {
 }
 
 .featured__search-ingredient-glide {
-  margin: 554px;
+  margin: 530px;
   position: fixed;
   width: 100%;
-  display: flex
+  display: flex;
 }
 
 .featured__save-recipe-button {
