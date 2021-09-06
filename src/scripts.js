@@ -131,7 +131,6 @@ function checkFavoriteRecipes() {
   }
 }
 
-
 function prepSearch(event) {
   const searchTerm = event.target.value.toLowerCase();
   checkSearchField(searchTerm);
