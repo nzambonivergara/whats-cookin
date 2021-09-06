@@ -47,7 +47,7 @@ const addToWeekButton = document.getElementById('addToWeekButton');
 const noWeeklyRecipes = document.getElementById('noWeeklyRecipes');
 const removeFromWeekButton = document.getElementById('removeFromWeekButton');
 
-window.addEventListener('load', getData);
+window.addEventListener('load', getUser);
 searchBar.addEventListener('keyup', () => {prepSearch(event)});
 searchResults.addEventListener('click', displayRecipe);
 searchIngredientGlide.addEventListener('click', selectTag);
@@ -65,12 +65,6 @@ addToFavoritesButton.addEventListener('click', addToFavorites);
 favoriteRecipesContainer.addEventListener('click', displayRecipe);
 removeFromFavoritesButton.addEventListener('click', removeFromFavorites);
 
-function getData() {
-  getUser();
-  getRecipes();
-  getIngredients();
-}
-
 function getRandomUser(array) {
   const index =  Math.floor(Math.random() * array.length);
   const userData = array[index];
@@ -81,12 +75,14 @@ function getUser() {
   loadUsers().then(usersData => {
     const userData = getRandomUser(usersData);
     user = new User(userData);
+    getRecipes();
   });
 }
 
 function getRecipes() {
   loadRecipes().then(recipeData => {
     recipeRepository = new RecipeRepository(recipeData);
+    getIngredients();
   });
 }
 
