@@ -3,15 +3,13 @@ import apiCalls from './apiCalls';
 import { recipeData } from './data/recipes';
 import RecipeRepository from './classes/RecipeRepository';
 import User from './classes/User';
-import { loadUsers } from './apiCalls';
+import { loadUsers, loadIngredients, } from './apiCalls';
 
 const recipeRepository = new RecipeRepository(recipeData);
 const recipesList = recipeData;
 let filteredRecipes;
 let tags = [];
 let user;
-
-recipeRepository.getRecipesInformation();
 
 const homeViewImage = document.getElementById('homeViewImage');
 const homeViewButton = document.getElementById('homeViewButton');
@@ -51,7 +49,7 @@ const removeFromWeekButton = document.getElementById('removeFromWeekButton');
 const noWeeklyRecipes = document.getElementById('noWeeklyRecipes');
 const weeklyRecipes = document.getElementById('weeklyRecipes');
 
-window.addEventListener('load', getUser);
+window.addEventListener('load', getData);
 searchBar.addEventListener('keyup', () => {prepSearch(event)});
 searchResults.addEventListener('click', displayRecipe);
 homeViewButton.addEventListener('click', displayHomeView);
@@ -73,7 +71,7 @@ function addToFavorites(event) {
   const favoriteRecipe = recipeRepository.recipes.find(recipe => recipe.id === parseInt(addToFavoritesButton.name));
 
   user.addFavorite(favoriteRecipe);
-  
+
   hide(addToFavoritesButton);
   show(removeFromFavoritesButton);
 }
@@ -108,6 +106,11 @@ function checkFavoriteRecipes() {
   }
 }
 
+function getData() {
+  getUser();
+  getIngredients();
+}
+
 function getRandomUser(array) {
   const index =  Math.floor(Math.random() * array.length);
   const userData = array[index];
@@ -118,6 +121,12 @@ function getUser() {
   loadUsers().then(usersData => {
     const userData = getRandomUser(usersData);
     user = new User(userData);
+  });
+}
+
+function getIngredients() {
+  loadIngredients().then(ingredientsData => {
+    recipeRepository.getRecipesInformation(ingredientsData)
   });
 }
 
