@@ -159,6 +159,8 @@ button {
 }
 
 .featured__search-ingredient-glide {
+  position: fixed;
+  bottom: 20px;
   padding: 0 10px 10px;
 }
 
