@@ -5,9 +5,9 @@ class RecipeRepository {
     this.recipes = recipeData.map(recipe => new Recipe(recipe));
   }
 
-  getRecipesInformation() {
+  getRecipesInformation(ingredientsData) {
     this.recipes.forEach((recipe) => {
-      recipe.getIngredientsInformation();
+      recipe.getIngredientsInformation(ingredientsData);
     })
   }
 
