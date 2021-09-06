@@ -114,6 +114,10 @@ button {
   width: 100%;
   justify-content: center;
   margin-right: 19px;
+  -webkit-filter: saturate(135%);
+  -moz-filter: saturate(135%);
+  -ms-filter: saturate(135%);
+  -o-filter: saturate(135%);
 }
 
 .search-ingredient-glide__background {
@@ -137,6 +141,10 @@ button {
 .featured__featured-recipe-image {
   position: absolute;
   width: 100%;
+  -webkit-filter: grayscale(15%) saturate(35%);
+  -moz-filter: grayscale(15%) saturate(35%);
+  -ms-filter: grayscale(15%) saturate(35%);
+  -o-filter: grayscale(15%) saturate(35%);
 }
 
 .images-container__button {
@@ -177,7 +185,7 @@ button {
   margin: 554px;
   position: fixed;
   width: 100%;
-  display: flex;
+  display: flex
 }
 
 .featured__save-recipe-button {
