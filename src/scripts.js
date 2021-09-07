@@ -275,8 +275,8 @@ function checkWeeklyFavorites() {
 }
 
 function selectTag(e) {
-  const tagElement = e.target.closest('p') || e.target.previousElementSibling;
-  const tag = tagElement.innerText;
+  const tagElement = e.target.closest('button');
+  const tag = tagElement.value;
 
   toggleTag(tag, tagElement);
   updateMain();

@@ -191,6 +191,7 @@ button {
 
 /* ----------- ALL RECIPES VIEW --------------- */
 .searched-recipes-view__recipes-container,
+.tagged-recipes-view__recipes-container,
 .all-recipes-view,
 .all-recipes-view-alt,
 .weekly-recipes-view,

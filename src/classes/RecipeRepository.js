@@ -24,10 +24,10 @@ class RecipeRepository {
   }
 
   findRecipesByName(searchTerm) {
-    const foundRecipe = this.recipes.filter((recipe) => {
+    const foundRecipes = this.recipes.filter((recipe) => {
       return recipe.name.toLowerCase().includes(searchTerm);
     })
-    return foundRecipe;
+    return foundRecipes;
   }
 
   findRecipesByIngredient(ingredientName) {
