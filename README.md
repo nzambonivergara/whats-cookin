@@ -1,5 +1,11 @@
 # What's Cookin' - Part One!
 
+## Contributors
+
+- [Natalia Zamboni Vergara](https://github.com/nzambonivergara)
+- [Paul Chambers](https://github.com/PaulTimothyChambers)
+- [Juliana Fargnoli](https://github.com/jfargnoli01)
+
 ## Abstract
 
 This application is a virtual recipe database where users can browse and save recipes for later use! The user is able to view all recipes, add and view their favorite recipes in the favorites section, as well as add and view recipes in the weekly recipes section. Users can use the live search bar at the top of the page to find their meal by name or ingredietns! If the recipe is no longer of use, the user can delete the recipe card from the favorites and or weekly views.
@@ -41,7 +47,15 @@ This application is a virtual recipe database where users can browse and save re
     - select the This Week button at the top left to view any recipes added to the weekly recipes section
     - click one or more tag bubbles at the bottom of the main view to see recipes containing the specific tag(s)
     - type in a recipe name or ingredient name in the live search bar to find specfic results
-3. From any of the recipes diplay views, the user can select the recipe card to view the individual recipe ingredients, instructions, image, and add/remove favorite and weekly recipes
+3. From any of the recipes diplay views, the user can select any recipe card to view the individual recipe's required ingredients, instructions, enlarged image, and add/remove recipe button to or from favorite and weekly recipes
+4. When in the favorites view, user can see and select any recipe card that has been favorited
+5. When in the weekly recipes view, user can see and select any recipe card that has been added to weekly recipes
+
+## Future Features
+
+- Create search functionality within favorites recipe section
+- Allow users to create and save recipe cards
+- Update weekly recipes view to include entire month and link to online calendar 
 ---
 
 
