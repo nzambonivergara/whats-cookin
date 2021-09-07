@@ -23,9 +23,9 @@ class RecipeRepository {
     return recipes;
   }
 
-  findRecipesByName(name) {
-    const foundRecipe = this.recipes.find((recipe) => {
-      return recipe.name.toLowerCase() === name.toLowerCase();
+  findRecipesByName(searchTerm) {
+    const foundRecipe = this.recipes.filter((recipe) => {
+      return recipe.name.toLowerCase().includes(searchTerm);
     })
     return foundRecipe;
   }
@@ -33,7 +33,7 @@ class RecipeRepository {
   findRecipesByIngredient(ingredientName) {
     const filteredRecipe = this.recipes.filter((recipe) => {
       const hasMatchingIngredient = recipe.ingredients.find((ingredient) => {
-        return ingredient.name === ingredientName;
+        return ingredient.name.includes(ingredientName);
       })
       if (hasMatchingIngredient) {
         return true;
