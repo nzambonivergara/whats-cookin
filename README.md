@@ -1,7 +1,7 @@
 # What's Cookin' - Part One!
 
-[Deploy Link](https://nzambonivergara.github.io/whats-cookin/)
-[Project Spec](https://frontend.turing.edu/projects/whats-cookin-part-one.html)
+- [Deploy Link](https://nzambonivergara.github.io/whats-cookin/)
+- [Project Spec](https://frontend.turing.edu/projects/whats-cookin-part-one.html)
 
 ## Contributors
 
@@ -15,7 +15,17 @@ This application is a virtual recipe database where users can browse and save re
 
 ## Snapshots of Application
 
+Home View:
 
+![main view whats cookin](https://user-images.githubusercontent.com/77421040/132417805-b53f270a-bd87-4fbc-adcc-c164d7a15845.gif)
+
+All Recipes View:
+
+![all recipes whats cookin](https://user-images.githubusercontent.com/77421040/132418149-27a662a9-783f-4b46-b17c-542a44b1e9e8.gif)
+
+Individual Recipe Card:
+
+![save to week and favorites whats cookin](https://user-images.githubusercontent.com/77421040/132417856-630fd251-d5c7-4317-bc9d-2674cd9b5615.gif)
 
 ## Technologies
 
