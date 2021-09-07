@@ -107,7 +107,7 @@ describe('Recipe Repository', () => {
 
   beforeEach(() => {
     repo = new RecipeRepository(recipeData);
-    repo.getRecipesInformation();
+    repo.getRecipesInformation(ingredientsData);
   });
 
   it('Should be a function', () => {
@@ -136,7 +136,7 @@ describe('Recipe Repository', () => {
 
   it('Should filter recipes based on name', () => {
     const expected = repo.findRecipesByName('Maple Dijon Apple Cider Grilled Pork Chops');
-    expect(expected.id).to.equal(678353);
+    expect(expected[0].id).to.equal(678353);
   });
 
   it('Should filter recipes based on ingredients', () => {
