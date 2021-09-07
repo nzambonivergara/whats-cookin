@@ -78,6 +78,15 @@
         <section class="all-recipes-view__recipes-container" id="allRecipesContainer"></section>
       </section>
       <section class="favorites-view hidden" id="favoriteRecipesSection">
+        <div class="favorites-search-bar">
+          <label for="SearchInput" class="favorites-search-bar__search-label">Search Favorites</label>
+          <input type="search" class="favorites-search-bar__search-input" name="SearchInput" value="" id="searchBarInput">
+          <button type="button" class="favorites-search-bar__initiate-search-button">
+            <span class="material-icons alt">
+              search
+            </span>
+          </button>
+        </div>
         <h1 class="top-banner__title">Favorite Recipes</h1>
         <p class="recipes-container__no-favorites" id="noFavoritesMessage"> <span class="material-icons">favorite_border</span>   You haven't added any favorite recipes. Explore and add your favorites!   <span class="material-icons">favorite_border</span></p>
         <div class="favorites-view__favorites-container" id="favoriteRecipesContainer">
