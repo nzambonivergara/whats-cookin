@@ -98,5 +98,10 @@ export const ingredientsData = [
       "id": 12023,
       "name": "sesame seeds",
       "estimatedCostInCents": 886
+    },
+    {
+      "id": 1001,
+      "name": "butter",
+      "estimatedCostInCents": 618
     }
   ]
