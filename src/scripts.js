@@ -205,6 +205,8 @@ function displayHomeView() {
   hide(favoriteRecipesSection);
   show(homeViewSection);
 
+  addStyling(singleRecipeView, 'single-recipe-view');
+  addStyling(allRecipesSection, 'all-recipes-view__recipes-container');
   removeStyling(singleRecipeView, 'single-recipe-view-alt');
   removeStyling(allRecipesSection, 'all-recipes-view__recipes-container-alt');
 }
@@ -217,6 +219,8 @@ function displayAllRecipes() {
   hide(favoriteRecipesSection);
   show(allRecipesSection);
 
+  addStyling(singleRecipeView, 'single-recipe-view');
+  addStyling(allRecipesSection, 'all-recipes-view__recipes-container');
   removeStyling(singleRecipeView, 'single-recipe-view-alt');
   removeStyling(allRecipesSection, 'all-recipes-view__recipes-container-alt');
 
