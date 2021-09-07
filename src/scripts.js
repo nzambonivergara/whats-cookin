@@ -256,8 +256,8 @@ function removeFromWeeklyRecipes() {
 
 function findRecipeTitle() {
   const recipeTitle = document.querySelector('.recipe-title').innerText;
-  const recipe = recipeRepository.findRecipesByName(recipeTitle);
-  return recipe;
+  const recipes = recipeRepository.findRecipesByName(recipeTitle.toLowerCase());
+  return recipes[0];
 }
 
 function displayWeeklyRecipes() {
