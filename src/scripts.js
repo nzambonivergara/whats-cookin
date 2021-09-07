@@ -23,7 +23,8 @@ const favoritesViewButton = document.getElementById('favoritesViewButton');
 const addToFavoritesButton = document.getElementById('addToFavoritesButton');
 const favoriteRecipesSection = document.getElementById('favoriteRecipesSection');
 const favoriteRecipesContainer = document.getElementById('favoriteRecipesContainer');
-const removeFromFavoritesButton = document.getElementById('removeFromFavoritesButton')
+const removeFromFavoritesButton = document.getElementById('removeFromFavoritesButton');
+const favoriteTaggedRecipesContainer = document.getElementById('favoriteTaggedRecipesContainer');
 
 const weeklyRecipesButton = document.querySelector('.nav-tabs__this-week');
 const weeklyRecipesSection = document.getElementById('weeklyRecipesSection');
@@ -36,6 +37,8 @@ const recipeInstructions = document.getElementById('recipeInstructions');
 const mainContentContainer = document.getElementById('mainContentContainer');
 const searchIngredientGlide = document.getElementById('searchIngredientGlide');
 const taggedRecipesContainer = document.getElementById('taggedRecipesContainer');
+
+const favoritesTagsGlide = searchIngredientGlide.cloneNode(true);
 
 const noResults = document.getElementById('noResults');
 const searchBar = document.getElementById('searchBarInput');
@@ -64,6 +67,8 @@ favoritesViewButton.addEventListener('click', displayFavoritesView);
 addToFavoritesButton.addEventListener('click', addToFavorites);
 favoriteRecipesContainer.addEventListener('click', displayRecipe);
 removeFromFavoritesButton.addEventListener('click', removeFromFavorites);
+favoriteRecipesSection.addEventListener('click', selectTag)
+favoriteTaggedRecipesContainer.addEventListener('click', displayRecipe)
 
 function getRandomUser(array) {
   const index =  Math.floor(Math.random() * array.length);
@@ -120,14 +125,18 @@ function displayFavoritesView() {
 }
 
 function checkFavoriteRecipes() {
-  if (user.favoriteRecipes.length) {
+  if (user.favoriteRecipes.length && !tags.length) {
     hide(noFavoritesMessage);
     show(favoriteRecipesContainer);
-    renderRecipeCards(favoriteRecipesContainer, user.favoriteRecipes);
 
+    addTagsGlide();
+    renderRecipeCards(favoriteRecipesContainer, user.favoriteRecipes);
+  } else if (user.favoriteRecipes.length && tags.length) {
+    hide(noFavoritesMessage);
   } else {
     hide(favoriteRecipesContainer);
     show(noFavoritesMessage);
+    favoriteRecipesSection.removeChild(favoritesTagsGlide);
   }
 }
 
@@ -274,12 +283,40 @@ function checkWeeklyFavorites() {
   }
 }
 
+function addTagsGlide() {
+  if (!favoriteRecipesSection.contains(favoritesTagsGlide)) {
+    favoritesTagsGlide.id = 'favoriteSearchGlide';
+    addStyling(favoritesTagsGlide, 'featured__search-ingredient-glide');
+    favoriteRecipesSection.appendChild(favoritesTagsGlide);
+  }
+}
+
 function selectTag(e) {
   const tagElement = e.target.closest('button');
   const tag = tagElement.value;
 
   toggleTag(tag, tagElement);
-  updateMain();
+  if (tagElement.parentNode.id === 'favoriteSearchGlide') {
+    updateFavorites();
+  } else {
+    updateMain();
+  }
+}
+
+function updateFavorites() {
+  if (tags.length) {
+    const filteredRecipes = user.filterFavoriteRecipesByTags(tags);
+    renderRecipeCards(favoriteTaggedRecipesContainer, filteredRecipes);
+
+    hide(favoriteRecipesContainer);
+    show(favoriteTaggedRecipesContainer);
+
+  } else {
+    removeAllRecipeCards();
+
+    hide(favoriteTaggedRecipesContainer);
+    checkFavoriteRecipes();
+  }
 }
 
 function updateMain() {
