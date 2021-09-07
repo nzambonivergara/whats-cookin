@@ -1,22 +1,47 @@
-# What's Cookin'? Starter Kit 
+# What's Cookin' - Part One!
 
-The details of this project are outlined in the <a href="https://frontend.turing.edu/projects/What%27sCookin-PartOne.html" target="\__blank">project spec</a>.
+## Abstract
 
-## Set Up 
+This application is a virtual recipe database where users can browse and save recipes for later use! The user is able to view all recipes, add and view their favorite recipes in the favorites section, as well as add and view recipes in the weekly recipes section. Users can use the live search bar at the top of the page to find their meal by name or ingredietns! If the recipe is no longer of use, the user can delete the recipe card from the favorites and or weekly views.
 
-1. Within your group, decide on one person to have the project repository on their Github account. This person will *fork* this repository - on the top right corner of the page, click the fork button. 
-2. All group members should then clone down the forked repository (make sure that everyone is added as a collaborator as well). Since you don't want your project to be named "whats-cookin-starter-kit", add an optional argument after the repo url when cloning. The command should look like this: `git clone [remote-address] [what you want to name the repo]`.
-3. Once you have cloned the repo, change into the directory and install the project dependencies. Run `npm install` or `npm i` to install project dependencies.
-4. Run `npm start` and visit `localhost:8080`
-5. Make sure both members of your team are collaborators on the forked repo.
+## Snapshots of Application
 
-## Testing 
 
-Mocha and chai are already set up, with a boilerplate test for you. 
 
-## Linting Your Code 
+## Technologies/ Code Architecture
 
-Run the command in your terminal `npm run lint` to run the linter on your JavaScript code. There will be errors and warnings right from the start in this starter kit, but that's ok - the linter is still running successfully.
+- Mocha
+- Chai
+- javaScript
+- Fetch API
+- linter
 
-Your linter will look only at the JavaScript files you have within the src and the test directories.
+## Wins
+
+- Learning how to use Fetch API and successfully integrating functionality into prroject
+- Working asynchronously to tackle various parts of the project and resolving merge conflicts as they rose
+- Using a wireframe program to outline high level project aesthetic and functionality
+- Collaborating with team mates to tackle complicated tasks and trying various approaches
+- Utlizing resources such as web documents and mentors to expand knowledge base and maximize application display and performance
+
+
+## Challenges
+
+- Planning out project with Github Project Board and anticipating how long each task will take to complete
+- Keeping up with reviewing and merging PRs 
+- Communicating additions or changes in project with team members
+- Merging branches together after independant coding
+
+## Install/ Setup Instuctions
+
+1. Visit project repo at: 
+2. From the main view, the user can:
+    - select the All Recipes button at the top left to view the entire list of recipes to choose from
+    - choose the Favorites button at the top left to view any favorited recipes
+    - select the This Week button at the top left to view any recipes added to the weekly recipes section
+    - click one or more tag bubbles at the bottom of the main view to see recipes containing the specific tag(s)
+    - type in a recipe name or ingredient name in the live search bar to find specfic results
+3. From any of the recipes diplay views, the user can select the recipe card to view the individual recipe ingredients, instructions, image, and add/remove favorite and weekly recipes
+---
+
 
