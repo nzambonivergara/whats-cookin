@@ -40,8 +40,24 @@ class User {
     return recipes;
   }
 
-  filterFavoriteRecipesByIngredient(ingredientName, ingredientsData) {
-    this.getIngredientNames(ingredientsData);
+  findFavoriteRecipesByName(searchTerm) {
+    const foundRecipes = this.favoriteRecipes.filter((recipe) => {
+      return recipe.name.toLowerCase().includes(searchTerm);
+    })
+    return foundRecipes;
+  }
+
+  findFavoriteRecipesByIngredient(ingredientName) {
+    const filteredRecipe = this.favoriteRecipes.filter((recipe) => {
+      const hasMatchingIngredient = recipe.ingredients.find((ingredient) => {
+        return ingredient.name.includes(ingredientName);
+      })
+      if (hasMatchingIngredient) {
+        return true;
+      }
+      return false;
+    })
+    return filteredRecipe;
   }
 }
 

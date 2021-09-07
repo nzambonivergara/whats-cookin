@@ -33,7 +33,7 @@ class RecipeRepository {
   findRecipesByIngredient(ingredientName) {
     const filteredRecipe = this.recipes.filter((recipe) => {
       const hasMatchingIngredient = recipe.ingredients.find((ingredient) => {
-        return ingredient.name === ingredientName;
+        return ingredient.name.includes(ingredientName);
       })
       if (hasMatchingIngredient) {
         return true;
