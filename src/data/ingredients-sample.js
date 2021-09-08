@@ -103,5 +103,65 @@ export const ingredientsData = [
       "id": 1001,
       "name": "butter",
       "estimatedCostInCents": 618
+    },
+    {
+      "id": 1002046,
+      "name": "dijon style mustard",
+      "estimatedCostInCents": 619
+    },
+    {
+      "id": 1009016,
+      "name": "apple cider",
+      "estimatedCostInCents": 468
+    },
+    {
+      "id": 1016168,
+      "name": "sriracha sauce",
+      "estimatedCostInCents": 576
+    },
+    {
+      "id": 16124,
+      "name": "soy sauce",
+      "estimatedCostInCents": 486
+    },
+    {
+      "id": 1102047,
+      "name": "s&p",
+      "estimatedCostInCents": 524
+    },
+    {
+      "id": 10010062,
+      "name": "pork chop",
+      "estimatedCostInCents": 834
+    },
+    {
+      "id": 16112,
+      "name": "miso",
+      "estimatedCostInCents": 978
+    },
+    {
+      "id": 19911,
+      "name": "maple",
+      "estimatedCostInCents": 349
+    },
+    {
+      "id": 1012046,
+      "name": "whole grain dijon mustard",
+      "estimatedCostInCents": 867
+    },
+    {
+      "id": 11215,
+      "name": "whole garlic clove",
+      "estimatedCostInCents": 220
+    },
+    {
+      "id": 9003,
+      "name": "apple",
+      "estimatedCostInCents": 207
+    },
+    {
+      "id": 20027,
+      "name": "corn starch",
+      "estimatedCostInCents": 236
     }
   ]
