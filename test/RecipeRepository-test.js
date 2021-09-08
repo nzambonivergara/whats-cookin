@@ -1,5 +1,6 @@
 import { expect } from 'chai';
 import RecipeRepository from '../src/classes/RecipeRepository';
+import { ingredientsData } from '../src/data/ingredients-sample'
 
 const recipeData = [
   {
