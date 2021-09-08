@@ -113,7 +113,7 @@ describe('Recipe Repository', () => {
   it('Should be a function', () => {
     expect(RecipeRepository).to.be.a('function');
   });
-  
+
   it('Should be an instance of Recipe', () => {
     expect(repo).to.be.an.instanceOf(RecipeRepository);
   });

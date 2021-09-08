@@ -13,16 +13,15 @@ describe('User', function() {
   const tagOne = 'appetizer';
   const tagTwo = 'snack';
   const tagThree = 'side dish';
-  // const ingredientsOne = ;
-  // const ingredientsTwo = ;
-  // const ingredientsThree = ;
-  const nameOne = 'cookies';
 
   beforeEach(() => {
     user = new User(usersData[0]);
     recipeOne = new Recipe(recipeData[2]);
     recipeTwo = new Recipe(recipeData[1]);
     recipeThree = new Recipe(recipeData[0]);
+    recipeOne.getIngredientsInformation(ingredientsData);
+    recipeTwo.getIngredientsInformation(ingredientsData);
+    recipeThree.getIngredientsInformation(ingredientsData);
     user.addFavorite(recipeOne);
     user.addFavorite(recipeTwo);
     user.addFavorite(recipeThree);
@@ -68,12 +67,11 @@ describe('User', function() {
     });
 
   it('should be able to filter favorites by ingredient', function() {
-    expect(user.filterFavoriteRecipesByIngredient(['wheat flour'], ingredientsData)).to.deep.equal([recipeOne, recipeThree]);
+    expect(user.findFavoriteRecipesByIngredient('unsalted butter')).to.deep.equal([recipeOne, recipeThree]);
   });
 
   it('should be able to filter favorites by name', function() {
-    user.filterFavoriteRecipesByName([nameOne]);
-    expect(user.filteredByName).to.deep.equal([recipeOne, recipeThree]);
+    expect(user.findFavoriteRecipesByName('cookies')).to.deep.equal([recipeOne]);
   });
 
   it('should be able to add a recipe to the user\'s weekly meal plan',
