@@ -42,11 +42,6 @@ nav {
   z-index: 1;
 }
 
-h1 {
-  margin: 0;
-  color: #Ef5D60;
-}
-
 main {
   box-sizing: border-box;
   display: flex;
@@ -106,6 +101,15 @@ button {
 
 .search-bar__search-label {
   margin-right: 8px;
+}
+
+.search-bar__home-button {
+  color: #011936;
+  font-family: 'Quicksand';
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  font-size: 16px;
 }
 
 
