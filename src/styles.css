@@ -104,12 +104,18 @@ button {
 }
 
 .search-bar__home-button {
+  border-bottom: 4px solid transparent;
   color: #011936;
   font-family: 'Quicksand';
   display: flex;
   align-items: center;
   font-weight: bold;
   font-size: 16px;
+}
+
+.search-bar__home-button:hover {
+  color: #Ef5D60;
+  text-shadow: 1px 1px 2px #011936;
 }
 
 
