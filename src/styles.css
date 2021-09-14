@@ -80,6 +80,7 @@ button {
 }
 
 .nav-bar__nav-tabs > button {
+  border-bottom: 4px solid transparent;
   font-family: 'Raleway', sans-serif;
   font-size: 16px;
   font-weight: 700;
