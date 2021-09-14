@@ -156,11 +156,12 @@ button {
   z-index: 1;
 }
 
+.images-container__button:hover,
 .tag-selected {
   background-color: #Ef5D60;
 }
 
-.images-container__image{
+.images-container__image {
   border: 4px solid #fff;
   height: 300px;
   position: absolute;
@@ -232,6 +233,7 @@ button {
   border: 1px solid lightgrey;
 }
 
+.images-container__button:hover,
 .recipes-container__recipe-card:hover,
 .search-results-container__recipe-card:hover {
   cursor: pointer;
