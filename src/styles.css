@@ -82,7 +82,7 @@ h1, h2, h3, h4 {
 }
 
 p {
-  margin: 1em 0;
+  margin: 16px 0;
 }
 
 nav {
@@ -138,6 +138,7 @@ button {
   height: 50px;
   align-items: center;
   width: 120px;
+	transition: all 0.2s ease-in-out;
 }
 
 .nav-bar__nav-tabs > button:hover {
@@ -167,6 +168,7 @@ button {
   align-items: center;
   font-weight: bold;
   font-size: 16px;
+	transition: all 0.2s ease-in-out;
 }
 
 .search-bar__home-button:hover {
@@ -210,6 +212,7 @@ button {
   min-width: 100px;
   overflow: hidden;
   position: relative;
+	transition: all 0.2s ease-in-out;
 }
 
 .images-container__ingredient-name {
@@ -369,10 +372,6 @@ button {
   margin-top: 25px;
   width: 600px;
   height: 400px;
-}
-
-.ingredient-list__item {
-  margin: 1em 0;
 }
 
 .total-cost {
