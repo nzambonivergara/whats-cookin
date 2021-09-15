@@ -188,7 +188,7 @@ function searchingNow(searchTerm) {
 function displaySearchResults(filteredRecipes) {
   filteredRecipes.forEach((recipe) => {
     displayedSearchResults.innerHTML += `
-      <article class="search-results-container__recipe-card" id=${recipe.id}>
+      <article tabindex="0" class="search-results-container__recipe-card" id=${recipe.id}>
         <img src="${recipe.image}" class="recipe-card__image" alt=${recipe.name}>
         <p class="recipe-card__name">${recipe.name}</p>
       </article>`;
@@ -445,7 +445,7 @@ function renderRecipeCards(container, recipes) {
 
   recipes.forEach(recipe => {
     container.innerHTML +=
-      `<article class="recipes-container__recipe-card" id=${recipe.id}>
+      `<article tabindex="0" class="recipes-container__recipe-card" id=${recipe.id}>
           <img src="${recipe.image}" class="recipe-card__image" alt=${recipe.name}>
           <p class="recipe-card__name">${recipe.name}</p>
       </article>`;
