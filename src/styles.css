@@ -1,3 +1,54 @@
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/* ... */
+
 html {
   display: flex;
   flex-direction: column;
@@ -27,6 +78,11 @@ body::-webkit-scrollbar {
 
 h1, h2, h3, h4 {
   font-family: 'Quicksand', sans-serif;
+  font-weight: bold;
+}
+
+p {
+  margin: 16px 0;
 }
 
 nav {
@@ -40,11 +96,6 @@ nav {
   position: fixed;
   width: 100%;
   z-index: 1;
-}
-
-h1 {
-  margin: 0;
-  color: #Ef5D60;
 }
 
 main {
@@ -80,12 +131,14 @@ button {
 }
 
 .nav-bar__nav-tabs > button {
+  border-bottom: 4px solid transparent;
   font-family: 'Raleway', sans-serif;
   font-size: 16px;
   font-weight: 700;
   height: 50px;
   align-items: center;
   width: 120px;
+	transition: all 0.2s ease-in-out;
 }
 
 .nav-bar__nav-tabs > button:hover {
@@ -105,6 +158,22 @@ button {
 
 .search-bar__search-label {
   margin-right: 8px;
+}
+
+.search-bar__home-button {
+  border-bottom: 4px solid transparent;
+  color: #011936;
+  font-family: 'Quicksand';
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  font-size: 16px;
+	transition: all 0.2s ease-in-out;
+}
+
+.search-bar__home-button:hover {
+  color: #Ef5D60;
+  text-shadow: 1px 1px 2px #011936;
 }
 
 
@@ -143,6 +212,7 @@ button {
   min-width: 100px;
   overflow: hidden;
   position: relative;
+	transition: all 0.2s ease-in-out;
 }
 
 .images-container__ingredient-name {
@@ -155,11 +225,12 @@ button {
   z-index: 1;
 }
 
+.images-container__button:hover,
 .tag-selected {
   background-color: #Ef5D60;
 }
 
-.images-container__image{
+.images-container__image {
   border: 4px solid #fff;
   height: 300px;
   position: absolute;
@@ -173,14 +244,14 @@ button {
 }
 
 .featured__main-title {
-  top: 100px;
+  top: 150px;
   color: #011936;
   font-family: 'Quicksand';
   font-size: 85px;
   font-weight: 700;
-  position: absolute;
+  position: fixed;
   right: 40px;
-  z-index: 1;
+  z-index: -1;
 }
 
 .recipe-button:hover {
@@ -199,8 +270,11 @@ button {
   background-color: rgba(255, 255, 255, 0.85);
   display: flex;
   align-items: center;
+  padding: 20px;
+  margin-top: 20px;
 }
 
+.recipes-container__search-results,
 .weekly-recipes-view__recipes,
 .tagged-recipes-view__recipes-container,
 .all-recipes-view__recipes-container,
@@ -231,6 +305,7 @@ button {
   border: 1px solid lightgrey;
 }
 
+.images-container__button:hover,
 .recipes-container__recipe-card:hover,
 .search-results-container__recipe-card:hover {
   cursor: pointer;
@@ -245,32 +320,9 @@ button {
 .recipe-card__name {
   font-weight: bold;
   text-transform: capitalize;
+  margin: 16px 5px 0 5px;
 }
 
-.top-banner__title {
-  font-size: 2rem;
-  margin-top: 15px;
-}
-
-/* ---------- SEARCHED RECIPE VIEW -------------- */
-
-.search-results {
-  font-size: 30px;
-  font-style: italic;
-  display: flex;
-  justify-content: center;
-}
-
-.recipes-container__search-results {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  margin: 0px 90px 0px 90px;
-}
-
-.search-results-container__recipe-card {
-  margin: 0px 25px 40px 25px;
-}
 
 /* ---------- SINGLE RECIPE VIEW ----------- */
 
@@ -281,6 +333,7 @@ button {
   margin: 0px auto;
   display: flex;
   align-items: center;
+  padding: 20px;
 }
 
 .single-recipe-view-alt {
@@ -306,9 +359,11 @@ button {
   gap: 8px;
 }
 
+.search-results,
 .recipe-title,
 .top-banner__title {
   margin-top: 30px;
+  margin-bottom: 20px;
   font-size: 36px;
   text-transform: capitalize;
 }
