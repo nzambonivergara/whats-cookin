@@ -44,7 +44,7 @@ let domUpdates = {
     element.classList.remove('hidden');
   },
 
-  hide(element){
+  hide(element) {
     element.classList.add('hidden');
   },
 
@@ -76,7 +76,7 @@ let domUpdates = {
   },
 
   renderRecipeIngredients(ingredients) {
-    recipeIngredients.innerHTML= ingredients.reduce((acc, ingredient) => {
+    recipeIngredients.innerHTML = ingredients.reduce((acc, ingredient) => {
       acc += `<p class="ingredient-list__item">● ${ingredient}</p>`;
       return acc;
     }, '');
@@ -105,7 +105,7 @@ let domUpdates = {
       favoriteRecipesSection.appendChild(favoritesTagsGlide);
     }
   },
-  
+
   homeViewImage,
   homeViewButton,
   homeViewSection,
