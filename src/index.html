@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="UTF-8">
     <title>Whats Cookin</title>
@@ -17,15 +17,14 @@
         <button type="button" class="nav-tabs__this-week">This Week</button>
       </div>
       <div class="nav-bar__home-search">
-        <div class="search-bar">
-          <label for="SearchInput" class="search-bar__search-label">Search</label>
+        <form class="search-bar">
+          <label for="searchBarInput" class="search-bar__search-label">Search</label>
           <input type="search" class="search-bar__search-input" name="SearchInput" value="" id="searchBarInput">
-          <button type="button" class="search-bar__initiate-search-button">
             <span class="material-icons">
               search
             </span>
           </button>
-        </div>
+        </form>
         <button type="button" class="search-bar__home-button" id="homeViewButton">
           <p class="search-bar__home-button-text">what's cookin'</p>
           <span class="material-icons">home</span>
@@ -104,7 +103,7 @@
             <p class="total-cost">COST:<span class="material-icons"> attach_money </span><span id="recipeCost"></span></p>
           </div>
           <div class="recipe-information__container">
-            <img id="recipeImage" class="recipe-image">
+            <img id="recipeImage" class="recipe-image" alt="image of selected recipe">
             <div class="recipe-buttons-container">
               <button type="button" class="recipe-button favorite-button" id="addToFavoritesButton">
                 <span class="material-icons">favorite_border</span>
