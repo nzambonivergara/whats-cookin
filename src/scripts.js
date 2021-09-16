@@ -79,20 +79,19 @@ function displayFavoritesView() {
   domUpdates.hide(domUpdates.allRecipesSection);
   domUpdates.hide(domUpdates.weeklyRecipesSection);
   domUpdates.show(domUpdates.favoriteRecipesSection);
-
+  clearTags();
   checkFavoriteRecipes();
 }
 
 function checkFavoriteRecipes() {
-  if (user.favoriteRecipes.length && !tags.length) {
+  if (user.favoriteRecipes.length) {
     domUpdates.hide(domUpdates.noFavoritesMessage);
+    domUpdates.hide(domUpdates.favoriteTaggedRecipesContainer);
     domUpdates.show(domUpdates.favoriteRecipesContainer);
 
     domUpdates.addTagsGlide();
     domUpdates.addStyling(domUpdates.favoritesTagsGlide, 'featured__search-ingredient-glide');
     domUpdates.renderRecipeCards(domUpdates.favoriteRecipesContainer, user.favoriteRecipes);
-  } else if (user.favoriteRecipes.length && tags.length) {
-    domUpdates.hide(domUpdates.noFavoritesMessage);
   } else {
     domUpdates.hide(domUpdates.favoriteRecipesContainer);
     domUpdates.show(domUpdates.noFavoritesMessage);
@@ -153,7 +152,8 @@ function displayHomeView() {
   domUpdates.hide(domUpdates.displayedSearchResults);
   domUpdates.hide(domUpdates.favoriteRecipesSection);
   domUpdates.show(domUpdates.homeViewSection);
-
+  domUpdates.hide(domUpdates.taggedRecipesContainer);
+  clearTags();
   domUpdates.addStyling(domUpdates.singleRecipeView, 'single-recipe-view');
   domUpdates.addStyling(domUpdates.allRecipesSection, 'all-recipes-view__recipes-container');
   domUpdates.removeStyling(domUpdates.singleRecipeView, 'single-recipe-view-alt');
@@ -357,4 +357,10 @@ function createInstructionList(recipe) {
 
 function sortRecipesByName() {
   recipeRepository.recipes.sort((a, b) => a.name - b.name);
+}
+
+function clearTags() {
+  const selectedTags = document.querySelectorAll('.tag-selected')
+  tags = [];
+  selectedTags.forEach(tag => tag.classList.toggle('tag-selected'));
 }
