@@ -36,22 +36,23 @@ function getRandomUser(array) {
 
 function getUser() {
   loadUsers().then(usersData => {
-    const userData = getRandomUser(usersData);
-    user = new User(userData);
-    getRecipes();
+    getRecipes(usersData);
   });
 }
 
-function getRecipes() {
+function getRecipes(usersData) {
   loadRecipes().then(recipeData => {
     recipeRepository = new RecipeRepository(recipeData);
-    getIngredients();
+    getIngredients(usersData);
   });
 }
 
-function getIngredients() {
+function getIngredients(usersData) {
   loadIngredients().then(ingredientsData => {
-    recipeRepository.getRecipesInformation(ingredientsData)
+    recipeRepository.getRecipesInformation(ingredientsData);
+    
+    const userData = getRandomUser(usersData);
+    user = new User(userData, recipeRepository);
   });
 }
 
@@ -234,8 +235,8 @@ function checkWeeklyFavorites() {
   }
 }
 
-function selectTag(e) {
-  const tagElement = e.target.closest('button');
+function selectTag(event) {
+  const tagElement = event.target.closest('button');
   const tag = tagElement.value;
 
   toggleTag(tag, tagElement);
