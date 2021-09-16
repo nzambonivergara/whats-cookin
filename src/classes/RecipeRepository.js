@@ -24,8 +24,9 @@ class RecipeRepository {
     return recipes;
   }
 
-  findRecipesByName(searchTerm) {
-    const foundRecipes = this.recipes.filter((recipe) => {
+  findRecipesByName(searchTerm, recipesToSearch) {
+    const recipes = recipesToSearch || this.recipes;
+    const foundRecipes = recipes.filter((recipe) => {
       return recipe.name.toLowerCase().includes(searchTerm.toLowerCase());
     })
     return foundRecipes;

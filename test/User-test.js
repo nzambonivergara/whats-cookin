@@ -4,18 +4,22 @@ import Recipe from '../src/classes/Recipe';
 import { usersData } from '../src/data/users-sample';
 import { recipeData } from '../src/data/recipes-sample';
 import { ingredientsData } from '../src/data/ingredients-sample';
+import RecipeRepository from '../src/classes/RecipeRepository';
 
 describe('User', function() {
   let user;
   let recipeOne;
   let recipeTwo;
   let recipeThree;
+  let repo;
   const tagOne = 'appetizer';
   const tagTwo = 'snack';
   const tagThree = 'side dish';
 
   beforeEach(() => {
-    user = new User(usersData[0]);
+    repo = new RecipeRepository(recipeData);
+    repo.getRecipesInformation(ingredientsData);
+    user = new User(usersData[0], repo);
     recipeOne = new Recipe(recipeData[2]);
     recipeTwo = new Recipe(recipeData[1]);
     recipeThree = new Recipe(recipeData[0]);

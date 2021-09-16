@@ -1,13 +1,14 @@
 import Ingredient from './Ingredient';
 
 class User {
-  constructor(usersData) {
+  constructor(usersData, recipeRepository) {
     this.name = usersData.name;
     this.id = usersData.id;
     this.pantry = usersData.pantry
     this.favoriteRecipes = [];
     this.weeklyFavorites = [];
     this.filteredByName = [];
+    this.repo = recipeRepository;
   }
 
   addFavorite(recipe) {
@@ -41,9 +42,7 @@ class User {
   }
 
   findFavoriteRecipesByName(searchTerm) {
-    const foundRecipes = this.favoriteRecipes.filter((recipe) => {
-      return recipe.name.toLowerCase().includes(searchTerm);
-    })
+    const foundRecipes = this.repo.findRecipesByName(searchTerm, this.favoriteRecipes);
     return foundRecipes;
   }
 
