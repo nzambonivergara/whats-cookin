@@ -30,15 +30,8 @@ class User {
   }
 
   filterFavoriteRecipesByTags(tags) {
-    const recipes = this.favoriteRecipes.reduce((acc, recipe) => {
-      tags.forEach((tag) => {
-        if (recipe.tags.includes(tag) && !acc.includes(recipe)) {
-          acc.push(recipe);
-        }
-      });
-      return acc;
-    }, []);
-    return recipes;
+    const foundRecipes = this.repo.findRecipesByTag(tags, this.favoriteRecipes); 
+    return foundRecipes;
   }
 
   findFavoriteRecipesByName(searchTerm) {

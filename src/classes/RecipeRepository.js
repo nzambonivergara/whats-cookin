@@ -12,8 +12,9 @@ class RecipeRepository {
     });
   }
 
-  findRecipesByTag(tags) {
-    const recipes = this.recipes.reduce((accumulator, recipe) => {
+  findRecipesByTag(tags, recipesToSearch) {
+    const recipes = recipesToSearch || this.recipes;
+    const foundRecipes = recipes.reduce((accumulator, recipe) => {
       tags.forEach((tag) => {
         if (recipe.tags.includes(tag) && !accumulator.includes(recipe)) {
           accumulator.push(recipe);
@@ -21,7 +22,7 @@ class RecipeRepository {
       });
       return accumulator;
     }, []);
-    return recipes;
+    return foundRecipes;
   }
 
   findRecipesByName(searchTerm, recipesToSearch) {
