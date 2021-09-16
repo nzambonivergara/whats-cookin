@@ -1,4 +1,5 @@
 import { expect } from 'chai';
+import Ingredient from '../src/classes/Ingredient';
 import RecipeRepository from '../src/classes/RecipeRepository';
 import { ingredientsData } from '../src/data/ingredients-sample';
 import { recipeData } from '../src/data/recipes-sample';
@@ -24,7 +25,21 @@ describe('Recipe Repository', () => {
     expect(repo.recipes[1].id).to.equal(recipeData[1].id);
   });
 
-  // getRecipesInformation tests
+  it('Should get recipes\' ingredients information', () => {
+    const newRepo = new RecipeRepository(recipeData); 
+    let firstIngredient = newRepo.recipes[0].ingredients[0];
+
+    expect(firstIngredient.name).to.equal(undefined);
+    expect(firstIngredient.estimatedCostInCents).to.equal(undefined);
+    expect(firstIngredient).not.instanceOf(Ingredient);
+    
+    newRepo.getRecipesInformation(ingredientsData);
+    firstIngredient = newRepo.recipes[0].ingredients[0];
+
+    expect(firstIngredient.name).to.equal('wheat flour');
+    expect(firstIngredient.estimatedCostInCents).to.equal(142);
+    expect(firstIngredient).instanceOf(Ingredient);
+  });
 
   it('Should filter recipes based on one tag', () => {
     const expected = repo.findRecipesByTag(['snack']);
