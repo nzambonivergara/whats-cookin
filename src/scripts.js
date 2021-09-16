@@ -1,74 +1,32 @@
 import './styles.css';
-import apiCalls from './apiCalls';
+import domUpdates from './domUpdates';
 import { loadUsers, loadIngredients, loadRecipes } from './apiCalls';
 import RecipeRepository from './classes/RecipeRepository';
 import User from './classes/User';
 
 let recipeRepository;
-let filteredRecipes;
 let tags = [];
 let user;
 
-const homeViewImage = document.getElementById('homeViewImage');
-const homeViewButton = document.getElementById('homeViewButton');
-const homeViewSection = document.getElementById('homeViewSection');
-const singleRecipeView = document.getElementById('singleRecipeView');
-
-const allRecipesButton = document.getElementById('allRecipesButton');
-const allRecipesSection = document.getElementById('allRecipesSection');
-const allRecipesContainer = document.getElementById('allRecipesContainer');
-
-const noFavoritesMessage = document.getElementById('noFavoritesMessage');
-const favoritesViewButton = document.getElementById('favoritesViewButton');
-const addToFavoritesButton = document.getElementById('addToFavoritesButton');
-const favoriteRecipesSection = document.getElementById('favoriteRecipesSection');
-const favoriteRecipesContainer = document.getElementById('favoriteRecipesContainer');
-const removeFromFavoritesButton = document.getElementById('removeFromFavoritesButton');
-const favoriteTaggedRecipesContainer = document.getElementById('favoriteTaggedRecipesContainer');
-
-const weeklyRecipesButton = document.querySelector('.nav-tabs__this-week');
-const weeklyRecipesSection = document.getElementById('weeklyRecipesSection');
-
-const recipeName = document.getElementById('recipeName');
-const recipeCost = document.getElementById('recipeCost');
-const recipeImage = document.getElementById('recipeImage');
-const recipeIngredients = document.getElementById('recipeIngredients');
-const recipeInstructions = document.getElementById('recipeInstructions');
-const mainContentContainer = document.getElementById('mainContentContainer');
-const searchIngredientGlide = document.getElementById('searchIngredientGlide');
-const taggedRecipesContainer = document.getElementById('taggedRecipesContainer');
-
-const favoritesTagsGlide = searchIngredientGlide.cloneNode(true);
-
-const noResults = document.getElementById('noResults');
-const searchBar = document.getElementById('searchBarInput');
-const searchResults = document.getElementById('searchedRecipesContainer');
-const displayedSearchResults = document.getElementById('searchedRecipes');
-
-const weeklyRecipes = document.getElementById('weeklyRecipes');
-const addToWeekButton = document.getElementById('addToWeekButton');
-const noWeeklyRecipes = document.getElementById('noWeeklyRecipes');
-const removeFromWeekButton = document.getElementById('removeFromWeekButton');
-
 window.addEventListener('load', getUser);
-searchBar.addEventListener('keyup', () => {prepSearch(event)});
-searchResults.addEventListener('click', displayRecipe);
-searchIngredientGlide.addEventListener('click', selectTag);
-homeViewButton.addEventListener('click', displayHomeView);
-allRecipesButton.addEventListener('click', displayAllRecipes);
-allRecipesContainer.addEventListener('click', displayRecipe);
-taggedRecipesContainer.addEventListener('click', displayRecipe);
-displayedSearchResults.addEventListener('click', displayRecipe);
-weeklyRecipes.addEventListener('click', displayRecipe);
-addToWeekButton.addEventListener('click', addToWeeklyRecipes);
-weeklyRecipesButton.addEventListener('click', displayWeeklyRecipes);
-removeFromWeekButton.addEventListener('click', removeFromWeeklyRecipes);
-favoritesViewButton.addEventListener('click', displayFavoritesView);
-addToFavoritesButton.addEventListener('click', addToFavorites);
-favoriteRecipesContainer.addEventListener('click', displayRecipe);
-removeFromFavoritesButton.addEventListener('click', removeFromFavorites);
-favoriteRecipesSection.addEventListener('click', selectTag)
-favoriteTaggedRecipesContainer.addEventListener('click', displayRecipe)
+domUpdates.searchBar.addEventListener('keyup', prepSearch);
+domUpdates.searchResults.addEventListener('click', displayRecipe);
+domUpdates.searchIngredientGlide.addEventListener('click', selectTag);
+domUpdates.homeViewButton.addEventListener('click', displayHomeView);
+domUpdates.allRecipesButton.addEventListener('click', displayAllRecipes);
+domUpdates.allRecipesContainer.addEventListener('click', displayRecipe);
+domUpdates.taggedRecipesContainer.addEventListener('click', displayRecipe);
+domUpdates.displayedSearchResults.addEventListener('click', displayRecipe);
+domUpdates.weeklyRecipes.addEventListener('click', displayRecipe);
+domUpdates.addToWeekButton.addEventListener('click', addToWeeklyRecipes);
+domUpdates.weeklyRecipesButton.addEventListener('click', displayWeeklyRecipes);
+domUpdates.removeFromWeekButton.addEventListener('click', removeFromWeeklyRecipes);
+domUpdates.favoritesViewButton.addEventListener('click', displayFavoritesView);
+domUpdates.addToFavoritesButton.addEventListener('click', addToFavorites);
+domUpdates.favoriteRecipesContainer.addEventListener('click', displayRecipe);
+domUpdates.removeFromFavoritesButton.addEventListener('click', removeFromFavorites);
+domUpdates.favoriteRecipesSection.addEventListener('click', selectTag)
+domUpdates.favoriteTaggedRecipesContainer.addEventListener('click', displayRecipe)
 
 function getRandomUser(array) {
   const index =  Math.floor(Math.random() * array.length);
@@ -97,45 +55,46 @@ function getIngredients() {
   });
 }
 
-function addToFavorites(event) {
-  const favoriteRecipe = recipeRepository.recipes.find(recipe => recipe.id === parseInt(addToFavoritesButton.name));
+function addToFavorites() {
+  const favoriteRecipe = recipeRepository.recipes.find(recipe => recipe.id === parseInt(domUpdates.addToFavoritesButton.name));
   user.addFavorite(favoriteRecipe);
 
-  hide(addToFavoritesButton);
-  show(removeFromFavoritesButton);
+  domUpdates.hide(domUpdates.addToFavoritesButton);
+  domUpdates.show(domUpdates.removeFromFavoritesButton);
 }
 
-function removeFromFavorites(event) {
-  const favoriteRecipe = recipeRepository.recipes.find(recipe => recipe.id === parseInt(removeFromFavoritesButton.name));
+function removeFromFavorites() {
+  const favoriteRecipe = recipeRepository.recipes.find(recipe => recipe.id === parseInt(domUpdates.removeFromFavoritesButton.name));
   user.removeFavorite(favoriteRecipe);
 
-  hide(removeFromFavoritesButton);
-  show(addToFavoritesButton);
+  domUpdates.hide(domUpdates.removeFromFavoritesButton);
+  domUpdates.show(domUpdates.addToFavoritesButton);
 }
 
 function displayFavoritesView() {
-  hide(searchResults);
-  hide(homeViewSection);
-  hide(singleRecipeView);
-  hide(allRecipesSection);
-  hide(weeklyRecipesSection);
-  show(favoriteRecipesSection);
-  clearTags()
+  domUpdates.hide(domUpdates.searchResults);
+  domUpdates.hide(domUpdates.homeViewSection);
+  domUpdates.hide(domUpdates.singleRecipeView);
+  domUpdates.hide(domUpdates.allRecipesSection);
+  domUpdates.hide(domUpdates.weeklyRecipesSection);
+  domUpdates.show(domUpdates.favoriteRecipesSection);
+  clearTags();
   checkFavoriteRecipes();
 }
 
 function checkFavoriteRecipes() {
   if (user.favoriteRecipes.length) {
-    hide(noFavoritesMessage);
-    show(favoriteRecipesContainer);
-    hide(favoriteTaggedRecipesContainer)
+    domUpdates.hide(domUpdates.noFavoritesMessage);
+    domUpdates.hide(domUpdates.favoriteTaggedRecipesContainer);
+    domUpdates.show(domUpdates.favoriteRecipesContainer);
 
-    addTagsGlide();
-    renderRecipeCards(favoriteRecipesContainer, user.favoriteRecipes);
+    domUpdates.addTagsGlide();
+    domUpdates.addStyling(domUpdates.favoritesTagsGlide, 'featured__search-ingredient-glide');
+    domUpdates.renderRecipeCards(domUpdates.favoriteRecipesContainer, user.favoriteRecipes);
   } else {
-    hide(favoriteRecipesContainer);
-    show(noFavoritesMessage);
-    favoriteRecipesSection.removeChild(favoritesTagsGlide);
+    domUpdates.hide(domUpdates.favoriteRecipesContainer);
+    domUpdates.show(domUpdates.noFavoritesMessage);
+    domUpdates.favoriteRecipesSection.removeChild(domUpdates.favoritesTagsGlide);
   }
 }
 
@@ -145,33 +104,32 @@ function prepSearch(event) {
 }
 
 function checkSearchField(searchTerm) {
-  if (!searchBar.value && !displayedSearchResults.innerHTML) {
+  if (!domUpdates.searchBar.value && !domUpdates.displayedSearchResults.innerHTML) {
     return;
 
-  } else if (searchBar.value){
-    hide(noResults);
-    hide(homeViewSection);
-    hide(weeklyRecipesSection);
-    hide(taggedRecipesContainer);
-    show(searchResults);
-    show(displayedSearchResults);
+  } else if (domUpdates.searchBar.value) {
+    domUpdates.hide(domUpdates.noResults);
+    domUpdates.hide(domUpdates.homeViewSection);
+    domUpdates.hide(domUpdates.weeklyRecipesSection);
+    domUpdates.hide(domUpdates.taggedRecipesContainer);
+    domUpdates.show(domUpdates.searchResults);
+    domUpdates.show(domUpdates.displayedSearchResults);
 
-    addStyling(singleRecipeView, 'single-recipe-view-alt');
-    addStyling(allRecipesSection, 'all-recipes-view__recipes-container-alt');
-    removeStyling(singleRecipeView, 'single-recipe-view');
-    removeStyling(allRecipesSection, 'all-recipes-view__recipes-container');
+    domUpdates.addStyling(domUpdates.singleRecipeView, 'single-recipe-view-alt');
+    domUpdates.addStyling(domUpdates.allRecipesSection, 'all-recipes-view__recipes-container-alt');
+    domUpdates.removeStyling(domUpdates.singleRecipeView, 'single-recipe-view');
+    domUpdates.removeStyling(domUpdates.allRecipesSection, 'all-recipes-view__recipes-container');
 
     searchingNow(searchTerm);
 
   } else {
-    hide(displayedSearchResults);
-    show(noResults);
-    show(searchResults);
+    domUpdates.hide(domUpdates.displayedSearchResults);
+    domUpdates.show(domUpdates.noResults);
+    domUpdates.show(domUpdates.searchResults);
   }
 }
 
 function searchingNow(searchTerm) {
-  displayedSearchResults.innerHTML = '';
   const filteredRecipes = recipeRepository.findRecipesByName(searchTerm);
   const foundRecipesByIngredient = recipeRepository.findRecipesByIngredient(searchTerm);
 
@@ -181,63 +139,52 @@ function searchingNow(searchTerm) {
     }
   });
 
-  displaySearchResults(filteredRecipes);
-}
-
-function displaySearchResults(filteredRecipes) {
-  filteredRecipes.forEach((recipe) => {
-    displayedSearchResults.innerHTML += `
-      <article class="search-results-container__recipe-card" id=${recipe.id}>
-        <img src="${recipe.image}" class="recipe-card__image" alt=${recipe.name}>
-        <p class="recipe-card__name">${recipe.name}</p>
-      </article>`;
-  });
+  domUpdates.renderRecipeCards(domUpdates.displayedSearchResults, filteredRecipes);
 }
 
 function displayHomeView() {
-  hide(noResults);
-  hide(searchResults);
-  hide(singleRecipeView);
-  hide(allRecipesSection);
-  hide(weeklyRecipesSection);
-  hide(displayedSearchResults);
-  hide(favoriteRecipesSection);
-  show(homeViewSection);
-  hide(taggedRecipesContainer)
-  clearTags()
-  addStyling(singleRecipeView, 'single-recipe-view');
-  addStyling(allRecipesSection, 'all-recipes-view__recipes-container');
-  removeStyling(singleRecipeView, 'single-recipe-view-alt');
-  removeStyling(allRecipesSection, 'all-recipes-view__recipes-container-alt');
+  domUpdates.hide(domUpdates.noResults);
+  domUpdates.hide(domUpdates.searchResults);
+  domUpdates.hide(domUpdates.singleRecipeView);
+  domUpdates.hide(domUpdates.allRecipesSection);
+  domUpdates.hide(domUpdates.weeklyRecipesSection);
+  domUpdates.hide(domUpdates.displayedSearchResults);
+  domUpdates.hide(domUpdates.favoriteRecipesSection);
+  domUpdates.show(domUpdates.homeViewSection);
+  domUpdates.hide(domUpdates.taggedRecipesContainer);
+  clearTags();
+  domUpdates.addStyling(domUpdates.singleRecipeView, 'single-recipe-view');
+  domUpdates.addStyling(domUpdates.allRecipesSection, 'all-recipes-view__recipes-container');
+  domUpdates.removeStyling(domUpdates.singleRecipeView, 'single-recipe-view-alt');
+  domUpdates.removeStyling(domUpdates.allRecipesSection, 'all-recipes-view__recipes-container-alt');
 }
 
 function displayAllRecipes() {
-  hide(searchResults);
-  hide(homeViewSection);
-  hide(singleRecipeView);
-  hide(weeklyRecipesSection);
-  hide(favoriteRecipesSection);
-  show(allRecipesSection);
+  domUpdates.hide(domUpdates.searchResults);
+  domUpdates.hide(domUpdates.homeViewSection);
+  domUpdates.hide(domUpdates.singleRecipeView);
+  domUpdates.hide(domUpdates.weeklyRecipesSection);
+  domUpdates.hide(domUpdates.favoriteRecipesSection);
+  domUpdates.show(domUpdates.allRecipesSection);
 
-  addStyling(singleRecipeView, 'single-recipe-view');
-  addStyling(allRecipesSection, 'all-recipes-view__recipes-container');
-  removeStyling(singleRecipeView, 'single-recipe-view-alt');
-  removeStyling(allRecipesSection, 'all-recipes-view__recipes-container-alt');
+  domUpdates.addStyling(domUpdates.singleRecipeView, 'single-recipe-view');
+  domUpdates.addStyling(domUpdates.allRecipesSection, 'all-recipes-view__recipes-container');
+  domUpdates.removeStyling(domUpdates.singleRecipeView, 'single-recipe-view-alt');
+  domUpdates.removeStyling(domUpdates.allRecipesSection, 'all-recipes-view__recipes-container-alt');
 
   sortRecipesByName();
-  renderRecipeCards(allRecipesContainer, recipeRepository.recipes);
+  domUpdates.renderRecipeCards(domUpdates.allRecipesContainer, recipeRepository.recipes);
 }
 
 function displayRecipe(event) {
   const card = event.target.parentNode;
 
-  if (card.classList.contains('recipes-container__recipe-card')
-  || card.classList.contains('search-results-container__recipe-card')) {
-    hide(homeViewSection);
-    hide(allRecipesSection);
-    hide(weeklyRecipesSection);
-    hide(favoriteRecipesSection);
-    show(singleRecipeView);
+  if (card.classList.contains('recipes-container__recipe-card')) {
+    domUpdates.hide(domUpdates.homeViewSection);
+    domUpdates.hide(domUpdates.allRecipesSection);
+    domUpdates.hide(domUpdates.weeklyRecipesSection);
+    domUpdates.hide(domUpdates.favoriteRecipesSection);
+    domUpdates.show(domUpdates.singleRecipeView);
     renderIndividualRecipe(card.id);
   }
 }
@@ -246,16 +193,16 @@ function addToWeeklyRecipes() {
   const recipe = findRecipeTitle();
   user.addWeeklyRecipe(recipe);
 
-  hide(addToWeekButton);
-  show(removeFromWeekButton);
+  domUpdates.hide(domUpdates.addToWeekButton);
+  domUpdates.show(domUpdates.removeFromWeekButton);
 }
 
 function removeFromWeeklyRecipes() {
   const recipe = findRecipeTitle();
   user.removeWeeklyRecipe(recipe);
 
-  hide(removeFromWeekButton);
-  show(addToWeekButton);
+  domUpdates.hide(domUpdates.removeFromWeekButton);
+  domUpdates.show(domUpdates.addToWeekButton);
 }
 
 function findRecipeTitle() {
@@ -265,33 +212,25 @@ function findRecipeTitle() {
 }
 
 function displayWeeklyRecipes() {
-  hide(homeViewSection);
-  hide(singleRecipeView);
-  hide(allRecipesSection);
-  hide(favoriteRecipesSection);
-  show(weeklyRecipesSection);
+  domUpdates.hide(domUpdates.homeViewSection);
+  domUpdates.hide(domUpdates.singleRecipeView);
+  domUpdates.hide(domUpdates.allRecipesSection);
+  domUpdates.hide(domUpdates.favoriteRecipesSection);
+  domUpdates.show(domUpdates.weeklyRecipesSection);
 
   checkWeeklyFavorites();
 }
 
 function checkWeeklyFavorites() {
   if (!user.weeklyFavorites.length) {
-    hide(weeklyRecipes);
-    show(noWeeklyRecipes);
+    domUpdates.hide(domUpdates.weeklyRecipes);
+    domUpdates.show(domUpdates.noWeeklyRecipes);
 
   } else {
-    hide(noWeeklyRecipes);
-    show(weeklyRecipes);
+    domUpdates.hide(domUpdates.noWeeklyRecipes);
+    domUpdates.show(domUpdates.weeklyRecipes);
 
-    renderRecipeCards(weeklyRecipes, user.weeklyFavorites);
-  }
-}
-
-function addTagsGlide() {
-  if (!favoriteRecipesSection.contains(favoritesTagsGlide)) {
-    favoritesTagsGlide.id = 'favoriteSearchGlide';
-    addStyling(favoritesTagsGlide, 'featured__search-ingredient-glide');
-    favoriteRecipesSection.appendChild(favoritesTagsGlide);
+    domUpdates.renderRecipeCards(domUpdates.weeklyRecipes, user.weeklyFavorites);
   }
 }
 
@@ -310,15 +249,15 @@ function selectTag(e) {
 function updateFavorites() {
   if (tags.length) {
     const filteredRecipes = user.filterFavoriteRecipesByTags(tags);
-    renderRecipeCards(favoriteTaggedRecipesContainer, filteredRecipes);
+    domUpdates.renderRecipeCards(domUpdates.favoriteTaggedRecipesContainer, filteredRecipes);
 
-    hide(favoriteRecipesContainer);
-    show(favoriteTaggedRecipesContainer);
+    domUpdates.hide(domUpdates.favoriteRecipesContainer);
+    domUpdates.show(domUpdates.favoriteTaggedRecipesContainer);
 
   } else {
-    removeAllRecipeCards();
+    domUpdates.removeAllRecipeCards();
 
-    hide(favoriteTaggedRecipesContainer);
+    domUpdates.hide(domUpdates.favoriteTaggedRecipesContainer);
     checkFavoriteRecipes();
   }
 }
@@ -326,34 +265,26 @@ function updateFavorites() {
 function updateMain() {
   if (tags.length) {
     const filteredRecipes = recipeRepository.findRecipesByTag(tags);
-    renderRecipeCards(taggedRecipesContainer, filteredRecipes);
+    domUpdates.renderRecipeCards(domUpdates.taggedRecipesContainer, filteredRecipes);
 
-    hide(noResults);
-    hide(searchResults);
-    hide(singleRecipeView);
-    hide(allRecipesSection);
-    hide(mainContentContainer);
-    hide(weeklyRecipesSection);
-    hide(favoriteRecipesSection);
-    hide(displayedSearchResults);
-    show(homeViewSection);
-    show(mainContentContainer);
-    show(taggedRecipesContainer);
+    domUpdates.hide(domUpdates.noResults);
+    domUpdates.hide(domUpdates.searchResults);
+    domUpdates.hide(domUpdates.singleRecipeView);
+    domUpdates.hide(domUpdates.allRecipesSection);
+    domUpdates.hide(domUpdates.mainContentContainer);
+    domUpdates.hide(domUpdates.weeklyRecipesSection);
+    domUpdates.hide(domUpdates.favoriteRecipesSection);
+    domUpdates.hide(domUpdates.displayedSearchResults);
+    domUpdates.show(domUpdates.homeViewSection);
+    domUpdates.show(domUpdates.mainContentContainer);
+    domUpdates.show(domUpdates.taggedRecipesContainer);
 
   } else {
-    removeAllRecipeCards();
+    domUpdates.removeAllRecipeCards();
 
-    hide(taggedRecipesContainer);
-    show(homeViewImage)
+    domUpdates.hide(domUpdates.taggedRecipesContainer);
+    domUpdates.show(domUpdates.homeViewImage)
   }
-}
-
-function removeAllRecipeCards() {
-  const recipeCards = document.querySelectorAll('.recipes-container__recipe-card');
-
-  recipeCards.forEach((recipeCard) => {
-    recipeCard.remove();
-  })
 }
 
 function toggleTag(tag, tagElement) {
@@ -382,7 +313,7 @@ function removeTag(tag) {
 function renderIndividualRecipe(recipeId) {
   const recipe = recipeRepository.recipes.find(recipe => recipe.id === parseInt(recipeId));
 
-  individualRecipeInterpolation(recipe);
+  domUpdates.individualRecipeInterpolation(recipe);
 
   createIngredientList(recipe);
   createInstructionList(recipe);
@@ -393,83 +324,38 @@ function renderIndividualRecipe(recipeId) {
 function checkIfRecipeInWeekly(recipe) {
   const matchingRecipe = user.weeklyFavorites.find((weeklyRecipe) => weeklyRecipe.id === recipe.id);
   if (matchingRecipe) {
-    hide(addToWeekButton);
-    show(removeFromWeekButton);
+    domUpdates.hide(domUpdates.addToWeekButton);
+    domUpdates.show(domUpdates.removeFromWeekButton);
 
   } else {
-    hide(removeFromWeekButton);
-    show(addToWeekButton);
+    domUpdates.hide(domUpdates.removeFromWeekButton);
+    domUpdates.show(domUpdates.addToWeekButton);
   }
 }
 
 function checkIfRecipeInFavorites(recipe) {
   if (user.favoriteRecipes.includes(recipe)) {
-    hide(addToFavoritesButton);
-    show(removeFromFavoritesButton);
+    domUpdates.hide(domUpdates.addToFavoritesButton);
+    domUpdates.show(domUpdates.removeFromFavoritesButton);
 
   } else {
-    hide(removeFromFavoritesButton);
-    show(addToFavoritesButton);
+    domUpdates.hide(domUpdates.removeFromFavoritesButton);
+    domUpdates.show(domUpdates.addToFavoritesButton);
   }
-}
-
-function individualRecipeInterpolation(recipe) {
-  recipeImage.alt = recipe.name;
-  recipeImage.src = recipe.image;
-  recipeName.innerText = recipe.name;
-  recipeCost.innerText = recipe.returnCostInDollars();
-  addToFavoritesButton.name = recipe.id;
-  removeFromFavoritesButton.name = recipe.id;
 }
 
 function createIngredientList(recipe) {
   const ingredientList = recipe.returnIngredientsList();
-
-  recipeIngredients.innerHTML= ingredientList.reduce((acc, ingredient) => {
-    acc += `<p class="ingredient-list__item">● ${ingredient}</p>`;
-    return acc;
-  }, '');
+  domUpdates.renderRecipeIngredients(ingredientList);
 }
 
 function createInstructionList(recipe) {
   const instructionsList = recipe.returnInstructions();
-
-  recipeInstructions.innerHTML = instructionsList.reduce((acc, instruction) => {
-    acc += `<p class="ingredient-list__item">${instruction}</p>`;
-    return acc;
-  }, '');
-}
-
-function renderRecipeCards(container, recipes) {
-  container.innerHTML = '';
-
-  recipes.forEach(recipe => {
-    container.innerHTML +=
-      `<article class="recipes-container__recipe-card" id=${recipe.id}>
-          <img src="${recipe.image}" class="recipe-card__image" alt=${recipe.name}>
-          <p class="recipe-card__name">${recipe.name}</p>
-      </article>`;
-  });
+  domUpdates.renderRecipeInstructions(instructionsList);
 }
 
 function sortRecipesByName() {
   recipeRepository.recipes.sort((a, b) => a.name - b.name);
-}
-
-function show(element) {
-  element.classList.remove('hidden');
-}
-
-function hide(element) {
-  element.classList.add('hidden');
-}
-
-function addStyling(element, className) {
-  element.classList.add(className);
-}
-
-function removeStyling(element, className) {
-  element.classList.remove(className);
 }
 
 function clearTags() {
