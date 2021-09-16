@@ -40,15 +40,7 @@ class User {
   }
 
   findFavoriteRecipesByIngredient(ingredientName) {
-    const filteredRecipe = this.favoriteRecipes.filter((recipe) => {
-      const hasMatchingIngredient = recipe.ingredients.find((ingredient) => {
-        return ingredient.name.includes(ingredientName);
-      })
-      if (hasMatchingIngredient) {
-        return true;
-      }
-      return false;
-    })
+    const filteredRecipe = this.repo.findRecipesByIngredient(ingredientName, this.favoriteRecipes);
     return filteredRecipe;
   }
 }
