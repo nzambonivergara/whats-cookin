@@ -8,7 +8,7 @@ class RecipeRepository {
   getRecipesInformation(ingredientsData) {
     this.recipes.forEach((recipe) => {
       recipe.getIngredientsInformation(ingredientsData);
-    })
+    });
   }
 
   findRecipesByTag(tags) {

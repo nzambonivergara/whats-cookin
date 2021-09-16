@@ -1,106 +1,7 @@
 import { expect } from 'chai';
 import RecipeRepository from '../src/classes/RecipeRepository';
-import { ingredientsData } from '../src/data/ingredients-sample'
-
-const recipeData = [
-  {
-    "id": 595736,
-    "image": "https://spoonacular.com/recipeImages/595736-556x370.jpg",
-    "ingredients": [
-      {
-        "id": 20081,
-        "quantity": {
-          "amount": 1.5,
-          "unit": "c"
-        }
-      },
-      {
-        "id": 18372,
-        "quantity": {
-          "amount": 0.5,
-          "unit": "tsp"
-        }
-      },
-      {
-        "id": 1123,
-        "quantity": {
-          "amount": 1,
-          "unit": "large"
-        }
-      },
-      {
-        "id": 19335,
-        "quantity": {
-          "amount": 0.5,
-          "unit": "c"
-        }
-      },
-    ],
-    "instructions": [
-      {
-        "instruction": "In a large mixing bowl, whisk together the dry ingredients (flour, pudding mix, soda and salt). Set aside.In a large mixing bowl of a stand mixer, cream butter for 30 seconds. Gradually add granulated sugar and brown sugar and cream until light and fluffy.",
-        "number": 1
-      },
-      {
-        "instruction": "Add egg and vanilla and mix until combined.",
-        "number": 2
-      },
-      {
-        "instruction": "Add dry ingredients and mix on low just until incorporated. Stir in chocolate chips.Scoop the dough into 1,5 tablespoon size balls and place on a plate or sheet. Cover with saran wrap and chill at least 2 hours or overnight.When ready to bake, preheat oven to 350 degrees.",
-        "number": 3
-      },
-    ],
-    "name": "Loaded Chocolate Chip Pudding Cookie Cups",
-    "tags": [
-      "antipasti",
-      "starter",
-      "snack",
-      "appetizer",
-      "antipasto",
-      "hor d'oeuvre"
-    ]
-  },
-  {
-    "id": 678353,
-    "image": "https://spoonacular.com/recipeImages/678353-556x370.jpg",
-    "ingredients": [
-      {
-        "id": 1009016,
-        "quantity": {
-          "amount": 1.5,
-          "unit": "cups"
-        }
-      },
-      {
-        "id": 9003,
-        "quantity": {
-          "amount": 2,
-          "unit": ""
-        }
-      },
-      {
-        "id": 20027,
-        "quantity": {
-          "amount": 1,
-          "unit": "tablespoon"
-        }
-      },
-    ],
-    "instructions": [
-      {
-        "instruction": "Season the pork chops with salt and pepper and grill or pan fry over medium high heat until cooked, about 3-5 minutes per side. (If grilling, baste the chops in the maple dijon apple cider sauce as you grill.)Meanwhile, mix the remaining ingredients except the apple slices, bring to a simmer and cook until the sauce thickens, about 2-5 minutes.Grill or saute the apple slices until just tender but still crisp.Toss the pork chops and apple slices in the maple dijon apple cider sauce and enjoy!",
-        "number": 1
-      }
-    ],
-    "name": "Maple Dijon Apple Cider Grilled Pork Chops",
-    "tags": [
-      "lunch",
-      "main course",
-      "main dish",
-      "dinner"
-    ]
-  },
-];
+import { ingredientsData } from '../src/data/ingredients-sample';
+import { recipeData } from '../src/data/recipes-sample';
 
 describe('Recipe Repository', () => {
   let repo;
@@ -119,29 +20,55 @@ describe('Recipe Repository', () => {
   });
 
   it('Should have recipes', () => {
-    expect(repo.recipes[0].id).to.equal(595736);
+    expect(repo.recipes[0].id).to.equal(recipeData[0].id);
+    expect(repo.recipes[1].id).to.equal(recipeData[1].id);
   });
+
+  // getRecipesInformation tests
 
   it('Should filter recipes based on one tag', () => {
     const expected = repo.findRecipesByTag(['snack']);
     expect(expected[0].name).to.equal('Loaded Chocolate Chip Pudding Cookie Cups');
-    expect(expected.length).to.equal(1);
+    expect(expected.length).to.equal(2);
+  });
+
+  it('Should not return recipes if not found by tag', () => {
+    const expected = repo.findRecipesByTag(['cake']);
+    expect(expected).to.deep.equal([]);
+    expect(expected.length).to.equal(0);
   });
 
   it('Should filter recipes based on more than one tag', () => {
     const expected = repo.findRecipesByTag(['snack', 'antipasti']);
     expect(expected[0].name).to.equal('Loaded Chocolate Chip Pudding Cookie Cups');
-    expect(expected.length).to.equal(1);
+    expect(expected.length).to.equal(2);
+  });
+
+  it('Should not return recipes by more than one tag if not found', () => {
+    const expected = repo.findRecipesByTag(['dessert', 'cake']);
+    expect(expected).to.deep.equal([]);
+    expect(expected.length).to.equal(0);
   });
 
   it('Should filter recipes based on name', () => {
-    const expected = repo.findRecipesByName('Maple Dijon Apple Cider Grilled Pork Chops');
-    expect(expected[0].id).to.equal(678353);
+    const expected = repo.findRecipesByName(recipeData[0].name);
+    expect(expected[0].id).to.equal(recipeData[0].id);
+  });
+
+  it('Should not return recipes by name if not found', () => {
+    const expected = repo.findRecipesByName('Fruit Pie');
+    expect(expected).to.deep.equal([]);
   });
 
   it('Should filter recipes based on ingredients', () => {
     const expected = repo.findRecipesByIngredient('wheat flour');
     expect(expected[0].name).to.equal('Loaded Chocolate Chip Pudding Cookie Cups');
-    expect(expected.length).to.equal(1);
+    expect(expected.length).to.equal(3);
+  });
+
+  it('Should not return recipes by ingredients if not found', () => {
+    const expected = repo.findRecipesByIngredient('tapioca');
+    expect(expected).to.deep.equal([]);
+    expect(expected.length).to.equal(0);
   });
 });
