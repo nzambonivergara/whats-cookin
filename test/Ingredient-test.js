@@ -69,19 +69,19 @@ describe('Ingredient class', function() {
   });
 
   it('should be able to get the ingredient name', function() {
-    ingredient1.retrieveNameAndCost(ingredientsData);
+    ingredient1.findIngredientDetails(ingredientsData);
 
     expect(ingredient1.name).to.equal('wheat flour');
   });
 
   it('should be able to get its estimated cost in cents per unit', function() {
-    ingredient1.retrieveNameAndCost(ingredientsData);
+    ingredient1.findIngredientDetails(ingredientsData);
 
     expect(ingredient1.estimatedCostInCents).to.equal(142);
   });
 
   it('should be able to calculate its total cost in dollars by its amount', function() {
-    ingredient1.retrieveNameAndCost(ingredientsData);
+    ingredient1.findIngredientDetails(ingredientsData);
     const totalCostInDollars = ingredient1.calculateCost();
 
     expect(totalCostInDollars).to.equal(2.13);

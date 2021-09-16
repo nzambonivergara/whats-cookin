@@ -15,7 +15,7 @@ class Recipe {
       return new Ingredient(ingredient);
     });
 
-    this.ingredients.forEach(ingredient => ingredient.retrieveNameAndCost(ingredientsData));
+    this.ingredients.forEach(ingredient => ingredient.findIngredientDetails(ingredientsData));
   }
 
   returnIngredientsList() {
