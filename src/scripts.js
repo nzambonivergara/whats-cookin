@@ -1,12 +1,10 @@
 import './styles.css';
 import domUpdates from './domUpdates';
-import apiCalls from './apiCalls';
 import { loadUsers, loadIngredients, loadRecipes } from './apiCalls';
 import RecipeRepository from './classes/RecipeRepository';
 import User from './classes/User';
 
 let recipeRepository;
-let filteredRecipes;
 let tags = [];
 let user;
 
@@ -57,16 +55,16 @@ function getIngredients() {
   });
 }
 
-function addToFavorites(event) {
+function addToFavorites() {
   const favoriteRecipe = recipeRepository.recipes.find(recipe => recipe.id === parseInt(domUpdates.addToFavoritesButton.name));
   user.addFavorite(favoriteRecipe);
-  console.log(favoriteRecipe);
+
   domUpdates.hide(domUpdates.addToFavoritesButton);
   domUpdates.show(domUpdates.removeFromFavoritesButton);
 }
 
-function removeFromFavorites(event) {
-  const favoriteRecipe = recipeRepository.recipes.find(recipe => recipe.id === parseInt(removeFromFavoritesButton.name));
+function removeFromFavorites() {
+  const favoriteRecipe = recipeRepository.recipes.find(recipe => recipe.id === parseInt(domUpdates.removeFromFavoritesButton.name));
   user.removeFavorite(favoriteRecipe);
 
   domUpdates.hide(domUpdates.removeFromFavoritesButton);
@@ -110,7 +108,7 @@ function checkSearchField(searchTerm) {
   if (!domUpdates.searchBar.value && !domUpdates.displayedSearchResults.innerHTML) {
     return;
 
-  } else if (domUpdates.searchBar.value){
+  } else if (domUpdates.searchBar.value) {
     domUpdates.hide(domUpdates.noResults);
     domUpdates.hide(domUpdates.homeViewSection);
     domUpdates.hide(domUpdates.weeklyRecipesSection);
@@ -181,8 +179,7 @@ function displayAllRecipes() {
 function displayRecipe(event) {
   const card = event.target.parentNode;
 
-  if (card.classList.contains('recipes-container__recipe-card')
-  || card.classList.contains('search-results-container__recipe-card')) {
+  if (card.classList.contains('recipes-container__recipe-card')) {
     domUpdates.hide(domUpdates.homeViewSection);
     domUpdates.hide(domUpdates.allRecipesSection);
     domUpdates.hide(domUpdates.weeklyRecipesSection);
