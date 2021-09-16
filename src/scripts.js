@@ -120,19 +120,18 @@ function displayFavoritesView() {
   hide(allRecipesSection);
   hide(weeklyRecipesSection);
   show(favoriteRecipesSection);
-
+  clearTags()
   checkFavoriteRecipes();
 }
 
 function checkFavoriteRecipes() {
-  if (user.favoriteRecipes.length && !tags.length) {
+  if (user.favoriteRecipes.length) {
     hide(noFavoritesMessage);
     show(favoriteRecipesContainer);
+    hide(favoriteTaggedRecipesContainer)
 
     addTagsGlide();
     renderRecipeCards(favoriteRecipesContainer, user.favoriteRecipes);
-  } else if (user.favoriteRecipes.length && tags.length) {
-    hide(noFavoritesMessage);
   } else {
     hide(favoriteRecipesContainer);
     show(noFavoritesMessage);
@@ -204,7 +203,8 @@ function displayHomeView() {
   hide(displayedSearchResults);
   hide(favoriteRecipesSection);
   show(homeViewSection);
-
+  hide(taggedRecipesContainer)
+  clearTags()
   addStyling(singleRecipeView, 'single-recipe-view');
   addStyling(allRecipesSection, 'all-recipes-view__recipes-container');
   removeStyling(singleRecipeView, 'single-recipe-view-alt');
@@ -470,4 +470,10 @@ function addStyling(element, className) {
 
 function removeStyling(element, className) {
   element.classList.remove(className);
+}
+
+function clearTags() {
+  const selectedTags = document.querySelectorAll('.tag-selected')
+  tags = [];
+  selectedTags.forEach(tag => tag.classList.toggle('tag-selected'));
 }
