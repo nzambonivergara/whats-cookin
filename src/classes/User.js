@@ -29,8 +29,13 @@ class User {
       this.weeklyFavorites.indexOf(recipe), 1);
   }
 
+  viewUserPantry() {
+    const userPantry = this.pantry;
+    return userPantry;
+  }
+
   filterFavoriteRecipesByTags(tags) {
-    const foundRecipes = this.repo.findRecipesByTag(tags, this.favoriteRecipes); 
+    const foundRecipes = this.repo.findRecipesByTag(tags, this.favoriteRecipes);
     return foundRecipes;
   }
 
