@@ -3,6 +3,7 @@ import domUpdates from './domUpdates';
 import { loadUsers, loadIngredients, loadRecipes } from './apiCalls';
 import RecipeRepository from './classes/RecipeRepository';
 import User from './classes/User';
+import MicroModal from 'micromodal';
 
 let recipeRepository;
 let tags = [];
@@ -25,8 +26,9 @@ domUpdates.favoritesViewButton.addEventListener('click', displayFavoritesView);
 domUpdates.addToFavoritesButton.addEventListener('click', addToFavorites);
 domUpdates.favoriteRecipesContainer.addEventListener('click', displayRecipe);
 domUpdates.removeFromFavoritesButton.addEventListener('click', removeFromFavorites);
-domUpdates.favoriteRecipesSection.addEventListener('click', selectTag)
-domUpdates.favoriteTaggedRecipesContainer.addEventListener('click', displayRecipe)
+domUpdates.favoriteRecipesSection.addEventListener('click', selectTag);
+domUpdates.favoriteTaggedRecipesContainer.addEventListener('click', displayRecipe);
+domUpdates.cookRecipeButton.addEventListener('click', showModal)
 
 function getRandomUser(array) {
   const index =  Math.floor(Math.random() * array.length);
@@ -50,7 +52,7 @@ function getRecipes(usersData) {
 function getIngredients(usersData) {
   loadIngredients().then(ingredientsData => {
     recipeRepository.getRecipesInformation(ingredientsData);
-    
+
     const userData = getRandomUser(usersData);
     user = new User(userData, recipeRepository);
   });
@@ -363,4 +365,20 @@ function clearTags() {
   const selectedTags = document.querySelectorAll('.tag-selected')
   tags = [];
   selectedTags.forEach(tag => tag.classList.toggle('tag-selected'));
+}
+
+function showModal() {
+  MicroModal.init({
+  onShow: modal => document.getElementById('modal-1').classList.remove('hidden'), // [1]
+  onClose: modal => document.getElementById('modal-1').classList.add('hidden'), // [2]
+  openTrigger: 'data-micromodal-trigger', // [3]
+  closeTrigger: 'data-micromodal-close', // [4]
+  openClass: 'is-open', // [5]
+  disableScroll: true, // [6]
+  disableFocus: false, // [7]
+  awaitOpenAnimation: false, // [8]
+  awaitCloseAnimation: false, // [9]
+  // debugMode: true // [10]
+});
+  // MicroModal.show("modal-1")
 }
