@@ -7,7 +7,7 @@ class Ingredient {
     this.estimatedCostInCents = 0;
   }
 
-  retrieveNameAndCost(ingredientsData) {
+  findIngredientDetails(ingredientsData) {
     const ingredient = ingredientsData.find(ingredient => ingredient.id === this.id);
     this.name = ingredient.name
     this.estimatedCostInCents = ingredient.estimatedCostInCents;

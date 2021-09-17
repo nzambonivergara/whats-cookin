@@ -1,13 +1,14 @@
 import Ingredient from './Ingredient';
 
 class User {
-  constructor(usersData) {
+  constructor(usersData, recipeRepository) {
     this.name = usersData.name;
     this.id = usersData.id;
     this.pantry = usersData.pantry
     this.favoriteRecipes = [];
     this.weeklyFavorites = [];
     this.filteredByName = [];
+    this.repo = recipeRepository;
   }
 
   addFavorite(recipe) {
@@ -29,34 +30,17 @@ class User {
   }
 
   filterFavoriteRecipesByTags(tags) {
-    const recipes = this.favoriteRecipes.reduce((acc, recipe) => {
-      tags.forEach((tag) => {
-        if (recipe.tags.includes(tag) && !acc.includes(recipe)) {
-          acc.push(recipe);
-        }
-      });
-      return acc;
-    }, []);
-    return recipes;
+    const foundRecipes = this.repo.findRecipesByTag(tags, this.favoriteRecipes); 
+    return foundRecipes;
   }
 
   findFavoriteRecipesByName(searchTerm) {
-    const foundRecipes = this.favoriteRecipes.filter((recipe) => {
-      return recipe.name.toLowerCase().includes(searchTerm);
-    })
+    const foundRecipes = this.repo.findRecipesByName(searchTerm, this.favoriteRecipes);
     return foundRecipes;
   }
 
   findFavoriteRecipesByIngredient(ingredientName) {
-    const filteredRecipe = this.favoriteRecipes.filter((recipe) => {
-      const hasMatchingIngredient = recipe.ingredients.find((ingredient) => {
-        return ingredient.name.includes(ingredientName);
-      })
-      if (hasMatchingIngredient) {
-        return true;
-      }
-      return false;
-    })
+    const filteredRecipe = this.repo.findRecipesByIngredient(ingredientName, this.favoriteRecipes);
     return filteredRecipe;
   }
 }
