@@ -1,4 +1,5 @@
 import Ingredient from './Ingredient';
+import domUpdates from '../domUpdates';
 
 class User {
   constructor(usersData, recipeRepository) {
@@ -20,6 +21,44 @@ class User {
     weeklyFav.push(recipe);
   }
 
+
+
+
+
+  prepPantryCheck(ingredientData, amount) {
+    const findIngredientForPantry = ingredientData.find(ingredient => {
+      if (ingredient.name.toLowerCase() === domUpdates.ingredientInputFieldTwo.innerText.toLowerCase()) {
+        return ingredient
+      };
+    });
+    this.pantryCheck(findIngredientForPantry, amount);
+  }
+
+  pantryCheck(findIngredientForPantry, amount) {
+    const newIngredient = {
+      ingredient: findIngredientForPantry.id,
+      amount: amount
+    };
+
+    if (!this.pantry.length) {
+      this.pantry.push(newIngredient);
+
+    } else {
+      this.pantry.forEach(ingredient => {
+        if (ingredient.ingredient !== findIngredientForPantry.id) {
+          console.log('is this on')
+          this.pantry.push(newIngredient);
+        };
+      });
+    };
+    console.log('This one', this.pantry)
+
+  }
+
+
+
+
+
   removeFavorite(recipe) {
     this.favoriteRecipes.splice(this.favoriteRecipes.indexOf(recipe), 1);
   }
@@ -30,7 +69,7 @@ class User {
   }
 
   filterFavoriteRecipesByTags(tags) {
-    const foundRecipes = this.repo.findRecipesByTag(tags, this.favoriteRecipes); 
+    const foundRecipes = this.repo.findRecipesByTag(tags, this.favoriteRecipes);
     return foundRecipes;
   }
 
