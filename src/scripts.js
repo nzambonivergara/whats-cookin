@@ -1,4 +1,4 @@
-import './styles.scss';
+import './styles/index.scss';
 import domUpdates from './domUpdates';
 import { loadUsers, loadIngredients, loadRecipes } from './apiCalls';
 import RecipeRepository from './classes/RecipeRepository';
