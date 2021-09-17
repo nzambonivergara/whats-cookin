@@ -7,6 +7,7 @@ import User from './classes/User';
 let recipeRepository;
 let tags = [];
 let user;
+let ingredientData;
 
 window.addEventListener('load', getUser);
 domUpdates.searchBar.addEventListener('keyup', prepSearch);
@@ -27,6 +28,10 @@ domUpdates.favoriteRecipesContainer.addEventListener('click', displayRecipe);
 domUpdates.removeFromFavoritesButton.addEventListener('click', removeFromFavorites);
 domUpdates.favoriteRecipesSection.addEventListener('click', selectTag)
 domUpdates.favoriteTaggedRecipesContainer.addEventListener('click', displayRecipe)
+
+
+domUpdates.drpbtn.addEventListener('click', myFunction)
+
 
 function getRandomUser(array) {
   const index =  Math.floor(Math.random() * array.length);
@@ -50,11 +55,27 @@ function getRecipes(usersData) {
 function getIngredients(usersData) {
   loadIngredients().then(ingredientsData => {
     recipeRepository.getRecipesInformation(ingredientsData);
-    
-    const userData = getRandomUser(usersData);
+    ingredientData = ingredientsData;
+
+    const userData = usersData[21];
     user = new User(userData, recipeRepository);
+    console.log(user);
+
+
+
+
+
+    domUpdates.ingredientInputFieldTwo.addEventListener('click', () => {
+      user.prepPantryCheck(ingredientData, 3, domUpdates.ingredientInputFieldTwo);
+      console.log(user);
+    });
   });
 }
+
+
+
+
+
 
 function addToFavorites() {
   const favoriteRecipe = recipeRepository.recipes.find(recipe => recipe.id === parseInt(domUpdates.addToFavoritesButton.name));
@@ -363,4 +384,26 @@ function clearTags() {
   const selectedTags = document.querySelectorAll('.tag-selected')
   tags = [];
   selectedTags.forEach(tag => tag.classList.toggle('tag-selected'));
+}
+
+
+
+
+function myFunction(user) {
+  console.log('hello')
+  domUpdates.ingredientInputField.classList.toggle("show");
+  domUpdates.ingredientInputFieldTwo.classList.toggle("show");
+}
+
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
 }
