@@ -29,6 +29,19 @@ const recipeImage = document.getElementById('recipeImage');
 const recipeIngredients = document.getElementById('recipeIngredients');
 const recipeInstructions = document.getElementById('recipeInstructions');
 
+
+
+
+
+const ingredientInputField = document.getElementById('test');
+const ingredientInputFieldTwo = document.getElementById('testTwo');
+const drpbtn = document.querySelector('.dropbtn');
+
+
+
+
+
+
 const noResults = document.getElementById('noResults');
 const searchBar = document.getElementById('searchBarInput');
 const searchResults = document.getElementById('searchedRecipesContainer');
@@ -138,7 +151,17 @@ let domUpdates = {
   weeklyRecipes,
   addToWeekButton,
   noWeeklyRecipes,
-  removeFromWeekButton
+  removeFromWeekButton,
+
+
+
+  ingredientInputField,
+  drpbtn,
+  ingredientInputFieldTwo
+
+
+
+  
 };
 
 export default  domUpdates;
