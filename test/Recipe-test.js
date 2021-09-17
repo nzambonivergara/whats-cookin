@@ -8,11 +8,7 @@ describe('Recipe Class', function() {
   let recipe;
 
   beforeEach(function() {
-<<<<<<< HEAD
-    recipe = new Recipe(recipeData[3]);
-=======
     recipe = new Recipe(recipeData[0]);
->>>>>>> 010c777f2a6e9a9ae86d8cdcce6f2a9b054e908f
   });
 
   it('should be a function', function() {
@@ -34,11 +30,7 @@ describe('Recipe Class', function() {
     });
 
     it('should store ingredients', function() {
-<<<<<<< HEAD
-      expect(recipe.ingredients).to.equal(recipeData[3].ingredients);
-=======
       expect(recipe.ingredients).to.equal(recipeData[0].ingredients);
->>>>>>> 010c777f2a6e9a9ae86d8cdcce6f2a9b054e908f
     });
 
     it('should be able to create instances of Ingredients and store them', function() {
@@ -53,11 +45,7 @@ describe('Recipe Class', function() {
     it('should store a list of instructions', function() {
       expect(recipe.instructions).to.be.an('array');
       expect(recipe.instructions[0].number).to.equal(1);
-<<<<<<< HEAD
-      expect(recipe.instructions).to.deep.equal(recipeData[3].instructions);
-=======
       expect(recipe.instructions).to.deep.equal(recipeData[0].instructions);
->>>>>>> 010c777f2a6e9a9ae86d8cdcce6f2a9b054e908f
     });
 
     it('should have a name', function() {
@@ -67,11 +55,8 @@ describe('Recipe Class', function() {
     it('should store a list of tags', function() {
       expect(recipe.tags).to.be.an('array');
       expect(recipe.tags[0]).to.be.a('string');
-<<<<<<< HEAD
-      expect(recipe.tags).to.equal(recipeData[3].tags);
-=======
       expect(recipe.tags).to.equal(recipeData[0].tags);
->>>>>>> 010c777f2a6e9a9ae86d8cdcce6f2a9b054e908f
+
     });
   });
 
