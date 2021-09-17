@@ -39,6 +39,8 @@ const addToWeekButton = document.getElementById('addToWeekButton');
 const noWeeklyRecipes = document.getElementById('noWeeklyRecipes');
 const removeFromWeekButton = document.getElementById('removeFromWeekButton');
 
+const cookRecipeButton = document.getElementById('cookRecipeButton');
+
 let domUpdates = {
   show(element) {
     element.classList.remove('hidden');
@@ -138,7 +140,8 @@ let domUpdates = {
   weeklyRecipes,
   addToWeekButton,
   noWeeklyRecipes,
-  removeFromWeekButton
+  removeFromWeekButton,
+  cookRecipeButton
 };
 
 export default  domUpdates;
