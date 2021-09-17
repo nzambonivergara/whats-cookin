@@ -20,7 +20,6 @@ describe('Recipe Class', function() {
   });
 
   describe('Recipe constructor properties', function() {
-
     it('should have an id', function() {
       expect(recipe.id).to.equal(595736);
     });
@@ -56,12 +55,10 @@ describe('Recipe Class', function() {
       expect(recipe.tags).to.be.an('array');
       expect(recipe.tags[0]).to.be.a('string');
       expect(recipe.tags).to.equal(recipeData[0].tags);
-
     });
   });
 
   describe('Recipe functionality', function() {
-
     it('should return a list of ingredients', function() {
       const expected = [
         "1.50 c wheat flour",
