@@ -37,10 +37,9 @@ p {
 }
 
 nav {
+  @include flex-cross-axis-center();
   background-color: $background-color;
-  display: flex;
   justify-content: space-between;
-  align-items: center;
   box-sizing: border-box;
   border-bottom: $primary-border;
   padding: 0 20px;
@@ -74,18 +73,17 @@ button {
 }
 
 .nav-bar__nav-tabs {
-  display: flex;
+  @include flex-cross-axis-center();
   justify-content: space-around;
   flex-direction: row;
-  align-items: center;
 }
 
 .nav-bar__nav-tabs > button {
   @include bold-font();
+  @include flex-cross-axis-center();
   border-bottom: 4px solid transparent;
   font-family: $primary-font;
   height: 50px;
-  align-items: center;
   width: 120px;
 	transition: all 0.2s ease-in-out;
 }
@@ -95,14 +93,12 @@ button {
 }
 
 .nav-bar__home-search {
-  display: flex;
-  align-items: center;
+  @include flex-cross-axis-center();
 }
 
 .search-bar {
-  display: flex;
+  @include flex-cross-axis-center();
   justify-content: end;
-  align-items: center;
 }
 
 .search-bar__search-label {
@@ -111,11 +107,10 @@ button {
 
 .search-bar__home-button {
   @include bold-font();
+  @include flex-cross-axis-center();
   border-bottom: 4px solid transparent;
   color: $primary-color;
   font-family: $secondary-font;
-  display: flex;
-  align-items: center;
 	transition: all 0.2s ease-in-out;
 }
 
@@ -149,11 +144,10 @@ button {
 }
 
 .images-container__button {
-  align-items: center;
+  @include flex-cross-axis-center();
   background-color: $primary-color-light;
   border: $primary-border;
   border-radius: 50%;
-  display: flex;
   height: 100px;
   justify-content: center;
   min-width: 100px;
@@ -213,9 +207,8 @@ button {
 .all-recipes-view-alt,
 .weekly-recipes-view,
 .favorites-view {
+  @include flex-cross-axis-center();
   background-color: $transparent-white;
-  display: flex;
-  align-items: center;
   padding: 20px;
   margin-top: 20px;
 }
@@ -273,11 +266,10 @@ button {
 
 .single-recipe-view,
 .single-recipe-view-alt {
+  @include flex-cross-axis-center();
   background-color: $transparent-white;
   max-width: 1000px;
   margin: 0px auto;
-  display: flex;
-  align-items: center;
   padding: 20px;
 }
 
@@ -291,6 +283,7 @@ button {
 }
 
 .recipe-button {
+  @include flex-cross-axis-center();
   background-color: $white;
   border: 1px solid $primary-color-x-light;
   color: $secondary-color;
@@ -298,9 +291,7 @@ button {
   transition: all 0.2s ease-in-out;
   margin: 15px 10px;
   padding: 5px;
-  display: flex;
   justify-content: center;
-  align-items: center;
   gap: 8px;
 }
 
@@ -320,10 +311,9 @@ button {
 }
 
 .total-cost {
+  @include flex-cross-axis-center();
   color: $secondary-color;
   font-weight: bold;
-  display: flex;
-  align-items: center;
 }
 
 .recipe-buttons-container {
@@ -342,8 +332,7 @@ button {
 /* ----- Favorites View ------- */
 .no-weekly-recipes,
 .recipes-container__no-favorites {
-  align-items: center;
-  display: flex;
+  @include flex-cross-axis-center();
   font-size: 20px;
   margin-top: 75px;
   text-align: center;
