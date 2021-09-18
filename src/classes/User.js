@@ -29,8 +29,43 @@ class User {
       this.weeklyFavorites.indexOf(recipe), 1);
   }
 
+  removeIngredientsUsed(ingredients) {
+    const pantryIngredients = this.pantry
+    const searchForMatches = ingredients.forEach(chosenIngredient => {
+      pantryIngredients.filter(pantryItem => {
+        return chosenIngredient.id === pantryItem.ingredient
+      })
+      console.log(searchForMatches)
+    })
+  }
+
+  checkUserPantry() {
+    const recipeIngredients = recipe.ingredients.sort((a, b) => {
+      return a.id - b.id
+    })
+
+    const userPantryu = this.pantry.sort((a, b) => {
+      return a.ingredient - b.ingredient
+    })
+
+    .map((id, i) => {
+      if (newArr2[i] === id) {
+        return true
+      }
+      return false
+    })
+    isMatch()
+  }
+
+  isMatch() {
+    if (checkUserPantry) {
+      return true
+    }
+    return false
+  }
+
   filterFavoriteRecipesByTags(tags) {
-    const foundRecipes = this.repo.findRecipesByTag(tags, this.favoriteRecipes); 
+    const foundRecipes = this.repo.findRecipesByTag(tags, this.favoriteRecipes);
     return foundRecipes;
   }
 
