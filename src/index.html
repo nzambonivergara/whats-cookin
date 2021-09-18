@@ -130,12 +130,13 @@
         </div>
         <aside>
           <h2><span class="material-icons">lunch_dining</span>YOUR PANTRY</h2>
-          <ul> populate pantry </ul>
+          <ul class="pantry-ingredients"> ● PANTRY LIST
+          </ul>
           <button class="cook-recipe-button" data-micromodal-trigger="modal-1" id="cookRecipeButton">COOK THIS RECIPE</button>
         </aside>
       </section>
     </main>
-    <div class="modal hidden" id="modal-1" aria-hidden="true">
+    <div class="modal" id="modal-1" aria-hidden="true">
       <div class="modal__overlay" tabindex="-1" data-micromodal-close>
         <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="modal-1-title" >
           <header class="modal__header">
@@ -144,12 +145,30 @@
           </header>
           <main class="modal__content" id="modal-1-content">
             <p>You still need these ingredients to cook this recipe:</p>
-            <div> ingredient list </div>
+            <div> ● INGREDIENT LIST </div>
             <p>Wanna add these ingredients to your pantry?</p>
           </main>
           <footer class="modal__footer">
-            <button class="modal__button modal__btn-primary">YES</button>
-            <button class="modal__btn" data-micromodal-close aria-label="Close this dialog window">CANCEL</button>
+            <button class="modal__button" id="addIngredientsButton">YES</button>
+            <button class="modal__button" data-micromodal-close aria-label="Close this dialog window">CANCEL</button>
+          </footer>
+        </div>
+      </div>
+    </div>
+    <div class="modal" id="modal-2" aria-hidden="true">
+      <div class="modal__overlay" tabindex="-1" data-micromodal-close >
+        <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="cook-confirmation-modal" >
+          <header class="modal__header">
+            <h2 class="modal__title" id="modal-1-title">Cook this recipe</h2>
+            <button class="modal__close" aria-label="Close modal" data-micromodal-close></button>
+          </header>
+          <main class="modal__content" id="modal-1-content">
+            <p>You have enough ingredients to cook this recipe!</p>
+            <p>Click OK, to confirm and update your pantry.</p>
+          </main>
+          <footer class="modal__footer">
+            <button class="modal__button" id="confirmCookingButton">YES</button>
+            <button class="modal__button" data-micromodal-close aria-label="Close this dialog window">CANCEL</button>
           </footer>
         </div>
       </div>
