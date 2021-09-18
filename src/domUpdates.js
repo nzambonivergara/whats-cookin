@@ -39,6 +39,8 @@ const addToWeekButton = document.getElementById('addToWeekButton');
 const noWeeklyRecipes = document.getElementById('noWeeklyRecipes');
 const removeFromWeekButton = document.getElementById('removeFromWeekButton');
 
+const allSections = document.querySelectorAll('section > section');
+
 let domUpdates = {
   show(element) {
     element.classList.remove('hidden');
@@ -61,7 +63,7 @@ let domUpdates = {
 
     recipes.forEach(recipe => {
       container.innerHTML +=
-        `<article class="recipes-container__recipe-card" id=${recipe.id}>
+        `<article tabindex="0" role="button" class="recipes-container__recipe-card" id=${recipe.id}>
             <img src="${recipe.image}" class="recipe-card__image" alt=${recipe.name}>
             <p class="recipe-card__name">${recipe.name}</p>
         </article>`;
@@ -70,14 +72,14 @@ let domUpdates = {
 
   renderRecipeInstructions(instructions) {
     recipeInstructions.innerHTML = instructions.reduce((acc, instruction) => {
-      acc += `<p class="ingredient-list__item">${instruction}</p>`;
+      acc += `<li class="ingredient-list__item">${instruction}</li>`;
       return acc;
     }, '');
   },
 
   renderRecipeIngredients(ingredients) {
     recipeIngredients.innerHTML = ingredients.reduce((acc, ingredient) => {
-      acc += `<p class="ingredient-list__item">● ${ingredient}</p>`;
+      acc += `<li class="ingredient-list__item">● ${ingredient}</li>`;
       return acc;
     }, '');
   },
@@ -138,7 +140,8 @@ let domUpdates = {
   weeklyRecipes,
   addToWeekButton,
   noWeeklyRecipes,
-  removeFromWeekButton
+  removeFromWeekButton,
+  allSections
 };
 
 export default  domUpdates;
