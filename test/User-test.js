@@ -90,4 +90,16 @@ describe('User', function() {
       user.removeWeeklyRecipe(recipeTwo);
       expect(user.weeklyFavorites).to.deep.equal([recipeOne, recipeThree]);
     });
+
+  it('should be able to check pantry for ingredients needed to cook a recipe',
+    function() {
+      expect(user.checkUserPantry(recipeThree)).to.equal(true)
+      expect(user.checkUserPantry(recipeOne)).to.equal(false)
+    });
+
+  it('should be able to check user\'s pantry for amount of ingredients necessary to cook a meal',
+    function() {
+      expect(user.checkUserPantry(recipeTwo)).to.equal(false)
+      expect(user.checkUserPantry(recipeOne)).to.equal(false)
+    });
 })
