@@ -11,24 +11,25 @@ let user;
 
 window.addEventListener('load', getUser);
 domUpdates.searchBar.addEventListener('keyup', prepSearch);
-domUpdates.searchResults.addEventListener('click', displayRecipe);
 domUpdates.searchIngredientGlide.addEventListener('click', selectTag);
 domUpdates.homeViewButton.addEventListener('click', displayHomeView);
 domUpdates.allRecipesButton.addEventListener('click', displayAllRecipes);
-domUpdates.allRecipesContainer.addEventListener('click', displayRecipe);
-domUpdates.taggedRecipesContainer.addEventListener('click', displayRecipe);
-domUpdates.displayedSearchResults.addEventListener('click', displayRecipe);
-domUpdates.weeklyRecipes.addEventListener('click', displayRecipe);
 domUpdates.addToWeekButton.addEventListener('click', addToWeeklyRecipes);
 domUpdates.weeklyRecipesButton.addEventListener('click', displayWeeklyRecipes);
 domUpdates.removeFromWeekButton.addEventListener('click', removeFromWeeklyRecipes);
 domUpdates.favoritesViewButton.addEventListener('click', displayFavoritesView);
 domUpdates.addToFavoritesButton.addEventListener('click', addToFavorites);
-domUpdates.favoriteRecipesContainer.addEventListener('click', displayRecipe);
 domUpdates.removeFromFavoritesButton.addEventListener('click', removeFromFavorites);
 domUpdates.favoriteRecipesSection.addEventListener('click', selectTag);
-domUpdates.favoriteTaggedRecipesContainer.addEventListener('click', displayRecipe);
 domUpdates.cookRecipeButton.addEventListener('click', displayModal)
+domUpdates.allSections.forEach(section => section.addEventListener('click', displayRecipe))
+domUpdates.allSections.forEach(section => {
+  section.addEventListener('keyup', function(event) {
+    if (event.keyCode === 13) {
+        displayRecipe(event)
+    }
+  });
+})
 
 function getRandomUser(array) {
   const index =  Math.floor(Math.random() * array.length);
@@ -180,7 +181,7 @@ function displayAllRecipes() {
 }
 
 function displayRecipe(event) {
-  const card = event.target.parentNode;
+  const card = event.target.closest('article');
 
   if (card.classList.contains('recipes-container__recipe-card')) {
     domUpdates.hide(domUpdates.homeViewSection);
@@ -274,12 +275,12 @@ function updateMain() {
     domUpdates.hide(domUpdates.searchResults);
     domUpdates.hide(domUpdates.singleRecipeView);
     domUpdates.hide(domUpdates.allRecipesSection);
-    domUpdates.hide(domUpdates.mainContentContainer);
+    // domUpdates.hide(domUpdates.mainContentContainer);
     domUpdates.hide(domUpdates.weeklyRecipesSection);
     domUpdates.hide(domUpdates.favoriteRecipesSection);
     domUpdates.hide(domUpdates.displayedSearchResults);
     domUpdates.show(domUpdates.homeViewSection);
-    domUpdates.show(domUpdates.mainContentContainer);
+    // domUpdates.show(domUpdates.mainContentContainer);
     domUpdates.show(domUpdates.taggedRecipesContainer);
 
   } else {

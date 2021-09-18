@@ -20,10 +20,9 @@
         <form class="search-bar">
           <label for="searchBarInput" class="search-bar__search-label">Search</label>
           <input type="search" class="search-bar__search-input" name="SearchInput" value="" id="searchBarInput">
-            <span class="material-icons">
-              search
-            </span>
-          </button>
+          <span class="material-icons">
+            search
+          </span>
         </form>
         <button type="button" class="search-bar__home-button" id="homeViewButton">
           <p class="search-bar__home-button-text">what's cookin'</p>
@@ -31,45 +30,41 @@
         </button>
       </div>
     </nav>
-    <main class="featured">
+    <main class="main">
       <section class="home-view" id="homeViewSection">
-        <div class="tagged-recipes-view__recipes-container hidden" id="taggedRecipesContainer"></div>
-        <div class="featured__featured-recipe-image-container" id=mainContentContainer>
-        <h1 class="featured__main-title">what's cookin'</h1>
-        </div>
-        <section class="featured__search-ingredient-glide">
-          <div class="search-ingredient-glide__images-container" id="searchIngredientGlide">
-            <button class="images-container__button" value="antipasti">
-              <p class="images-container__ingredient-name">antipasti</p>
-            </button>
-            <button class="images-container__button" value="snack">
-              <p class="images-container__ingredient-name">snack</p>
-            </button>
-            <button class="images-container__button" value="lunch">
-              <p class="images-container__ingredient-name">lunch</p>
-            </button>
-            <button class="images-container__button" value="dinner">
-              <p class="images-container__ingredient-name">dinner</p>
-            </button>
-            <button class="images-container__button" value="sauce">
-              <p class="images-container__ingredient-name">sauce</p>
-            </button>
-            <button class="images-container__button" value="side dish">
-              <p class="images-container__ingredient-name">side dish</p>
-            </button>
-            <button class="images-container__button" value="salad">
-              <p class="images-container__ingredient-name">salad</p>
-            </button>
-            <button class="images-container__button" value="breakfast">
-              <p class="images-container__ingredient-name">breakfast</p>
-            </button>
-          </div>
-        </section>
+        <section class="tagged-recipes-view__recipes-container hidden" id="taggedRecipesContainer"></section>
+        <h1 class="main-title">what's cookin'</h1>
+        <article class="search-glide-container" id="searchIngredientGlide">
+          <button class="search-glide__button" value="antipasti">
+            <p class="search-glide__tag-name">antipasti</p>
+          </button>
+          <button class="search-glide__button" value="snack">
+            <p class="search-glide__tag-name">snack</p>
+          </button>
+          <button class="search-glide__button" value="lunch">
+            <p class="search-glide__tag-name">lunch</p>
+          </button>
+          <button class="search-glide__button" value="dinner">
+            <p class="search-glide__tag-name">dinner</p>
+          </button>
+          <button class="search-glide__button" value="sauce">
+            <p class="search-glide__tag-name">sauce</p>
+          </button>
+          <button class="search-glide__button" value="side dish">
+            <p class="search-glide__tag-name">side dish</p>
+          </button>
+          <button class="search-glide__button" value="salad">
+            <p class="search-glide__tag-name">salad</p>
+          </button>
+          <button class="search-glide__button" value="breakfast">
+            <p class="search-glide__tag-name">breakfast</p>
+          </button>
+        </article>
       </section>
       <section class="searched-recipes-view__recipes-container hidden" id="searchedRecipesContainer">
         <h2 class="search-results">Search Results:</h2>
         <p class="recipes-container__no-results hidden" id="noResults">No Results Match Your Search</p>
-        <div class="recipes-container__search-results" id="searchedRecipes"></div>
+        <section class="recipes-container__search-results" id="searchedRecipes"></section>
       </section>
       <section class="all-recipes-view hidden" id="allRecipesSection">
         <div class="top-banner">
@@ -80,10 +75,10 @@
       <section class="favorites-view hidden" id="favoriteRecipesSection">
         <h1 class="top-banner__title">Favorite Recipes</h1>
         <p class="recipes-container__no-favorites" id="noFavoritesMessage"> <span class="material-icons">favorite_border</span>   You haven't added any favorite recipes. Explore and add your favorites!   <span class="material-icons">favorite_border</span></p>
-        <div class="favorites-view__favorites-container" id="favoriteRecipesContainer">
-        </div>
-        <div class="favorites-view__favorites-container hidden" id="favoriteTaggedRecipesContainer">
-        </div>
+        <section class="favorites-view__favorites-container" id="favoriteRecipesContainer">
+        </section>
+        <section class="favorites-view__favorites-container hidden" id="favoriteTaggedRecipesContainer">
+        </section>
       </section>
       <section class="weekly-recipes-view hidden" id="weeklyRecipesSection">
         <h1 class="weekly-view-title top-banner__title">Recipes This Week</h1>
@@ -99,7 +94,7 @@
         <div class="single-recipe-view__recipe-information">
           <div class="recipe-information__container">
             <h2>INGREDIENTS</h2>
-            <div class="ingredient-list" id="recipeIngredients"></div>
+            <ul class="ingredient-list" id="recipeIngredients"></ul>
             <p class="total-cost">COST:<span class="material-icons"> attach_money </span><span id="recipeCost"></span></p>
           </div>
           <div class="recipe-information__container">
@@ -126,7 +121,7 @@
         </div>
         <div class="single-recipe-view__instructions">
           <h2>INSTRUCTIONS</h2>
-          <div class="instructions__instructions-list" id="recipeInstructions"></div>
+          <ol class="instructions__instructions-list" id="recipeInstructions"></ol>
         </div>
         <aside>
           <h2><span class="material-icons">lunch_dining</span>YOUR PANTRY</h2>
