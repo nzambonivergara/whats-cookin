@@ -13,8 +13,17 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.css$/,
-        use: ['style-loader', 'css-loader', 'sass-loader'],
+        test: /\.(sc|c)ss$/,
+        use: [
+          'style-loader',
+          'css-loader',
+          {
+            loader: 'sass-loader',
+            options: {
+              implementation: require('sass')
+            }
+          }
+        ],
       },
       {
         test: /\.(png|svg|jpg|gif)$/,
