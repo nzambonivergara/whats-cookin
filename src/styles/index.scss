@@ -31,6 +31,8 @@ body::-webkit-scrollbar {
 h1, h2, h3, h4 {
   font-family: 'Quicksand', sans-serif;
   font-weight: bold;
+	display: flex;
+	align-items: center;
 }
 
 li,
@@ -168,6 +170,7 @@ button {
   z-index: 1;
 }
 
+.modal__button:hover,
 .search-glide__button:hover,
 .tag-selected {
   background-color: $secondary-color;
@@ -184,6 +187,7 @@ button {
   z-index: -1;
 }
 
+.cook-recipe-button:hover,
 .recipe-button:hover {
   background-color: $secondary-color;
   color: $white;
@@ -275,12 +279,16 @@ button {
   justify-content: space-evenly;
 }
 
+.cook-recipe-button,
 .recipe-button {
   background-color: $white;
   border: 1px solid $primary-color-x-light;
   color: $secondary-color;
-  width: 275px;
   transition: all 0.2s ease-in-out;
+}
+
+.recipe-button {
+	width: 275px;
   margin: 15px 10px;
   padding: 5px;
   display: flex;
@@ -324,6 +332,26 @@ button {
   padding: 0 20px;
 }
 
+aside {
+	position: fixed;
+	background-color: $transparent-white;
+	left: 0;
+	padding: 20px;
+	height: 100%;
+	width: 150px;
+	line-height: 50px;
+}
+
+::-webkit-scrollbar {
+  width: 0;
+  background: transparent;
+}
+
+.pantry-ingredients {
+	overflow-y: scroll;
+	/* height: 100%; */
+}
+
 /* ----- Favorites View ------- */
 .no-weekly-recipes,
 .recipes-container__no-favorites {
@@ -334,6 +362,79 @@ button {
   text-align: center;
 }
 
+.modal,
 .hidden {
   display: none;
+}
+
+.modal.is-open {
+	display: block;
+}
+
+.modal__overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal__container {
+  background-color: $white;
+  padding: 30px;
+  max-width: 500px;
+  max-height: 100vh;
+  border-radius: 4px;
+  overflow-y: auto;
+  box-sizing: border-box;
+}
+
+.modal__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal__title {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-weight: 600;
+  font-size: 1.25rem;
+  line-height: 1.25;
+  color: #00449e;
+  box-sizing: border-box;
+}
+
+.modal__close {
+  background: transparent;
+  border: 0;
+}
+
+.modal__header .modal__close:before { content: "\2715"; }
+
+.modal__content {
+	display: block;
+	padding: 0;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  line-height: 1.5;
+  color: rgba(0,0,0,.8);
+}
+
+.modal__footer {
+	display: flex;
+	justify-content: flex-end;
+}
+
+.modal__button {
+	color: $white;
+	background-color: $primary-color-light;
+  border: 1px solid $primary-color;
+	border-radius: 4px;
+	margin: 5px;
+	transition: all 0.2s ease-in-out;
 }

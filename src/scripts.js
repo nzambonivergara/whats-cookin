@@ -3,6 +3,7 @@ import domUpdates from './domUpdates';
 import { loadUsers, loadIngredients, loadRecipes } from './apiCalls';
 import RecipeRepository from './classes/RecipeRepository';
 import User from './classes/User';
+import MicroModal from 'micromodal';
 
 let recipeRepository;
 let tags = [];
@@ -19,7 +20,8 @@ domUpdates.removeFromWeekButton.addEventListener('click', removeFromWeeklyRecipe
 domUpdates.favoritesViewButton.addEventListener('click', displayFavoritesView);
 domUpdates.addToFavoritesButton.addEventListener('click', addToFavorites);
 domUpdates.removeFromFavoritesButton.addEventListener('click', removeFromFavorites);
-domUpdates.favoriteRecipesSection.addEventListener('click', selectTag)
+domUpdates.favoriteRecipesSection.addEventListener('click', selectTag);
+domUpdates.cookRecipeButton.addEventListener('click', displayModal)
 domUpdates.allSections.forEach(section => section.addEventListener('click', displayRecipe))
 domUpdates.allSections.forEach(section => {
   section.addEventListener('keyup', function(event) {
@@ -361,7 +363,14 @@ function sortRecipesByName() {
 }
 
 function clearTags() {
-  const selectedTags = document.querySelectorAll('.tag-selected')
   tags = [];
-  selectedTags.forEach(tag => tag.classList.toggle('tag-selected'));
+  domUpdates.removeTagSelection()
+}
+
+function displayModal() {
+  if (true) {
+    MicroModal.show("modal-1")
+  } else {
+    MicroModal.show("modal-2")
+  }
 }
