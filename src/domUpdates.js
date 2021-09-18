@@ -108,6 +108,11 @@ let domUpdates = {
     }
   },
 
+  removeTagSelection() {
+    const selectedTags = document.querySelectorAll('.tag-selected')
+    selectedTags.forEach(tag => tag.classList.toggle('tag-selected'));
+  },
+
   homeViewImage,
   homeViewButton,
   homeViewSection,
