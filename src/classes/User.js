@@ -29,32 +29,21 @@ class User {
       this.weeklyFavorites.indexOf(recipe), 1);
   }
 
-  removeIngredientsUsed(ingredients) {
-    const pantryIngredients = this.pantry
-    const searchForMatches = ingredients.forEach(chosenIngredient => {
-      pantryIngredients.filter(pantryItem => {
-        return chosenIngredient.id === pantryItem.ingredient
-      })
-      console.log(searchForMatches)
-    })
-  }
-
   checkUserPantry() {
     const recipeIngredients = recipe.ingredients.sort((a, b) => {
       return a.id - b.id
     })
-
-    const userPantryu = this.pantry.sort((a, b) => {
+    const userPantry = this.pantry.sort((a, b) => {
       return a.ingredient - b.ingredient
     })
 
-    .map((id, i) => {
-      if (newArr2[i] === id) {
+    recipeIngredients.map((id, i) => {
+      if (userPantry[i] === id) {
         return true
       }
       return false
     })
-    isMatch()
+    this.isMatch()
   }
 
   isMatch() {
