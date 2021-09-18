@@ -79,6 +79,8 @@ body::-webkit-scrollbar {
 h1, h2, h3, h4 {
   font-family: 'Quicksand', sans-serif;
   font-weight: bold;
+	display: flex;
+	align-items: center;
 }
 
 p {
@@ -225,6 +227,7 @@ button {
   z-index: 1;
 }
 
+.modal__button:hover,
 .images-container__button:hover,
 .tag-selected {
   background-color: #Ef5D60;
@@ -405,8 +408,18 @@ aside {
 	left: 0;
 	padding: 20px;
 	height: 100%;
-	width: 200px;
+	width: 150px;
 	line-height: 50px;
+}
+
+::-webkit-scrollbar {
+  width: 0;
+  background: transparent;
+}
+
+.pantry-ingredients {
+	overflow-y: scroll;
+	/* height: 100%; */
 }
 
 /* ----- Favorites View ------- */
@@ -419,13 +432,14 @@ aside {
   text-align: center;
 }
 
+.modal,
 .hidden {
   display: none;
 }
 
-/* .modal__content {
-
-} */
+.modal.is-open {
+	display: block;
+}
 
 .modal__overlay {
   position: fixed;
@@ -474,8 +488,23 @@ aside {
 
 .modal__content {
 	display: block;
+	padding: 0;
   margin-top: 2rem;
   margin-bottom: 2rem;
   line-height: 1.5;
   color: rgba(0,0,0,.8);
+}
+
+.modal__footer {
+	display: flex;
+	justify-content: flex-end;
+}
+
+.modal__button {
+	color: #fff;
+	background-color: #485A68;
+  border: 1px solid #011936;
+	border-radius: 4px;
+	margin: 5px;
+	transition: all 0.2s ease-in-out;
 }
