@@ -28,7 +28,7 @@ domUpdates.favoriteRecipesContainer.addEventListener('click', displayRecipe);
 domUpdates.removeFromFavoritesButton.addEventListener('click', removeFromFavorites);
 domUpdates.favoriteRecipesSection.addEventListener('click', selectTag);
 domUpdates.favoriteTaggedRecipesContainer.addEventListener('click', displayRecipe);
-domUpdates.cookRecipeButton.addEventListener('click', showModal)
+domUpdates.cookRecipeButton.addEventListener('click', displayModal)
 
 function getRandomUser(array) {
   const index =  Math.floor(Math.random() * array.length);
@@ -362,23 +362,14 @@ function sortRecipesByName() {
 }
 
 function clearTags() {
-  const selectedTags = document.querySelectorAll('.tag-selected')
   tags = [];
-  selectedTags.forEach(tag => tag.classList.toggle('tag-selected'));
+  domUpdates.removeTagSelection()
 }
 
-function showModal() {
-  MicroModal.init({
-  onShow: modal => document.getElementById('modal-1').classList.remove('hidden'), // [1]
-  onClose: modal => document.getElementById('modal-1').classList.add('hidden'), // [2]
-  openTrigger: 'data-micromodal-trigger', // [3]
-  closeTrigger: 'data-micromodal-close', // [4]
-  openClass: 'is-open', // [5]
-  disableScroll: true, // [6]
-  disableFocus: false, // [7]
-  awaitOpenAnimation: false, // [8]
-  awaitCloseAnimation: false, // [9]
-  // debugMode: true // [10]
-});
-  // MicroModal.show("modal-1")
+function displayModal() {
+  if (true) {
+    MicroModal.show("modal-1")
+  } else {
+    MicroModal.show("modal-2")
+  }
 }
