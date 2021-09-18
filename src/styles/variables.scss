@@ -5,10 +5,12 @@ $primary-color-x-light: #d3d3d3;
 $primary-color-light: #485A68;
 $secondary-color: #Ef5D60;
 $white: #fff;
+$transparent-black: rgba(0, 0, 0, 0.2);
 $transparent-white: rgba(255, 255, 255, 0.85);
 
 /*Box Model*/
 $primary-border: 1px solid $primary-color;
+$shadow: 0 4px 8px 0 $transparent-black,  0 6px 20px 0 $transparent-black;
 
 /*Fonts*/
 $primary-font: 'Raleway', sans-serif;
