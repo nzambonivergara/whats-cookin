@@ -306,7 +306,6 @@ button {
   background-color: $white;
   border: 1px solid $primary-color-x-light;
   color: $secondary-color;
-  width: 275px;
   transition: all 0.2s ease-in-out;
 }
 
@@ -357,7 +356,7 @@ button {
 
 aside {
 	position: fixed;
-	background-color: rgba(255, 255, 255, 0.85);
+	background-color: $transparent-white;
 	left: 0;
 	padding: 20px;
 	height: 100%;
@@ -407,7 +406,7 @@ aside {
 }
 
 .modal__container {
-  background-color: #fff;
+  background-color: $white;
   padding: 30px;
   max-width: 500px;
   max-height: 100vh;
@@ -454,9 +453,9 @@ aside {
 }
 
 .modal__button {
-	color: #fff;
-	background-color: #485A68;
-  border: 1px solid #011936;
+	color: $white;
+	background-color: $primary-color-light;
+  border: 1px solid $primary-color;
 	border-radius: 4px;
 	margin: 5px;
 	transition: all 0.2s ease-in-out;
