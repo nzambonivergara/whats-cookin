@@ -12,3 +12,8 @@
   display: flex;
   align-items: center;
 }
+
+@mixin square($measurement) {
+  height: $measurement;
+  width: $measurement;
+}
