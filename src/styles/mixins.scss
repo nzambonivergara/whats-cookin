@@ -1,0 +1,19 @@
+@mixin flex-column() {
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin bold-font() {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+@mixin flex-cross-axis-center() {
+  display: flex;
+  align-items: center;
+}
+
+@mixin square($measurement) {
+  height: $measurement;
+  width: $measurement;
+}

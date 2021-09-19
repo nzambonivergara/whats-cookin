@@ -1,21 +1,20 @@
 @import './reset.scss';
 @import './variables.scss';
+@import './mixins.scss';
 
 html {
-  display: flex;
-  flex-direction: column;
+  @include flex-column();
   height: 100%;
 }
 
 body {
+  @include flex-column();
   flex: 1;
   background-image: url(https://images.unsplash.com/photo-1490818387583-1baba5e638af?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3331&q=80);
   background-size: cover;
   background-repeat: no-repeat;
   color: $primary-color;
-  display: flex;
-  flex-direction: column;
-  font-family: 'Raleway', sans-serif;
+  font-family: $primary-font;
   margin: 0;
   padding: 0;
   width: 100%;
@@ -29,10 +28,9 @@ body::-webkit-scrollbar {
 }
 
 h1, h2, h3, h4 {
-  font-family: 'Quicksand', sans-serif;
+	@include flex-column();
+  font-family: $secondary-font;
   font-weight: bold;
-	display: flex;
-	align-items: center;
 }
 
 li,
@@ -42,12 +40,11 @@ p {
 }
 
 nav {
+  @include flex-cross-axis-center();
   background-color: $background-color;
-  display: flex;
   justify-content: space-between;
-  align-items: center;
   box-sizing: border-box;
-  border-bottom: 1px solid $primary-color;
+  border-bottom: $primary-border;
   padding: 0 20px;
   position: fixed;
   width: 100%;
@@ -64,8 +61,7 @@ nav {
 }
 
 main > section {
-  display: flex;
-  flex-direction: column;
+  @include flex-column();
   position: relative;
   width: 100%;
 }
@@ -80,36 +76,31 @@ button {
 }
 
 .nav-bar__nav-tabs {
-  display: flex;
+  @include flex-cross-axis-center();
   justify-content: space-around;
   flex-direction: row;
-  align-items: center;
 }
 
 .nav-bar__nav-tabs > button {
+  @include bold-font();
+  @include flex-cross-axis-center();
   border-bottom: 4px solid transparent;
-  font-family: 'Raleway', sans-serif;
-  font-size: 16px;
-  font-weight: 700;
+  font-family: $primary-font;
   height: 50px;
-  align-items: center;
   width: 120px;
-	transition: all 0.2s ease-in-out;
-}
-
-.nav-bar__nav-tabs > button:hover {
-  border-bottom: 4px solid $secondary-color;
+	transition: $primary-transition;
+  &:hover {
+    border-bottom: 4px solid $secondary-color;
+  }
 }
 
 .nav-bar__home-search {
-  display: flex;
-  align-items: center;
+  @include flex-cross-axis-center();
 }
 
 .search-bar {
-  display: flex;
+  @include flex-cross-axis-center();
   justify-content: end;
-  align-items: center;
 }
 
 .search-bar__search-label {
@@ -117,21 +108,17 @@ button {
 }
 
 .search-bar__home-button {
+  @include bold-font();
+  @include flex-cross-axis-center();
   border-bottom: 4px solid transparent;
   color: $primary-color;
-  font-family: 'Quicksand';
-  display: flex;
-  align-items: center;
-  font-weight: bold;
-  font-size: 16px;
-	transition: all 0.2s ease-in-out;
+  font-family: $secondary-font;
+	transition: $primary-transition;
+  &:hover {
+    color: $secondary-color;
+    text-shadow: 1px 1px 2px $primary-color;
+  } 
 }
-
-.search-bar__home-button:hover {
-  color: $secondary-color;
-  text-shadow: 1px 1px 2px $primary-color;
-}
-
 
 /* --------------- HOME VIEW ------------------- */
 
@@ -147,26 +134,28 @@ button {
 }
 
 .search-glide__button {
-  align-items: center;
+  @include flex-cross-axis-center();
   background-color: $primary-color-light;
-  border: 1px solid $primary-color;
+  border: $primary-border;
   border-radius: 50%;
-  display: flex;
   height: 100px;
   justify-content: center;
   min-width: 100px;
   overflow: hidden;
   position: relative;
-	transition: all 0.2s ease-in-out;
+	transition: $primary-transition;
+  &:hover {
+    cursor: pointer;
+    box-shadow: $shadow;
+  }
 }
 
 .search-glide__tag-name {
+  @include bold-font();
   color: $white;
-  font-size: 16px;
-  font-family: 'Raleway';
-  font-weight: 700;
+  font-family: $primary-font;
   text-align: center;
-  transition: all 0.2s ease-in-out;
+  transition: $primary-transition;
   z-index: 1;
 }
 
@@ -179,20 +168,13 @@ button {
 .main-title {
   top: 150px;
   color: $primary-color;
-  font-family: 'Quicksand';
+  font-family: $secondary-font;
   font-size: 85px;
   font-weight: 700;
   position: fixed;
   right: 40px;
   z-index: -1;
 }
-
-.cook-recipe-button:hover,
-.recipe-button:hover {
-  background-color: $secondary-color;
-  color: $white;
-}
-
 
 /* ----------- ALL RECIPES VIEW --------------- */
 .searched-recipes-view__recipes-container,
@@ -201,9 +183,8 @@ button {
 .all-recipes-view-alt,
 .weekly-recipes-view,
 .favorites-view {
+  @include flex-cross-axis-center();
   background-color: $transparent-white;
-  display: flex;
-  align-items: center;
   padding: 20px;
   margin-top: 20px;
 }
@@ -231,19 +212,19 @@ button {
 
 .recipes-container__recipe-card,
 .search-results-container__recipe-card {
-  height: 200px;
-  width: 200px;
-  display: flex;
-  flex-direction: column;
+  @include flex-column();
+  @include square(200px);
   text-align: center;
   border: 1px solid $primary-color-x-light;
+  &:hover {
+    cursor: pointer;
+    box-shadow: $shadow;
+  }
 }
 
-.search-glide__button:hover,
-.recipes-container__recipe-card:hover,
-.search-results-container__recipe-card:hover {
+.search-glide__button:hover {
   cursor: pointer;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),  0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: $shadow;
 }
 
 .recipe-card__image {
@@ -262,11 +243,10 @@ button {
 
 .single-recipe-view,
 .single-recipe-view-alt {
+  @include flex-cross-axis-center();
   background-color: $transparent-white;
   max-width: 1000px;
-  margin: 0px auto;
-  display: flex;
-  align-items: center;
+  margin: 0 auto;
   padding: 20px;
 }
 
@@ -281,19 +261,22 @@ button {
 
 .cook-recipe-button,
 .recipe-button {
+  @include flex-cross-axis-center();
   background-color: $white;
   border: 1px solid $primary-color-x-light;
   color: $secondary-color;
-  transition: all 0.2s ease-in-out;
+  transition: $primary-transition;
+  &:hover {
+    background-color: $secondary-color;
+    color: $white;
+  }
 }
 
 .recipe-button {
 	width: 275px;
   margin: 15px 10px;
   padding: 5px;
-  display: flex;
   justify-content: center;
-  align-items: center;
   gap: 8px;
 }
 
@@ -313,10 +296,9 @@ button {
 }
 
 .total-cost {
+  @include flex-cross-axis-center();
   color: $secondary-color;
   font-weight: bold;
-  display: flex;
-  align-items: center;
 }
 
 .recipe-buttons-container {
@@ -349,14 +331,12 @@ aside {
 
 .pantry-ingredients {
 	overflow-y: scroll;
-	/* height: 100%; */
 }
 
 /* ----- Favorites View ------- */
 .no-weekly-recipes,
 .recipes-container__no-favorites {
-  align-items: center;
-  display: flex;
+  @include flex-cross-axis-center();
   font-size: 20px;
   margin-top: 75px;
   text-align: center;
@@ -372,15 +352,14 @@ aside {
 }
 
 .modal__overlay {
+  @include flex-cross-axis-center();
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
   background: rgba(0,0,0,0.6);
-  display: flex;
   justify-content: center;
-  align-items: center;
 }
 
 .modal__container {
@@ -394,9 +373,8 @@ aside {
 }
 
 .modal__header {
-  display: flex;
+  @include flex-cross-axis-center();
   justify-content: space-between;
-  align-items: center;
 }
 
 .modal__title {
@@ -405,7 +383,7 @@ aside {
   font-weight: 600;
   font-size: 1.25rem;
   line-height: 1.25;
-  color: #00449e;
+  color: $modal-title;
   box-sizing: border-box;
 }
 
@@ -414,7 +392,9 @@ aside {
   border: 0;
 }
 
-.modal__header .modal__close:before { content: "\2715"; }
+.modal__header .modal__close:before {
+  content: "\2715";
+}
 
 .modal__content {
 	display: block;
@@ -422,7 +402,7 @@ aside {
   margin-top: 2rem;
   margin-bottom: 2rem;
   line-height: 1.5;
-  color: rgba(0,0,0,.8);
+  color: $transparent-black-dark;
 }
 
 .modal__footer {
@@ -436,5 +416,5 @@ aside {
   border: 1px solid $primary-color;
 	border-radius: 4px;
 	margin: 5px;
-	transition: all 0.2s ease-in-out;
+	transition: $primary-transition;
 }
