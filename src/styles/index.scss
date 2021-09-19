@@ -86,10 +86,9 @@ button {
   height: 50px;
   width: 120px;
 	transition: all 0.2s ease-in-out;
-}
-
-.nav-bar__nav-tabs > button:hover {
-  border-bottom: 4px solid $secondary-color;
+  &:hover {
+    border-bottom: 4px solid $secondary-color;
+  }
 }
 
 .nav-bar__home-search {
@@ -112,13 +111,11 @@ button {
   color: $primary-color;
   font-family: $secondary-font;
 	transition: all 0.2s ease-in-out;
+  &:hover {
+    color: $secondary-color;
+    text-shadow: 1px 1px 2px $primary-color;
+  } 
 }
-
-.search-bar__home-button:hover {
-  color: $secondary-color;
-  text-shadow: 1px 1px 2px $primary-color;
-}
-
 
 /* --------------- HOME VIEW ------------------- */
 
@@ -154,6 +151,10 @@ button {
   overflow: hidden;
   position: relative;
 	transition: all 0.2s ease-in-out;
+  &:hover {
+    cursor: pointer;
+    box-shadow: $shadow;
+  }
 }
 
 .images-container__ingredient-name {
@@ -193,12 +194,6 @@ button {
   right: 40px;
   z-index: -1;
 }
-
-.recipe-button:hover {
-  background-color: $secondary-color;
-  color: $white;
-}
-
 
 /* ----------- ALL RECIPES VIEW --------------- */
 .searched-recipes-view__recipes-container,
@@ -240,13 +235,10 @@ button {
   @include square(200px);
   text-align: center;
   border: 1px solid $primary-color-x-light;
-}
-
-.images-container__button:hover,
-.recipes-container__recipe-card:hover,
-.search-results-container__recipe-card:hover {
-  cursor: pointer;
-  box-shadow: $shadow;
+  &:hover {
+    cursor: pointer;
+    box-shadow: $shadow;
+  }
 }
 
 .recipe-card__image {
@@ -292,6 +284,10 @@ button {
   padding: 5px;
   justify-content: center;
   gap: 8px;
+  &:hover {
+    background-color: $secondary-color;
+    color: $white;
+  }
 }
 
 .search-results,
