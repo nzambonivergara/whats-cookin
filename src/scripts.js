@@ -1,6 +1,6 @@
 import './styles/index.scss';
 import domUpdates from './domUpdates';
-import { loadUsers, loadIngredients, loadRecipes } from './apiCalls';
+import { loadUsers, loadIngredients, loadRecipes, alterIngredients } from './apiCalls';
 import RecipeRepository from './classes/RecipeRepository';
 import User from './classes/User';
 import MicroModal from 'micromodal';
@@ -22,6 +22,7 @@ domUpdates.addToFavoritesButton.addEventListener('click', addToFavorites);
 domUpdates.removeFromFavoritesButton.addEventListener('click', removeFromFavorites);
 domUpdates.favoriteRecipesSection.addEventListener('click', selectTag);
 domUpdates.cookRecipeButton.addEventListener('click', displayModal);
+domUpdates.addIngredientsButton.addEventListener('click', addIngredients);
 domUpdates.allSections.forEach(section => section.addEventListener('click', displayRecipe))
 domUpdates.allSections.forEach(section => {
   section.addEventListener('keyup', function(event) {
@@ -374,4 +375,20 @@ function displayModal() {
   } else {
     MicroModal.show("modal-1")
   }
+}
+
+function addIngredients() {
+  alterIngredients(user.id)
+  .then(response => {
+    MicroModal.close("modal-1");
+    MicroModal.show("modal-2");
+    // user.pantry.ingredient += amount;
+  })
+}
+
+function useIngredients() {
+  alterIngredients(user.id)
+  .then(response => {
+    MicroModal.close("modal-2");
+  })
 }
