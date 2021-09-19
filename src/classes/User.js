@@ -71,16 +71,24 @@ class User {
     }, [])
   }
 
-  updateIngredientAmount(ingredients) {
+  addIngredientAmount(ingredients) {
     ingredients.forEach(ingredient => {
       const match = this.pantry.find(pantryIngredient => pantryIngredient.ingredient === ingredient.id)
 
       if (match) {
         match.amount += ingredient.amount;
-        !match.amount && this.removeIngredient(match);
       } else {
         this.addIngredientToPantry(ingredient);
       }
+    })
+  }
+
+  substractIngredientAmount(ingredients) {
+    ingredients.forEach(ingredient => {
+      const match = this.pantry.find(pantryIngredient => pantryIngredient.ingredient === ingredient.id)
+
+      match.amount += ingredient.amount;
+      !match.amount && this.removeIngredient(match);
     })
   }
 
