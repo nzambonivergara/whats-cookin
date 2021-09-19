@@ -275,12 +275,10 @@ function updateMain() {
     domUpdates.hide(domUpdates.searchResults);
     domUpdates.hide(domUpdates.singleRecipeView);
     domUpdates.hide(domUpdates.allRecipesSection);
-    // domUpdates.hide(domUpdates.mainContentContainer);
     domUpdates.hide(domUpdates.weeklyRecipesSection);
     domUpdates.hide(domUpdates.favoriteRecipesSection);
     domUpdates.hide(domUpdates.displayedSearchResults);
     domUpdates.show(domUpdates.homeViewSection);
-    // domUpdates.show(domUpdates.mainContentContainer);
     domUpdates.show(domUpdates.taggedRecipesContainer);
 
   } else {
