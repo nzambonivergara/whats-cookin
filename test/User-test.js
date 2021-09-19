@@ -71,7 +71,7 @@ describe('User', function() {
     });
 
   it('should be able to filter favorites by ingredient', function() {
-    expect(user.findFavoriteRecipesByIngredient('wheat flour')).to.deep.equal([ missingIngredientsRecipe,notEnoughIngredientsRecipe, hasAllIngredientsRecipe ]);
+    expect(user.findFavoriteRecipesByIngredient('wheat flour')).to.deep.equal([ missingIngredientsRecipe, notEnoughIngredientsRecipe, hasAllIngredientsRecipe ]);
   });
 
   it('should be able to filter favorites by name', function() {
@@ -115,54 +115,55 @@ describe('User', function() {
       '5 buck wheat flour'
     ]
     const pantryIngredients = user.returnPantryIngredients()
-      expect(pantryIngredients[0]).to.be.a('string');
-      expect(pantryIngredients).to.deep.equal(expected);
-      expect(pantryIngredients.length).to.equal(8);
-    });
 
-    it('should be able to add ingredients', function() {
-      const ingredients = [ { id: 20081, amount: -2 }, { id: 1123, amount: 1 } ]
+    expect(pantryIngredients[0]).to.be.a('string');
+    expect(pantryIngredients).to.deep.equal(expected);
+    expect(pantryIngredients.length).to.equal(8);
 
-      const originalFlourAmount = user.pantry[2].amount;
+  });
 
-      user.updateIngredientAmount(ingredients)
+  it('should be able to add ingredients', function() {
+    const ingredients = [ { id: 20081, amount: -2 }, { id: 1123, amount: 1 } ]
 
-      const updatedFlourAmount = user.pantry[2].amount;
+    const originalFlourAmount = user.pantry[2].amount;
 
-      expect(originalFlourAmount).to.equal(5);
-      expect(updatedFlourAmount).to.equal(3)
-    });
+    user.updateIngredientAmount(ingredients)
 
-    it('should be able to remove ingredients', function() {
-      const ingredients = [ { id: 20081, amount: 2 }, { id: 1123, amount: -1 } ]
+    const updatedFlourAmount = user.pantry[2].amount;
 
-      const originalFlourAmount = user.pantry[5].amount;
+    expect(originalFlourAmount).to.equal(5);
+    expect(updatedFlourAmount).to.equal(3)
+  });
 
-      user.updateIngredientAmount(ingredients)
+  it('should be able to remove ingredients', function() {
+    const ingredients = [ { id: 20081, amount: 2 }, { id: 1123, amount: -1 } ]
 
-      const updatedFlourAmount = user.pantry[5].amount;
+    const originalFlourAmount = user.pantry[5].amount;
 
-      expect(originalFlourAmount).to.equal(9);
-      expect(updatedFlourAmount).to.equal(8)
-    });
+    user.updateIngredientAmount(ingredients)
 
-    it('should remove ingredients if amount is 0', function() {
-      const ingredients = [ { id: 20081, amount: -5 }, { id: 1123, amount: 1 } ]
+    const updatedFlourAmount = user.pantry[5].amount;
 
-      const originalFlourAmount = user.pantry[2].amount;
-      const ingredientAtIndex2 = user.pantry[2].ingredient;
-      const originalPantryLength = user.pantry.length;
+    expect(originalFlourAmount).to.equal(9);
+    expect(updatedFlourAmount).to.equal(8)
+  });
 
-      user.updateIngredientAmount(ingredients)
+  it('should remove ingredients if amount is 0', function() {
+    const ingredients = [ { id: 20081, amount: -5 }, { id: 1123, amount: 1 } ]
 
-      const newIngAtIndex2 = user.pantry[2].ingredient;
-      const updatedPantryLength = user.pantry.length;
+    const originalFlourAmount = user.pantry[2].amount;
+    const ingredientAtIndex2 = user.pantry[2].ingredient;
+    const originalPantryLength = user.pantry.length;
 
-      expect(originalFlourAmount).to.equal(5);
-      expect(ingredientAtIndex2).to.equal(20081);
-      expect(newIngAtIndex2).to.equal(11215);
-      expect(originalPantryLength).to.equal(8);
-      expect(updatedPantryLength).to.equal(7);
-    });
+    user.updateIngredientAmount(ingredients)
 
+    const newIngAtIndex2 = user.pantry[2].ingredient;
+    const updatedPantryLength = user.pantry.length;
+
+    expect(originalFlourAmount).to.equal(5);
+    expect(ingredientAtIndex2).to.equal(20081);
+    expect(newIngAtIndex2).to.equal(11215);
+    expect(originalPantryLength).to.equal(8);
+    expect(updatedPantryLength).to.equal(7);
+  })
 })
