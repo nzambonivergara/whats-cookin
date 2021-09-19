@@ -85,7 +85,7 @@ button {
   font-family: $primary-font;
   height: 50px;
   width: 120px;
-	transition: all 0.2s ease-in-out;
+	transition: $primary-transition;
   &:hover {
     border-bottom: 4px solid $secondary-color;
   }
@@ -110,7 +110,7 @@ button {
   border-bottom: 4px solid transparent;
   color: $primary-color;
   font-family: $secondary-font;
-	transition: all 0.2s ease-in-out;
+	transition: $primary-transition;
   &:hover {
     color: $secondary-color;
     text-shadow: 1px 1px 2px $primary-color;
@@ -150,7 +150,7 @@ button {
   min-width: 100px;
   overflow: hidden;
   position: relative;
-	transition: all 0.2s ease-in-out;
+	transition: $primary-transition;
   &:hover {
     cursor: pointer;
     box-shadow: $shadow;
@@ -162,7 +162,7 @@ button {
   color: $white;
   font-family: $primary-font;
   text-align: center;
-  transition: all 0.2s ease-in-out;
+  transition: $primary-transition;
   z-index: 1;
 }
 
@@ -279,7 +279,7 @@ button {
   border: 1px solid $primary-color-x-light;
   color: $secondary-color;
   width: 275px;
-  transition: all 0.2s ease-in-out;
+  transition: $primary-transition;
   margin: 15px 10px;
   padding: 5px;
   justify-content: center;
