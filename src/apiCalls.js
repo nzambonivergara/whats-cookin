@@ -26,8 +26,8 @@ function alterIngredients(userId, ingredientsId, ingredientsModification) {
     method: 'POST',
     body: JSON.stringify({
       "userID": userId,
-      "ingredientID": 1123,
-      "ingredientModification": 3
+      "ingredientID": ingredientsId,
+      "ingredientModification": ingredientsModification
     }),
     headers: {
       'Content-Type': 'application/json'
