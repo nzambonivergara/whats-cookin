@@ -57,7 +57,7 @@ class User {
   }
 
   returnPantryIngredients() {
-    let matchingIngredient = 'banana';
+    let matchingIngredient;
 
     return this.pantry.reduce((acc, pantryIngredient) => {
       this.repo.recipes.find(recipe => {
@@ -73,11 +73,13 @@ class User {
 
   updateIngredientAmount(ingredients) {
     ingredients.forEach(ingredient => {
-      let match = this.pantry.find(pantryIngredient => pantryIngredient.ingredient === ingredient.id)
+      const match = this.pantry.find(pantryIngredient => pantryIngredient.ingredient === ingredient.id)
 
-      match.amount += ingredient.amount;
-      if (!match.amount) {
-        this.removeIngredient(match);
+      if (match) {
+        match.amount += ingredient.amount;
+        !match.amount && this.removeIngredient(match);
+      } else {
+        this.addIngredientToPantry(ingredient);
       }
     })
   }
@@ -85,6 +87,10 @@ class User {
   removeIngredient(ingredient) {
     const ingIndex = this.pantry.indexOf(ingredient);
     this.pantry.splice(ingIndex, 1);
+  }
+
+  addIngredientToPantry(ingredient) {
+    this.pantry.push({ ingredient: ingredient.id, amount: ingredient.amount });
   }
 }
 
