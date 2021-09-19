@@ -122,8 +122,8 @@ describe('User', function() {
 
   });
 
-  it('should be able to add ingredients', function() {
-    const ingredients = [ { id: 20081, amount: -2 }, { id: 1123, amount: 1 } ]
+  it('should be able to add to the ingredients amount in pantry', function() {
+    const ingredients = [ { id: 20081, amount: 2 }, { id: 1123, amount: 1 } ]
 
     const originalFlourAmount = user.pantry[2].amount;
 
@@ -132,10 +132,40 @@ describe('User', function() {
     const updatedFlourAmount = user.pantry[2].amount;
 
     expect(originalFlourAmount).to.equal(5);
-    expect(updatedFlourAmount).to.equal(3)
+    expect(updatedFlourAmount).to.equal(7)
   });
 
-  it('should be able to remove ingredients', function() {
+  it('should be able to add ingredients that are not in the pantry', function() {
+      const ingredient = { id: 93740, amount: 40 }
+
+      const originalPantryLength = user.pantry.length;
+
+      user.addIngredientToPantry(ingredient)
+
+      const ingredientAddedId = user.pantry[8].ingredient;
+      const updatedPantryLength = user.pantry.length;
+
+      expect(ingredientAddedId).to.equal(93740);
+      expect(originalPantryLength).to.equal(8);
+      expect(updatedPantryLength).to.equal(9);
+    })
+
+  it('should be able to add ingredients that are not in the pantry when updating ingredient amounts', function() {
+      const ingredients = [ { id: 12023, amount: 40 } ]
+
+      const originalPantryLength = user.pantry.length;
+
+      user.updateIngredientAmount(ingredients)
+
+      const ingredientAddedId = user.pantry[9].ingredient;
+      const updatedPantryLength = user.pantry.length;
+
+      expect(ingredientAddedId).to.equal(12023);
+      expect(originalPantryLength).to.equal(9);
+      expect(updatedPantryLength).to.equal(10);
+  })
+
+  it('should be able to substract from ingredients amount', function() {
     const ingredients = [ { id: 20081, amount: 2 }, { id: 1123, amount: -1 } ]
 
     const originalFlourAmount = user.pantry[5].amount;
@@ -149,7 +179,7 @@ describe('User', function() {
   });
 
   it('should remove ingredients if amount is 0', function() {
-    const ingredients = [ { id: 20081, amount: -5 }, { id: 1123, amount: 1 } ]
+    const ingredients = [ { id: 20081, amount: -9 }, { id: 1123, amount: 1 } ]
 
     const originalFlourAmount = user.pantry[2].amount;
     const ingredientAtIndex2 = user.pantry[2].ingredient;
@@ -160,10 +190,10 @@ describe('User', function() {
     const newIngAtIndex2 = user.pantry[2].ingredient;
     const updatedPantryLength = user.pantry.length;
 
-    expect(originalFlourAmount).to.equal(5);
+    expect(originalFlourAmount).to.equal(9);
     expect(ingredientAtIndex2).to.equal(20081);
     expect(newIngAtIndex2).to.equal(11215);
-    expect(originalPantryLength).to.equal(8);
-    expect(updatedPantryLength).to.equal(7);
+    expect(originalPantryLength).to.equal(10);
+    expect(updatedPantryLength).to.equal(9);
   })
 })
