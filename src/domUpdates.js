@@ -39,7 +39,6 @@ const addToWeekButton = document.getElementById('addToWeekButton');
 const noWeeklyRecipes = document.getElementById('noWeeklyRecipes');
 const removeFromWeekButton = document.getElementById('removeFromWeekButton');
 
-const cookRecipeButton = document.getElementById('cookRecipeButton');
 const allSections = document.querySelectorAll('section > section');
 
 let domUpdates = {
@@ -107,11 +106,6 @@ let domUpdates = {
       favoritesTagsGlide.id = 'favoriteSearchGlide';
       favoriteRecipesSection.appendChild(favoritesTagsGlide);
     }
-  },
-
-  removeTagSelection() {
-    const selectedTags = document.querySelectorAll('.tag-selected')
-    selectedTags.forEach(tag => tag.classList.toggle('tag-selected'));
   },
 
   homeViewImage,
