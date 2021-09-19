@@ -265,8 +265,11 @@ button {
   background-color: $white;
   border: 1px solid $primary-color-x-light;
   color: $secondary-color;
-  width: 275px;
   transition: $primary-transition;
+  &:hover {
+    background-color: $secondary-color;
+    color: $white;
+  }
 }
 
 .recipe-button {
@@ -275,10 +278,6 @@ button {
   padding: 5px;
   justify-content: center;
   gap: 8px;
-  &:hover {
-    background-color: $secondary-color;
-    color: $white;
-  }
 }
 
 .search-results,
