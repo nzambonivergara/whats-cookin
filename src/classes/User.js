@@ -4,7 +4,7 @@ class User {
   constructor(usersData, recipeRepository) {
     this.name = usersData.name;
     this.id = usersData.id;
-    this.pantry = usersData.pantry
+    this.pantry = usersData.pantry;
     this.favoriteRecipes = [];
     this.weeklyFavorites = [];
     this.filteredByName = [];
@@ -29,8 +29,20 @@ class User {
       this.weeklyFavorites.indexOf(recipe), 1);
   }
 
+  checkUserPantry(recipe) {
+    let match = 0;
+    recipe.ingredients.forEach(rIng => {
+      this.pantry.forEach(pIng => {
+        if (rIng.id === pIng.ingredient && pIng.amount >= rIng.amount) {
+          match += 1;
+        };
+      });
+    });
+    return match === recipe.ingredients.length;
+  }
+
   filterFavoriteRecipesByTags(tags) {
-    const foundRecipes = this.repo.findRecipesByTag(tags, this.favoriteRecipes); 
+    const foundRecipes = this.repo.findRecipesByTag(tags, this.favoriteRecipes);
     return foundRecipes;
   }
 

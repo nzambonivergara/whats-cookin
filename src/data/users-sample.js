@@ -57,7 +57,7 @@ export const usersData = [
       },
       {
         "ingredient": 18371,
-        "amount": 7
+        "amount": 1
       },
       {
         "ingredient": 1001,
@@ -109,7 +109,7 @@ export const usersData = [
       },
       {
         "ingredient": 19206,
-        "amount": 2
+        "amount": 3
       },
       {
         "ingredient": 1145,
@@ -142,6 +142,34 @@ export const usersData = [
       {
         "ingredient": 2027,
         "amount": 2
+      },
+      {
+        "ingredient": 19334,
+        "amount": 5
+      },
+      {
+        "ingredient": 1012047,
+        "amount": 30
+      },
+      {
+        "ingredient": 10019903,
+        "amount": 5
+      },
+      {
+        "ingredient": 9040,
+        "amount": 1
+      },
+      {
+        "ingredient": 20011,
+        "amount": 5
+      },
+      {
+        "ingredient": 19296,
+        "amount": 5
+      },
+      {
+        "ingredient": 16098,
+        "amount": 5
       }
     ]
 }]
