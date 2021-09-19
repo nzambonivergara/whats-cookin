@@ -383,7 +383,6 @@ function updateIngredients(ingredients) {
     ingredients.map((ingredient) => {
       alterIngredients(user.id, ingredient.id, ingredient.amount)
       .then(response => {
-        console.log(response);
         //update user's pantry when successful
         //will need new method in user class updatePantry(ingredientId, amount)
       })
