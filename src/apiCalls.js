@@ -1,21 +1,23 @@
+const apiEndpoint = 'http://localhost:3001';
+
 function loadUsers() {
-  return fetch('https://what-s-cookin-starter-kit.herokuapp.com/api/v1/users')
+  return fetch(`${apiEndpoint}/api/v1/users`)
     .then(response => response.json())
-    .then(data => data.usersData)
+    .then(data => data)
     .catch(error => console.error(error))
 }
 
 function loadIngredients() {
-  return fetch('https://what-s-cookin-starter-kit.herokuapp.com/api/v1/ingredients')
+  return fetch(`${apiEndpoint}/api/v1/ingredients`)
     .then(response => response.json())
-    .then(data => data.ingredientsData)
+    .then(data => data)
     .catch(error => console.error(error))
 }
 
 function loadRecipes() {
-  return fetch('https://what-s-cookin-starter-kit.herokuapp.com/api/v1/recipes')
+  return fetch(`${apiEndpoint}/api/v1/recipes`)
     .then(response => response.json())
-    .then(data => data.recipeData)
+    .then(data => data)
     .catch(error => console.log(error))
 }
 
