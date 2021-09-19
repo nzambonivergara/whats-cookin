@@ -102,4 +102,67 @@ describe('User', function() {
       expect(user.checkUserPantry(notEnoughIngredientsRecipe)).to.equal(false)
       expect(user.checkUserPantry(missingIngredientsRecipe)).to.equal(false)
     });
+
+  it('should be able to return the pantry ingredients', function() {
+    const expected = [
+      '4 flat leaf parsley leaves',
+      '10 kosher salt',
+      '5 wheat flour',
+      '5 whole garlic clove',
+      '6 salt',
+      '8 eggs',
+      '4 vanilla',
+      '5 buck wheat flour'
+    ]
+    const pantryIngredients = user.returnPantryIngredients()
+      expect(pantryIngredients[0]).to.be.a('string');
+      expect(pantryIngredients).to.deep.equal(expected);
+      expect(pantryIngredients.length).to.equal(8);
+    });
+
+    it('should be able to add ingredients', function() {
+      const ingredients = [ { id: 20081, amount: -2 }, { id: 1123, amount: 1 } ]
+
+      const originalFlourAmount = user.pantry[2].amount;
+
+      user.updateIngredientAmount(ingredients)
+
+      const updatedFlourAmount = user.pantry[2].amount;
+
+      expect(originalFlourAmount).to.equal(5);
+      expect(updatedFlourAmount).to.equal(3)
+    });
+
+    it('should be able to remove ingredients', function() {
+      const ingredients = [ { id: 20081, amount: 2 }, { id: 1123, amount: -1 } ]
+
+      const originalFlourAmount = user.pantry[5].amount;
+
+      user.updateIngredientAmount(ingredients)
+
+      const updatedFlourAmount = user.pantry[5].amount;
+
+      expect(originalFlourAmount).to.equal(9);
+      expect(updatedFlourAmount).to.equal(8)
+    });
+
+    it('should remove ingredients if amount is 0', function() {
+      const ingredients = [ { id: 20081, amount: -5 }, { id: 1123, amount: 1 } ]
+
+      const originalFlourAmount = user.pantry[2].amount;
+      const ingredientAtIndex2 = user.pantry[2].ingredient;
+      const originalPantryLength = user.pantry.length;
+
+      user.updateIngredientAmount(ingredients)
+
+      const newIngAtIndex2 = user.pantry[2].ingredient;
+      const updatedPantryLength = user.pantry.length;
+
+      expect(originalFlourAmount).to.equal(5);
+      expect(ingredientAtIndex2).to.equal(20081);
+      expect(newIngAtIndex2).to.equal(11215);
+      expect(originalPantryLength).to.equal(8);
+      expect(updatedPantryLength).to.equal(7);
+    });
+
 })
