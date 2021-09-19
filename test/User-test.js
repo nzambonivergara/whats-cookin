@@ -8,9 +8,9 @@ import RecipeRepository from '../src/classes/RecipeRepository';
 
 describe('User', function() {
   let user;
-  let recipeOne;
-  let recipeTwo;
-  let recipeThree;
+  let missingIngredientsRecipe;
+  let notEnoughIngredientsRecipe;
+  let hasAllIngredientsRecipe;
   let repo;
   const tagOne = 'appetizer';
   const tagTwo = 'snack';
@@ -20,18 +20,18 @@ describe('User', function() {
     repo = new RecipeRepository(recipeData);
     repo.getRecipesInformation(ingredientsData);
     user = new User(usersData[0], repo);
-    recipeOne = new Recipe(recipeData[2]);
-    recipeTwo = new Recipe(recipeData[1]);
-    recipeThree = new Recipe(recipeData[0]);
-    recipeOne.getIngredientsInformation(ingredientsData);
-    recipeTwo.getIngredientsInformation(ingredientsData);
-    recipeThree.getIngredientsInformation(ingredientsData);
-    user.addFavorite(recipeOne);
-    user.addFavorite(recipeTwo);
-    user.addFavorite(recipeThree);
-    user.addWeeklyRecipe(recipeOne);
-    user.addWeeklyRecipe(recipeTwo);
-    user.addWeeklyRecipe(recipeThree);
+    missingIngredientsRecipe = new Recipe(recipeData[2]);
+    notEnoughIngredientsRecipe = new Recipe(recipeData[1]);
+    hasAllIngredientsRecipe = new Recipe(recipeData[0]);
+    missingIngredientsRecipe.getIngredientsInformation(ingredientsData);
+    notEnoughIngredientsRecipe.getIngredientsInformation(ingredientsData);
+    hasAllIngredientsRecipe.getIngredientsInformation(ingredientsData);
+    user.addFavorite(missingIngredientsRecipe);
+    user.addFavorite(notEnoughIngredientsRecipe);
+    user.addFavorite(hasAllIngredientsRecipe);
+    user.addWeeklyRecipe(missingIngredientsRecipe);
+    user.addWeeklyRecipe(notEnoughIngredientsRecipe);
+    user.addWeeklyRecipe(hasAllIngredientsRecipe);
   });
 
   it('should have a name', function() {
@@ -48,58 +48,58 @@ describe('User', function() {
 
   it('should be able to add a favorite recipe', function() {
     expect(user.favoriteRecipes).to.deep.equal(
-      [recipeOne, recipeTwo, recipeThree]
+      [missingIngredientsRecipe, notEnoughIngredientsRecipe, hasAllIngredientsRecipe]
     );
   });
 
   it('should be able to remove favorite recipes', function() {
-    user.removeFavorite(recipeTwo);
-    expect(user.favoriteRecipes).to.deep.equal([recipeOne, recipeThree]);
+    user.removeFavorite(notEnoughIngredientsRecipe);
+    expect(user.favoriteRecipes).to.deep.equal([missingIngredientsRecipe, hasAllIngredientsRecipe]);
   });
 
   it('should be able to filter favorites by recipe tag', function() {
     expect(user.filterFavoriteRecipesByTags([tagOne])).to.deep.equal(
-      [recipeOne, recipeThree]
+      [missingIngredientsRecipe, hasAllIngredientsRecipe]
     );
   });
 
   it('should be able to filter favorites by more than one recipe tag',
     function() {
       expect(user.filterFavoriteRecipesByTags([tagOne, tagTwo, tagThree])).to.deep.equal(
-        [recipeOne, recipeTwo, recipeThree]
+        [missingIngredientsRecipe, notEnoughIngredientsRecipe, hasAllIngredientsRecipe]
       );
     });
 
   it('should be able to filter favorites by ingredient', function() {
-    expect(user.findFavoriteRecipesByIngredient('unsalted butter')).to.deep.equal([recipeOne, recipeThree]);
+    expect(user.findFavoriteRecipesByIngredient('wheat flour')).to.deep.equal([ missingIngredientsRecipe,notEnoughIngredientsRecipe, hasAllIngredientsRecipe ]);
   });
 
   it('should be able to filter favorites by name', function() {
-    expect(user.findFavoriteRecipesByName('cookies')).to.deep.equal([recipeOne]);
+    expect(user.findFavoriteRecipesByName('cookies')).to.deep.equal([missingIngredientsRecipe]);
   });
 
   it('should be able to add a recipe to the user\'s weekly meal plan',
     function() {
       expect(user.weeklyFavorites).to.deep.equal(
-        [recipeOne, recipeTwo, recipeThree]
+        [missingIngredientsRecipe, notEnoughIngredientsRecipe, hasAllIngredientsRecipe]
       );
     });
 
   it('should be able to remove a recipe from the user\'s weekly meal plan',
     function() {
-      user.removeWeeklyRecipe(recipeTwo);
-      expect(user.weeklyFavorites).to.deep.equal([recipeOne, recipeThree]);
+      user.removeWeeklyRecipe(notEnoughIngredientsRecipe);
+      expect(user.weeklyFavorites).to.deep.equal([missingIngredientsRecipe, hasAllIngredientsRecipe]);
     });
 
   it('should be able to check pantry for ingredients needed to cook a recipe',
     function() {
-      expect(user.checkUserPantry(recipeThree)).to.equal(true)
-      expect(user.checkUserPantry(recipeOne)).to.equal(false)
+      expect(user.checkUserPantry(hasAllIngredientsRecipe)).to.equal(true)
+      expect(user.checkUserPantry(missingIngredientsRecipe)).to.equal(false)
     });
 
   it('should be able to check user\'s pantry for amount of ingredients necessary to cook a meal',
     function() {
-      expect(user.checkUserPantry(recipeTwo)).to.equal(false)
-      expect(user.checkUserPantry(recipeOne)).to.equal(false)
+      expect(user.checkUserPantry(notEnoughIngredientsRecipe)).to.equal(false)
+      expect(user.checkUserPantry(missingIngredientsRecipe)).to.equal(false)
     });
 })
