@@ -69,14 +69,14 @@ Individual Recipe Card:
 - Merging branches together after independent coding
 - Accessing and managing the data and ensuring we write clear readable code
 
-## Install/ Setup Instructions
+## Install/ Set Up Instructions
 
 ### Backend Set Up
 
 1. Go to this [repository](https://github.com/turingschool-examples/whats-cookin-api)
 2. Follow Set Up instructions.
 
-### Frontend Setup
+### Frontend Set Up
 
 1. Clone down this repository.
   ```
