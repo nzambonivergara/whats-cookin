@@ -23,6 +23,7 @@ domUpdates.removeFromFavoritesButton.addEventListener('click', removeFromFavorit
 domUpdates.favoriteRecipesSection.addEventListener('click', selectTag);
 domUpdates.cookRecipeButton.addEventListener('click', displayModal);
 domUpdates.addIngredientsButton.addEventListener('click', addIngredients);
+domUpdates.confirmCookingButton.addEventListener('click', useIngredients);
 domUpdates.allSections.forEach(section => section.addEventListener('click', displayRecipe))
 domUpdates.allSections.forEach(section => {
   section.addEventListener('keyup', function(event) {
@@ -378,16 +379,36 @@ function displayModal() {
 }
 
 function addIngredients() {
-  alterIngredients(user.id)
+  const ingredientsNeeded = [
+    {
+      "id": 20081,
+      "name": "wheat flour",
+      "amount": 1
+    },
+    {
+      "id": 1123,
+      "name": "eggs",
+      "amount": 3
+    }
+  ];
+
+  Promise.all(
+    ingredientsNeeded.map((ingredient) => {
+      alterIngredients(user.id, ingredient.id, ingredient.amount)
+      .then(response => {
+        //update user's pantry when successful
+        //will need new method in user class updatePantry(ingredientId, amount)
+      })
+    })
+  )
   .then(response => {
     MicroModal.close("modal-1");
     MicroModal.show("modal-2");
-    // user.pantry.ingredient += amount;
   })
 }
 
 function useIngredients() {
-  alterIngredients(user.id)
+  alterIngredients(user.id, ingredientsId, ingredientsModification)
   .then(response => {
     MicroModal.close("modal-2");
   })
