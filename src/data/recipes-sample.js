@@ -11,13 +11,6 @@ export const recipeData = [
         }
       },
       {
-        "id": 18372,
-        "quantity": {
-          "amount": 0.5,
-          "unit": "tsp"
-        }
-      },
-      {
         "id": 1123,
         "quantity": {
           "amount": 1,
@@ -25,52 +18,10 @@ export const recipeData = [
         }
       },
       {
-        "id": 19335,
-        "quantity": {
-          "amount": 0.5,
-          "unit": "c"
-        }
-      },
-      {
-        "id": 19206,
-        "quantity": {
-          "amount": 3,
-          "unit": "Tbsp"
-        }
-      },
-      {
-        "id": 19334,
-        "quantity": {
-          "amount": 0.5,
-          "unit": "c"
-        }
-      },
-      {
         "id": 2047,
         "quantity": {
           "amount": 0.5,
           "unit": "tsp"
-        }
-      },
-      {
-        "id": 1012047,
-        "quantity": {
-          "amount": 24,
-          "unit": "servings"
-        }
-      },
-      {
-        "id": 10019903,
-        "quantity": {
-          "amount": 2,
-          "unit": "c"
-        }
-      },
-      {
-        "id": 1145,
-        "quantity": {
-          "amount": 0.5,
-          "unit": "c"
         }
       },
       {
@@ -124,50 +75,15 @@ export const recipeData = [
       {
         "id": 20081,
         "quantity": {
-          "amount": 1,
+          "amount": 6,
           "unit": "cup"
-        }
-      },
-      {
-        "id": 18371,
-        "quantity": {
-          "amount": 2,
-          "unit": "teaspoons"
-        }
-      },
-      {
-        "id": 9040,
-        "quantity": {
-          "amount": 12,
-          "unit": "servings"
         }
       },
       {
         "id": 20011,
         "quantity": {
-          "amount": 1,
-          "unit": "cup"
-        }
-      },
-      {
-        "id": 1001,
-        "quantity": {
-          "amount": 2,
-          "unit": "tablespoons"
-        }
-      },
-      {
-        "id": 1001,
-        "quantity": {
           "amount": 6,
-          "unit": "tablespoons"
-        }
-      },
-      {
-        "id": 1230,
-        "quantity": {
-          "amount": 2,
-          "unit": "cups"
+          "unit": "cup"
         }
       },
       {
@@ -178,31 +94,10 @@ export const recipeData = [
         }
       },
       {
-        "id": 19296,
-        "quantity": {
-          "amount": 12,
-          "unit": "servings"
-        }
-      },
-      {
-        "id": 16098,
-        "quantity": {
-          "amount": 12,
-          "unit": "servings"
-        }
-      },
-      {
         "id": 2047,
         "quantity": {
           "amount": 1,
           "unit": "teaspoon"
-        }
-      },
-      {
-        "id": 19335,
-        "quantity": {
-          "amount": 2,
-          "unit": "teaspoons"
         }
       }
     ],
@@ -260,13 +155,6 @@ export const recipeData = [
         }
       },
       {
-        "id": 1125,
-        "quantity": {
-          "amount": 1,
-          "unit": ""
-        }
-      },
-      {
         "id": 2047,
         "quantity": {
           "amount": 1,
@@ -278,20 +166,6 @@ export const recipeData = [
         "quantity": {
           "amount": 40,
           "unit": "g"
-        }
-      },
-      {
-        "id": 19335,
-        "quantity": {
-          "amount": 80,
-          "unit": "g"
-        }
-      },
-      {
-        "id": 1145,
-        "quantity": {
-          "amount": 1,
-          "unit": "stick"
         }
       }
     ],

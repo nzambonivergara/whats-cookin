@@ -62,15 +62,8 @@ describe('Recipe Class', function() {
     it('should return a list of ingredients', function() {
       const expected = [
         "1.50 c wheat flour",
-        "0.50 tsp bicarbonate of soda",
         "1 large eggs",
-        "0.50 c sucrose",
-        "3 Tbsp instant vanilla pudding",
-        "0.50 c brown sugar",
         "0.50 tsp salt",
-        "24 servings fine sea salt",
-        "2 c semi sweet chips",
-        "0.50 c unsalted butter",
         "0.50 tsp vanilla"
       ];
 
@@ -82,7 +75,7 @@ describe('Recipe Class', function() {
     });
 
     it('should return the total cost of all ingredients', function() {
-      const expected = '177.76';
+      const expected = '12.88';
       recipe.getIngredientsInformation(ingredientsData);
       const totalCost = recipe.returnCostInDollars();
 
