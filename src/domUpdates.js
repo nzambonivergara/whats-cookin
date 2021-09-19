@@ -38,6 +38,7 @@ const weeklyRecipes = document.getElementById('weeklyRecipes');
 const addToWeekButton = document.getElementById('addToWeekButton');
 const noWeeklyRecipes = document.getElementById('noWeeklyRecipes');
 const removeFromWeekButton = document.getElementById('removeFromWeekButton');
+const addIngredientsButton = document.getElementById('addIngredientsButton');
 
 const cookRecipeButton = document.getElementById('cookRecipeButton');
 const allSections = document.querySelectorAll('section > section');
@@ -148,7 +149,8 @@ let domUpdates = {
   noWeeklyRecipes,
   removeFromWeekButton,
   cookRecipeButton,
-  allSections
+  allSections,
+  addIngredientsButton
 };
 
 export default  domUpdates;
