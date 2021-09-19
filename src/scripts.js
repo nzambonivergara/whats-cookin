@@ -378,6 +378,19 @@ function displayModal() {
   }
 }
 
+function updateIngredients(ingredients) {
+  return Promise.all(
+    ingredients.map((ingredient) => {
+      alterIngredients(user.id, ingredient.id, ingredient.amount)
+      .then(response => {
+        console.log(response);
+        //update user's pantry when successful
+        //will need new method in user class updatePantry(ingredientId, amount)
+      })
+    })
+  )
+}
+
 function addIngredients() {
   const ingredientsNeeded = [
     {
@@ -392,15 +405,7 @@ function addIngredients() {
     }
   ];
 
-  Promise.all(
-    ingredientsNeeded.map((ingredient) => {
-      alterIngredients(user.id, ingredient.id, ingredient.amount)
-      .then(response => {
-        //update user's pantry when successful
-        //will need new method in user class updatePantry(ingredientId, amount)
-      })
-    })
-  )
+  updateIngredients(ingredientsNeeded)
   .then(response => {
     MicroModal.close("modal-1");
     MicroModal.show("modal-2");
@@ -408,7 +413,20 @@ function addIngredients() {
 }
 
 function useIngredients() {
-  alterIngredients(user.id, ingredientsId, ingredientsModification)
+  const ingredientsNeeded = [
+    {
+      "id": 20081,
+      "name": "wheat flour",
+      "amount": -1
+    },
+    {
+      "id": 1123,
+      "name": "eggs",
+      "amount": -3
+    }
+  ];
+
+  updateIngredients(ingredientsNeeded)
   .then(response => {
     MicroModal.close("modal-2");
   })
