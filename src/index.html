@@ -24,9 +24,9 @@
             search
           </span>
         </form>
-        <button type="button" class="search-bar__home-button" id="homeViewButton">
+        <button type="button" class="search-bar__home-button" id="homeViewButton" aria-label="navigate-to-home">
           <p class="search-bar__home-button-text">what's cookin'</p>
-          <span class="material-icons">home</span>
+          <span class="material-icons" aria-label="home-icon">home</span>
         </button>
       </div>
     </nav>
@@ -101,19 +101,19 @@
             <img id="recipeImage" class="recipe-image" alt="image of selected recipe">
             <div class="recipe-buttons-container">
               <button type="button" class="recipe-button favorite-button" id="addToFavoritesButton">
-                <span class="material-icons">favorite_border</span>
+                <span class="material-icons" aria-label="heart-icon">favorite_border</span>
                 <p>ADD TO FAVORITES</p>
               </button>
               <button type="button" class="recipe-button favorite-button hidden" id="removeFromFavoritesButton">
-               <span class="material-icons">favorite_border</span>
+               <span class="material-icons" aria-label="active-heart-icon">favorite_border</span>
                <p>REMOVE FROM FAVORITES</p>
              </button>
               <button type="button" class="recipe-button week-button" id="addToWeekButton">
-                <span class="material-icons">date_range</span>
+                <span class="material-icons" aria-label="calendar-icon">date_range</span>
                 <p>ADD TO THIS WEEK'S</p>
               </button>
               <button type="button" class="recipe-button week-button hidden" id="removeFromWeekButton">
-                <span class="material-icons">date_range</span>
+                <span class="material-icons" aria-label="active-calendar-icon">date_range</span>
                 <p>REMOVE FROM THIS WEEK'S</p>
               </button>
             </div>
@@ -133,9 +133,9 @@
     </main>
     <div class="modal" id="modal-1" aria-hidden="true">
       <div class="modal__overlay" tabindex="-1" data-micromodal-close>
-        <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="modal-1-title" >
+        <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="add-ingredients-to-pantry" >
           <header class="modal__header">
-            <h2 class="modal__title" id="modal-1-title">Add to Pantry</h2>
+            <h2 class="modal__title" id="add-ingredients-to-pantry">Add to Pantry</h2>
             <button class="modal__close" aria-label="Close modal" data-micromodal-close></button>
           </header>
           <main class="modal__content" id="modal-1-content">
@@ -144,7 +144,7 @@
             <p>Wanna add these ingredients to your pantry?</p>
           </main>
           <footer class="modal__footer">
-            <button class="modal__button" id="addIngredientsButton">YES</button>
+            <button class="modal__button" id="addIngredientsButton" aria-label="Add missing ingredients to pantry and close dialog window">YES</button>
             <button class="modal__button" data-micromodal-close aria-label="Close this dialog window">CANCEL</button>
           </footer>
         </div>
@@ -154,7 +154,7 @@
       <div class="modal__overlay" tabindex="-1" data-micromodal-close >
         <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="cook-confirmation-modal" >
           <header class="modal__header">
-            <h2 class="modal__title" id="modal-1-title">Cook this recipe</h2>
+            <h2 class="modal__title" id="cook-confirmation-modal">Cook this recipe</h2>
             <button class="modal__close" aria-label="Close modal" data-micromodal-close></button>
           </header>
           <main class="modal__content" id="modal-1-content">
@@ -162,7 +162,7 @@
             <p>Click YES, to confirm and update your pantry.</p>
           </main>
           <footer class="modal__footer">
-            <button class="modal__button" id="confirmCookingButton">YES</button>
+            <button class="modal__button" id="confirmCookingButton" aria-label="Cook current recipe and remove ingredients used from pantry">YES</button>
             <button class="modal__button" data-micromodal-close aria-label="Close this dialog window">CANCEL</button>
           </footer>
         </div>
