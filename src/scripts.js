@@ -1,6 +1,6 @@
 import './styles/index.scss';
 import domUpdates from './domUpdates';
-import { loadUsers, loadIngredients, loadRecipes } from './apiCalls';
+import { loadUsers, loadIngredients, loadRecipes, alterIngredients } from './apiCalls';
 import RecipeRepository from './classes/RecipeRepository';
 import User from './classes/User';
 import MicroModal from 'micromodal';
@@ -22,6 +22,8 @@ domUpdates.addToFavoritesButton.addEventListener('click', addToFavorites);
 domUpdates.removeFromFavoritesButton.addEventListener('click', removeFromFavorites);
 domUpdates.favoriteRecipesSection.addEventListener('click', selectTag);
 domUpdates.cookRecipeButton.addEventListener('click', displayModal);
+domUpdates.addIngredientsButton.addEventListener('click', addIngredients);
+domUpdates.confirmCookingButton.addEventListener('click', useIngredients);
 domUpdates.allSections.forEach(section => section.addEventListener('click', displayRecipe))
 domUpdates.allSections.forEach(section => {
   section.addEventListener('keyup', function(event) {
@@ -372,4 +374,57 @@ function displayModal() {
   } else {
     MicroModal.show("modal-1")
   }
+}
+
+function updateIngredients(ingredients) {
+  return Promise.all(
+    ingredients.map((ingredient) => {
+      alterIngredients(user.id, ingredient.id, ingredient.amount)
+      .then(response => {
+        //update user's pantry when successful
+        //will need new method in user class updatePantry(ingredientId, amount)
+      })
+    })
+  )
+}
+
+function addIngredients() {
+  const ingredientsNeeded = [
+    {
+      "id": 20081,
+      "name": "wheat flour",
+      "amount": 1
+    },
+    {
+      "id": 1123,
+      "name": "eggs",
+      "amount": 3
+    }
+  ];
+
+  updateIngredients(ingredientsNeeded)
+  .then(response => {
+    MicroModal.close("modal-1");
+    MicroModal.show("modal-2");
+  })
+}
+
+function useIngredients() {
+  const ingredientsNeeded = [
+    {
+      "id": 20081,
+      "name": "wheat flour",
+      "amount": -1
+    },
+    {
+      "id": 1123,
+      "name": "eggs",
+      "amount": -3
+    }
+  ];
+
+  updateIngredients(ingredientsNeeded)
+  .then(response => {
+    MicroModal.close("modal-2");
+  })
 }

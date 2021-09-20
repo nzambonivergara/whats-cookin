@@ -21,8 +21,26 @@ function loadRecipes() {
     .catch(error => console.log(error))
 }
 
+function alterIngredients(userId, ingredientsId, ingredientsModification) {
+  return fetch(`${apiEndpoint}/api/v1/users`, {
+    method: 'POST',
+    body: JSON.stringify({
+      "userID": userId,
+      "ingredientID": ingredientsId,
+      "ingredientModification": ingredientsModification
+    }),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+  .then(response => response.json())
+  .then(data => data)
+  .catch(error => console.log(error))
+}
+
 export {
   loadUsers,
   loadIngredients,
-  loadRecipes
+  loadRecipes,
+  alterIngredients
 }
