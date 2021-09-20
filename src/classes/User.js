@@ -55,6 +55,51 @@ class User {
     const filteredRecipe = this.repo.findRecipesByIngredient(ingredientName, this.favoriteRecipes);
     return filteredRecipe;
   }
+
+  returnPantryIngredients() {
+    let matchingIngredient;
+
+    return this.pantry.reduce((acc, pantryIngredient) => {
+      this.repo.recipes.find(recipe => {
+        matchingIngredient =  recipe.ingredients.find(ingredient => pantryIngredient.ingredient === ingredient.id)
+
+        return matchingIngredient;
+      })
+
+      acc.push(`${pantryIngredient.amount} ${matchingIngredient.name}`)
+      return acc
+    }, [])
+  }
+
+  addIngredientAmount(ingredients) {
+    ingredients.forEach(ingredient => {
+      const match = this.pantry.find(pantryIngredient => pantryIngredient.ingredient === ingredient.id)
+
+      if (match) {
+        match.amount += ingredient.amount;
+      } else {
+        this.addIngredientToPantry(ingredient);
+      }
+    })
+  }
+
+  subtractIngredientAmount(ingredients) {
+    ingredients.forEach(ingredient => {
+      const match = this.pantry.find(pantryIngredient => pantryIngredient.ingredient === ingredient.id)
+
+      match.amount += ingredient.amount;
+      !match.amount && this.removeIngredient(match);
+    })
+  }
+
+  removeIngredient(ingredient) {
+    const ingIndex = this.pantry.indexOf(ingredient);
+    this.pantry.splice(ingIndex, 1);
+  }
+
+  addIngredientToPantry(ingredient) {
+    this.pantry.push({ ingredient: ingredient.id, amount: ingredient.amount });
+  }
 }
 
 export default User;

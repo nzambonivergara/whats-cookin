@@ -62,6 +62,9 @@ describe('Recipe Class', function() {
     it('should return a list of ingredients', function() {
       const expected = [
         "1.50 c wheat flour",
+        "0.25 teaspoon kosher salt",
+        "3  whole garlic clove",
+        "0.25 cup flat leaf parsley leaves",
         "1 large eggs",
         "0.50 tsp salt",
         "0.50 tsp vanilla"
@@ -75,7 +78,7 @@ describe('Recipe Class', function() {
     });
 
     it('should return the total cost of all ingredients', function() {
-      const expected = '12.88';
+      const expected = '24.48';
       recipe.getIngredientsInformation(ingredientsData);
       const totalCost = recipe.returnCostInDollars();
 
