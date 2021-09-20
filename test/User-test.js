@@ -170,7 +170,7 @@ describe('User', function() {
 
     const originalFlourAmount = user.pantry[5].amount;
 
-    user.substractIngredientAmount(ingredients)
+    user.subtractIngredientAmount(ingredients)
 
     const updatedFlourAmount = user.pantry[5].amount;
 
@@ -185,7 +185,7 @@ describe('User', function() {
     const ingredientAtIndex2 = user.pantry[2].ingredient;
     const originalPantryLength = user.pantry.length;
 
-    user.substractIngredientAmount(ingredients)
+    user.subtractIngredientAmount(ingredients)
 
     const newIngAtIndex2 = user.pantry[2].ingredient;
     const updatedPantryLength = user.pantry.length;

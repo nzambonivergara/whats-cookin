@@ -83,7 +83,7 @@ class User {
     })
   }
 
-  substractIngredientAmount(ingredients) {
+  subtractIngredientAmount(ingredients) {
     ingredients.forEach(ingredient => {
       const match = this.pantry.find(pantryIngredient => pantryIngredient.ingredient === ingredient.id)
 
