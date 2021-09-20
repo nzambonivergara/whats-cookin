@@ -117,7 +117,7 @@ button {
   &:hover {
     color: $secondary-color;
     text-shadow: 1px 1px 2px $primary-color;
-  } 
+  }
 }
 
 /* --------------- HOME VIEW ------------------- */
@@ -315,13 +315,15 @@ button {
 }
 
 aside {
-	position: fixed;
+  @include flex-column;
+	position: absolute;
 	background-color: $transparent-white;
-	left: 0;
+	left: -168px;
 	padding: 20px;
-	height: 100%;
 	width: 150px;
-	line-height: 50px;
+  top: 8px;
+  bottom: 24px;
+  box-sizing: border-box;
 }
 
 ::-webkit-scrollbar {
@@ -331,6 +333,8 @@ aside {
 
 .pantry-ingredients {
 	overflow-y: scroll;
+  flex: 1;
+  height: 100%;
 }
 
 /* ----- Favorites View ------- */

@@ -43,6 +43,8 @@ const confirmCookingButton = document.getElementById('confirmCookingButton');
 
 const cookRecipeButton = document.getElementById('cookRecipeButton');
 const allSections = document.querySelectorAll('section > section');
+const pantryIngredientsContainer = document.getElementById('pantryIngredients');
+const ingredientsNeededContainer = document.getElementById('ingredientsNeeded');
 
 let domUpdates = {
   show(element) {
@@ -116,6 +118,20 @@ let domUpdates = {
     selectedTags.forEach(tag => tag.classList.toggle('tag-selected'));
   },
 
+  renderPantryIngredients(pantryIngredients) {
+    pantryIngredientsContainer.innerHTML = pantryIngredients.reduce((acc, pantryIngredients) => {
+      acc += `<li class="ingredient-list__item">● ${pantryIngredients}</li>`;
+      return acc;
+    }, '');
+  },
+
+  renderNeededIngredients(neededIngredients) {
+    ingredientsNeededContainer.innerHTML = neededIngredients.reduce((acc, neededIngredient) => {
+      acc += `<li class="ingredient-list__item">● ${neededIngredient.amount} ${neededIngredient.name}</li>`;
+      return acc;
+    }, '');
+  },
+
   homeViewImage,
   homeViewButton,
   homeViewSection,
@@ -152,7 +168,8 @@ let domUpdates = {
   cookRecipeButton,
   allSections,
   addIngredientsButton,
-  confirmCookingButton
+  confirmCookingButton,
+  ingredientsNeeded
 };
 
 export default domUpdates;
