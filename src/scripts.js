@@ -384,51 +384,36 @@ function updateIngredients(ingredients) {
   return Promise.all(
     ingredients.map((ingredient) => {
       alterIngredients(user.id, ingredient.id, ingredient.amount)
-      .then(response => {
-        //update user's pantry when successful
-        //will need new method in user class updatePantry(ingredientId, amount)
-      })
     })
   )
 }
 
 function addIngredients() {
-  const ingredientsNeeded = [
-    {
-      "id": 20081,
-      "name": "wheat flour",
-      "amount": 1
-    },
-    {
-      "id": 1123,
-      "name": "eggs",
-      "amount": 3
-    }
-  ];
+  const currentRecipe = findRecipeTitle();
+  const neededIngredients = user.returnNeededIngredients(currentRecipe);
 
-  updateIngredients(ingredientsNeeded)
+  updateIngredients(neededIngredients)
   .then(response => {
+    console.log('BEFORE adding ', user.pantry)
+    user.addIngredientAmount(neededIngredients);
+    console.log('AFTER adding ', user.pantry)
+    const pantryIngredients = user.returnPantryIngredients();
+    domUpdates.renderPantryIngredients(pantryIngredients);
     MicroModal.close("modal-1");
     MicroModal.show("modal-2");
   })
 }
 
 function useIngredients() {
-  const ingredientsNeeded = [
-    {
-      "id": 20081,
-      "name": "wheat flour",
-      "amount": -1
-    },
-    {
-      "id": 1123,
-      "name": "eggs",
-      "amount": -3
-    }
-  ];
+  const currentRecipe = findRecipeTitle();
 
-  updateIngredients(ingredientsNeeded)
+  updateIngredients(currentRecipe.ingredients)
   .then(response => {
+    console.log('BEFORE subtract ', user.pantry)
+    user.subtractIngredientAmount(currentRecipe.ingredients);
+    console.log('AFTER subtract ', user.pantry)
+    const pantryIngredients = user.returnPantryIngredients();
+    domUpdates.renderPantryIngredients(pantryIngredients);
     MicroModal.close("modal-2");
   })
 }
