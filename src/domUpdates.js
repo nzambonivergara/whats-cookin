@@ -43,6 +43,7 @@ const confirmCookingButton = document.getElementById('confirmCookingButton');
 
 const cookRecipeButton = document.getElementById('cookRecipeButton');
 const allSections = document.querySelectorAll('section > section');
+const pantryIngredientsContainer = document.getElementById('pantryIngredients');
 
 let domUpdates = {
   show(element) {
@@ -114,6 +115,13 @@ let domUpdates = {
   removeTagSelection() {
     const selectedTags = document.querySelectorAll('.tag-selected')
     selectedTags.forEach(tag => tag.classList.toggle('tag-selected'));
+  },
+
+  renderPantryIngredients(pantryIngredients) {
+    pantryIngredientsContainer.innerHTML = pantryIngredients.reduce((acc, pantryIngredients) => {
+      acc += `<li class="ingredient-list__item">● ${pantryIngredients}</li>`;
+      return acc;
+    }, '');
   },
 
   homeViewImage,
