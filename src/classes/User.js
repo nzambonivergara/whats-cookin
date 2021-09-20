@@ -31,14 +31,48 @@ class User {
 
   checkUserPantry(recipe) {
     let match = 0;
-    recipe.ingredients.forEach(rIng => {
-      this.pantry.forEach(pIng => {
-        if (rIng.id === pIng.ingredient && pIng.amount >= rIng.amount) {
+    recipe.ingredients.forEach(recipeIngredient => {
+      this.pantry.forEach(pantryIngredient => {
+        if (recipeIngredient.id === pantryIngredient.ingredient && pantryIngredient.amount >= recipeIngredient.amount) {
           match += 1;
-        };
-      });
-    });
+        }
+      })
+    })
     return match === recipe.ingredients.length;
+  }
+
+  returnNeededIngredients(recipe) {
+    const result = recipe.ingredients.reduce((obj, recipeIngredient) => {
+      let match = this.pantry.find(pantryIngredient => recipeIngredient.id === pantryIngredient.ingredient)
+
+      if (match) {
+        obj.have.push(recipeIngredient)
+      } else {
+        obj.need.push(recipeIngredient)
+      }
+      return obj
+    },
+    {
+      have: [],
+      need: []
+    })
+
+    const needByAmount = result.have.filter(resultIngredient => {
+      let foundMatches = this.pantry.find(ingredient => ingredient.ingredient === resultIngredient.id)
+      return foundMatches.amount < resultIngredient.amount
+
+    }).map(recipeIngredient => {
+      const foundMatches = this.pantry.find(pantryIngredient => pantryIngredient.ingredient === recipeIngredient.id)
+
+      return {
+        id: recipeIngredient.id,
+        name: recipeIngredient.name,
+        amount: recipeIngredient.amount - foundMatches.amount
+      }
+    })
+
+    const totalNeed = result.need.concat(needByAmount)
+    return totalNeed
   }
 
   filterFavoriteRecipesByTags(tags) {
