@@ -323,6 +323,8 @@ function renderIndividualRecipe(recipeId) {
   createInstructionList(recipe);
   checkIfRecipeInWeekly(recipe);
   checkIfRecipeInFavorites(recipe);
+  const pantryIngredients = user.returnPantryIngredients();
+  domUpdates.renderPantryIngredients(pantryIngredients);
 }
 
 function checkIfRecipeInWeekly(recipe) {
