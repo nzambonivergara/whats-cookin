@@ -374,6 +374,8 @@ function displayModal() {
   if (user.checkUserPantry(currentRecipe)) {
     MicroModal.show("modal-2")
   } else {
+    const neededIngredients = user.returnNeededIngredients(currentRecipe);
+    domUpdates.renderNeededIngredients(neededIngredients);
     MicroModal.show("modal-1")
   }
 }

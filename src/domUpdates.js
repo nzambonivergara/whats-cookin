@@ -44,6 +44,7 @@ const confirmCookingButton = document.getElementById('confirmCookingButton');
 const cookRecipeButton = document.getElementById('cookRecipeButton');
 const allSections = document.querySelectorAll('section > section');
 const pantryIngredientsContainer = document.getElementById('pantryIngredients');
+const ingredientsNeededContainer = document.getElementById('ingredientsNeeded');
 
 let domUpdates = {
   show(element) {
@@ -124,6 +125,13 @@ let domUpdates = {
     }, '');
   },
 
+  renderNeededIngredients(neededIngredients) {
+    ingredientsNeededContainer.innerHTML = neededIngredients.reduce((acc, neededIngredient) => {
+      acc += `<li class="ingredient-list__item">● ${neededIngredient.amount} ${neededIngredient.name}</li>`;
+      return acc;
+    }, '');
+  },
+
   homeViewImage,
   homeViewButton,
   homeViewSection,
@@ -160,7 +168,8 @@ let domUpdates = {
   cookRecipeButton,
   allSections,
   addIngredientsButton,
-  confirmCookingButton
+  confirmCookingButton,
+  ingredientsNeeded
 };
 
 export default domUpdates;
