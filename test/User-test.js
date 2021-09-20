@@ -195,5 +195,27 @@ describe('User', function() {
     expect(newIngAtIndex2).to.equal(20081);
     expect(originalPantryLength).to.equal(10);
     expect(updatedPantryLength).to.equal(10);
-  })
-})
+  });
+
+  it('should be able to return needed recipe ingredients', function() {
+    const ingredientsNeeded = user.returnNeededIngredients(missingIngredientsRecipe);
+    const expected = [
+      {
+        id: 93740,
+        amount: 40,
+        unit: 'g',
+        name: 'blanched almond flour',
+        estimatedCostInCents: 986
+      },
+      {
+        id: 12023,
+        amount: 40,
+        unit: 'g',
+        name: 'sesame seeds',
+        estimatedCostInCents: 886
+      },
+      { id: 20081, name: 'wheat flour', amount: 155 }
+    ]
+    expect(ingredientsNeeded).to.deep.equal(expected);
+  });
+});
