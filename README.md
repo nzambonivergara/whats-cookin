@@ -38,6 +38,8 @@ Individual Recipe Card:
 4. When in the weekly recipes view, user can see and select any recipe card that has been added to weekly recipes
 5. In the single recipe view, user can see recipe details, view their pantry ingredients, decided to cook the recipe and add ingredients needed.
 
+Click [here](https://youtu.be/mjnqXxpYPCw) for a full video presentation about our website.
+
 ## Technologies
 
 - Mocha
