@@ -394,9 +394,7 @@ function addIngredients() {
 
   updateIngredients(neededIngredients)
   .then(response => {
-    console.log('BEFORE adding ', user.pantry)
     user.addIngredientAmount(neededIngredients);
-    console.log('AFTER adding ', user.pantry)
     const pantryIngredients = user.returnPantryIngredients();
     domUpdates.renderPantryIngredients(pantryIngredients);
     MicroModal.close("modal-1");
@@ -409,9 +407,7 @@ function useIngredients() {
 
   updateIngredients(currentRecipe.ingredients)
   .then(response => {
-    console.log('BEFORE subtract ', user.pantry)
     user.subtractIngredientAmount(currentRecipe.ingredients);
-    console.log('AFTER subtract ', user.pantry)
     const pantryIngredients = user.returnPantryIngredients();
     domUpdates.renderPantryIngredients(pantryIngredients);
     MicroModal.close("modal-2");
