@@ -166,7 +166,7 @@ describe('User', function() {
   })
 
   it('should be able to substract from ingredients amount', function() {
-    const ingredients = [ { id: 20081, amount: -2 }, { id: 1123, amount: -1 } ]
+    const ingredients = [ { id: 20081, amount: 2 }, { id: 1123, amount: -1 } ]
 
     const originalFlourAmount = user.pantry[5].amount;
 
@@ -179,7 +179,7 @@ describe('User', function() {
   });
 
   it('should remove ingredients if amount is 0', function() {
-    const ingredients = [ { id: 20081, amount: -5 }, { id: 1123, amount: -1 } ]
+    const ingredients = [ { id: 20081, amount: 5 }, { id: 1123, amount: -1 } ]
 
     const originalFlourAmount = user.pantry[2].amount;
     const ingredientAtIndex2 = user.pantry[2].ingredient;
@@ -190,31 +190,23 @@ describe('User', function() {
     const newIngAtIndex2 = user.pantry[2].ingredient;
     const updatedPantryLength = user.pantry.length;
 
-    expect(originalFlourAmount).to.equal(9);
+    expect(originalFlourAmount).to.equal(5);
     expect(ingredientAtIndex2).to.equal(20081);
-    expect(newIngAtIndex2).to.equal(20081);
+    expect(newIngAtIndex2).to.equal(11215);
     expect(originalPantryLength).to.equal(10);
-    expect(updatedPantryLength).to.equal(10);
+    expect(updatedPantryLength).to.equal(9);
   });
 
   it('should be able to return needed recipe ingredients', function() {
     const ingredientsNeeded = user.returnNeededIngredients(missingIngredientsRecipe);
     const expected = [
       {
-        id: 93740,
-        amount: 40,
+        id: 20081,
+        amount: 160,
         unit: 'g',
-        name: 'blanched almond flour',
-        estimatedCostInCents: 986
-      },
-      {
-        id: 12023,
-        amount: 40,
-        unit: 'g',
-        name: 'sesame seeds',
-        estimatedCostInCents: 886
-      },
-      { id: 20081, name: 'wheat flour', amount: 155 }
+        name: 'wheat flour',
+        estimatedCostInCents: 142
+      }
     ]
     expect(ingredientsNeeded).to.deep.equal(expected);
   });
