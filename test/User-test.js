@@ -166,7 +166,7 @@ describe('User', function() {
   })
 
   it('should be able to substract from ingredients amount', function() {
-    const ingredients = [ { id: 20081, amount: -2 }, { id: 1123, amount: -1 } ]
+    const ingredients = [ { id: 20081, amount: 2 }, { id: 1123, amount: 1 } ]
 
     const originalFlourAmount = user.pantry[5].amount;
 
@@ -175,11 +175,11 @@ describe('User', function() {
     const updatedFlourAmount = user.pantry[5].amount;
 
     expect(originalFlourAmount).to.equal(9);
-    expect(updatedFlourAmount).to.equal(8)
+    expect(updatedFlourAmount).to.equal(8);
   });
 
   it('should remove ingredients if amount is 0', function() {
-    const ingredients = [ { id: 20081, amount: -5 }, { id: 1123, amount: -1 } ]
+    const ingredients = [ { id: 20081, amount: 5 }, { id: 1123, amount: 1 } ]
 
     const originalFlourAmount = user.pantry[2].amount;
     const ingredientAtIndex2 = user.pantry[2].ingredient;
@@ -195,5 +195,19 @@ describe('User', function() {
     expect(newIngAtIndex2).to.equal(11215);
     expect(originalPantryLength).to.equal(10);
     expect(updatedPantryLength).to.equal(9);
-  })
-})
+  });
+
+  it('should be able to return needed recipe ingredients', function() {
+    const ingredientsNeeded = user.returnNeededIngredients(missingIngredientsRecipe);
+    const expected = [
+      {
+        id: 20081,
+        amount: 160,
+        unit: 'g',
+        name: 'wheat flour',
+        estimatedCostInCents: 142
+      }
+    ]
+    expect(ingredientsNeeded).to.deep.equal(expected);
+  });
+});
