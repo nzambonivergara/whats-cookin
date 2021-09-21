@@ -166,7 +166,7 @@ describe('User', function() {
   })
 
   it('should be able to substract from ingredients amount', function() {
-    const ingredients = [ { id: 20081, amount: 2 }, { id: 1123, amount: -1 } ]
+    const ingredients = [ { id: 20081, amount: 2 }, { id: 1123, amount: 1 } ]
 
     const originalFlourAmount = user.pantry[5].amount;
 
@@ -175,11 +175,11 @@ describe('User', function() {
     const updatedFlourAmount = user.pantry[5].amount;
 
     expect(originalFlourAmount).to.equal(9);
-    expect(updatedFlourAmount).to.equal(10);
+    expect(updatedFlourAmount).to.equal(8);
   });
 
   it('should remove ingredients if amount is 0', function() {
-    const ingredients = [ { id: 20081, amount: 5 }, { id: 1123, amount: -1 } ]
+    const ingredients = [ { id: 20081, amount: 5 }, { id: 1123, amount: 1 } ]
 
     const originalFlourAmount = user.pantry[2].amount;
     const ingredientAtIndex2 = user.pantry[2].ingredient;
