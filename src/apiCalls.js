@@ -1,4 +1,4 @@
-const apiEndpoint = 'http://localhost:3001';
+const apiEndpoint = 'https://whats-cookin-api-data.herokuapp.com';
 
 function loadUsers() {
   return fetch(`${apiEndpoint}/api/v1/users`)
