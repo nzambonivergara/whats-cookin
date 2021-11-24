@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Whats Cookin</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Raleway:wght@100;200;300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  </head>
+  <body>
+    <nav class="nav-bar">
+      <div class="nav-bar__nav-tabs">
+        <button type="button" class="nav-tabs__all-recipes" id="allRecipesButton">All Recipes</button>
+        <button type="button" class="nav-tabs__favorites" id="favoritesViewButton">Favorites</button>
+        <button type="button" class="nav-tabs__this-week">This Week</button>
+      </div>
+      <div class="nav-bar__home-search">
+        <form class="search-bar">
+          <label for="searchBarInput" class="search-bar__search-label">Search</label>
+          <input type="search" class="search-bar__search-input" name="SearchInput" value="" id="searchBarInput">
+          <span class="material-icons">
+            search
+          </span>
+        </form>
+        <button type="button" class="search-bar__home-button" id="homeViewButton" aria-label="navigate-to-home">
+          <p class="search-bar__home-button-text">what's cookin'</p>
+          <span class="material-icons" aria-label="home-icon">home</span>
+        </button>
+      </div>
+    </nav>
+    <main class="main">
+      <section class="home-view" id="homeViewSection">
+        <section class="tagged-recipes-view__recipes-container hidden" id="taggedRecipesContainer"></section>
+        <h1 class="main-title">what's cookin'</h1>
+        <article class="search-glide-container" id="searchIngredientGlide">
+          <button class="search-glide__button" value="antipasti">
+            <p class="search-glide__tag-name">antipasti</p>
+          </button>
+          <button class="search-glide__button" value="snack">
+            <p class="search-glide__tag-name">snack</p>
+          </button>
+          <button class="search-glide__button" value="lunch">
+            <p class="search-glide__tag-name">lunch</p>
+          </button>
+          <button class="search-glide__button" value="dinner">
+            <p class="search-glide__tag-name">dinner</p>
+          </button>
+          <button class="search-glide__button" value="sauce">
+            <p class="search-glide__tag-name">sauce</p>
+          </button>
+          <button class="search-glide__button" value="side dish">
+            <p class="search-glide__tag-name">side dish</p>
+          </button>
+          <button class="search-glide__button" value="salad">
+            <p class="search-glide__tag-name">salad</p>
+          </button>
+          <button class="search-glide__button" value="breakfast">
+            <p class="search-glide__tag-name">breakfast</p>
+          </button>
+        </article>
+      </section>
+      <section class="searched-recipes-view__recipes-container hidden" id="searchedRecipesContainer">
+        <h2 class="search-results">Search Results:</h2>
+        <p class="recipes-container__no-results hidden" id="noResults">No Results Match Your Search</p>
+        <section class="recipes-container__search-results" id="searchedRecipes"></section>
+      </section>
+      <section class="all-recipes-view hidden" id="allRecipesSection">
+        <div class="top-banner">
+          <h1 class="top-banner__title">All Recipes</h1>
+        </div>
+        <section class="all-recipes-view__recipes-container" id="allRecipesContainer"></section>
+      </section>
+      <section class="favorites-view hidden" id="favoriteRecipesSection">
+        <h1 class="top-banner__title">Favorite Recipes</h1>
+        <p class="recipes-container__no-favorites" id="noFavoritesMessage"> <span class="material-icons">favorite_border</span>   You haven't added any favorite recipes. Explore and add your favorites!   <span class="material-icons">favorite_border</span></p>
+        <section class="favorites-view__favorites-container" id="favoriteRecipesContainer">
+        </section>
+        <section class="favorites-view__favorites-container hidden" id="favoriteTaggedRecipesContainer">
+        </section>
+      </section>
+      <section class="weekly-recipes-view hidden" id="weeklyRecipesSection">
+        <h1 class="weekly-view-title top-banner__title">Recipes This Week</h1>
+        <section class="no-weekly-recipes" id="noWeeklyRecipes">
+          <p class="no-weekly-recipes-saved">No weekly recipes saved...</p>
+          <p class="redirect-for-recipes">Start adding recipes to this week's section!</p>
+        </section>
+        <section class="weekly-recipes-view__recipes hidden" id="weeklyRecipes">
+        </section>
+      </section>
+      <section class="single-recipe-view hidden" id="singleRecipeView">
+        <h1 class="recipe-title" id="recipeName">Recipe Name</h1>
+        <div class="single-recipe-view__recipe-information">
+          <div class="recipe-information__container">
+            <h2>INGREDIENTS</h2>
+            <ul class="ingredient-list" id="recipeIngredients"></ul>
+            <p class="total-cost">COST:<span class="material-icons"> attach_money </span><span id="recipeCost"></span></p>
+          </div>
+          <div class="recipe-information__container">
+            <img id="recipeImage" class="recipe-image" alt="image of selected recipe">
+            <div class="recipe-buttons-container">
+              <button type="button" class="recipe-button favorite-button" id="addToFavoritesButton">
+                <span class="material-icons" aria-label="heart-icon">favorite_border</span>
+                <p aria-label="add to favorites">ADD TO FAVORITES</p>
+              </button>
+              <button type="button" class="recipe-button favorite-button hidden" id="removeFromFavoritesButton">
+               <span class="material-icons" aria-label="active-heart-icon">favorite_border</span>
+               <p>REMOVE FROM FAVORITES</p>
+             </button>
+              <button type="button" class="recipe-button week-button" id="addToWeekButton">
+                <span class="material-icons" aria-label="calendar-icon">date_range</span>
+                <p aria-label="add to this week's recipes">ADD TO THIS WEEK'S</p>
+              </button>
+              <button type="button" class="recipe-button week-button hidden" id="removeFromWeekButton">
+                <span class="material-icons" aria-label="active-calendar-icon">date_range</span>
+                <p>REMOVE FROM THIS WEEK'S</p>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="single-recipe-view__instructions">
+          <h2>INSTRUCTIONS</h2>
+          <ol class="instructions__instructions-list" id="recipeInstructions"></ol>
+        </div>
+        <aside>
+          <h2><span class="material-icons">lunch_dining</span>YOUR PANTRY</h2>
+          <ul id="pantryIngredients" class="pantry-ingredients"> ● PANTRY LIST
+          </ul>
+          <button class="cook-recipe-button" data-micromodal-trigger="modal-1" id="cookRecipeButton">COOK THIS RECIPE</button>
+        </aside>
+      </section>
+    </main>
+    <div class="modal" id="modal-1" aria-hidden="true">
+      <div class="modal__overlay" tabindex="-1" data-micromodal-close>
+        <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="add-ingredients-to-pantry" >
+          <header class="modal__header">
+            <h2 class="modal__title" id="add-ingredients-to-pantry">Add to Pantry</h2>
+            <button class="modal__close" aria-label="Close modal" data-micromodal-close></button>
+          </header>
+          <main class="modal__content" id="modal-1-content">
+            <p>You still need these ingredients to cook this recipe:</p>
+            <ul id="ingredientsNeeded"> ● INGREDIENT LIST </ul>
+            <p>Wanna add these ingredients to your pantry?</p>
+          </main>
+          <footer class="modal__footer">
+            <button class="modal__button" id="addIngredientsButton" aria-label="Add missing ingredients to pantry and close dialog window">YES</button>
+            <button class="modal__button" data-micromodal-close aria-label="Close this dialog window">CANCEL</button>
+          </footer>
+        </div>
+      </div>
+    </div>
+    <div class="modal" id="modal-2" aria-hidden="true">
+      <div class="modal__overlay" tabindex="-1" data-micromodal-close >
+        <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="cook-confirmation-modal" >
+          <header class="modal__header">
+            <h2 class="modal__title" id="cook-confirmation-modal">Cook this recipe</h2>
+            <button class="modal__close" aria-label="Close modal" data-micromodal-close></button>
+          </header>
+          <main class="modal__content" id="modal-1-content">
+            <p>You have enough ingredients to cook this recipe!</p>
+            <p>Click YES, to confirm and update your pantry.</p>
+          </main>
+          <footer class="modal__footer">
+            <button class="modal__button" id="confirmCookingButton" aria-label="Cook current recipe and remove ingredients used from pantry">YES</button>
+            <button class="modal__button" data-micromodal-close aria-label="Close this dialog window">CANCEL</button>
+          </footer>
+        </div>
+      </div>
+    </div>
+  <script src="main.bundle.js"></script></body>
+</html>
